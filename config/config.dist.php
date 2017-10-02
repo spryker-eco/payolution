@@ -5,10 +5,10 @@
 
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
-use Spryker\Shared\Payolution\PayolutionConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
-use Spryker\Zed\Payolution\PayolutionConfig;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 $config[PayolutionConstants::TRANSACTION_GATEWAY_URL] = '';
 $config[PayolutionConstants::CALCULATION_GATEWAY_URL] = '';
@@ -47,6 +47,7 @@ $config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
     $config[KernelConstants::SPRYKER_ROOT] . '/Payolution/config/Zed/Oms',
+    APPLICATION_VENDOR_DIR . '/spryker-eco/payolution/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [

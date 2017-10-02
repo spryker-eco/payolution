@@ -19,10 +19,10 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Service\UtilText\UtilTextService;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use Spryker\Zed\Payolution\Business\Payment\Method\ApiConstants;
-use Spryker\Zed\Payolution\Business\Payment\Method\Invoice\Invoice;
-use Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
-use Spryker\Zed\Payolution\PayolutionConfig;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\Invoice\Invoice;
+use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
+use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 /**
  * Auto-generated group annotations
@@ -200,7 +200,7 @@ class InvoiceTest extends Unit
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Spryker\Zed\Payolution\PayolutionConfig
+     * @return \PHPUnit_Framework_MockObject_MockObject|\SprykerEco\Zed\Payolution\PayolutionConfig
      */
     private function getBundleConfigMock()
     {
@@ -247,7 +247,7 @@ class InvoiceTest extends Unit
     }
 
     /**
-     * @return \Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
+     * @return \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
      */
     protected function getMoneyFacade()
     {

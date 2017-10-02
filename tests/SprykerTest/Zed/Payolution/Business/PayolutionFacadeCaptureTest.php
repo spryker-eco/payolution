@@ -7,7 +7,7 @@
 
 namespace SprykerTest\Zed\Payolution\Business;
 
-use Spryker\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
 use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\CaptureAdapterMock;
 use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\PreAuthorizationAdapterMock;
 

@@ -21,11 +21,11 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
-use Spryker\Shared\Payolution\PayolutionConstants;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use Spryker\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
-use Spryker\Zed\Payolution\Business\Api\Converter\Converter as ResponseConverter;
-use Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
+use SprykerEco\Zed\Payolution\Business\Api\Converter\Converter as ResponseConverter;
+use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
 
 /**
  * Auto-generated group annotations
@@ -51,7 +51,7 @@ class AbstractFacadeTest extends Unit
     private $paymentEntity;
 
     /**
-     * @var \Spryker\Zed\Payolution\Business\Api\Converter\Converter
+     * @var \SprykerEco\Zed\Payolution\Business\Api\Converter\Converter
      */
     private $responseConverter;
 
@@ -79,7 +79,7 @@ class AbstractFacadeTest extends Unit
     }
 
     /**
-     * @return \Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
+     * @return \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
      */
     protected function getMoneyFacade()
     {
@@ -181,7 +181,7 @@ class AbstractFacadeTest extends Unit
     }
 
     /**
-     * @return \Spryker\Zed\Payolution\Business\Api\Converter\Converter
+     * @return \SprykerEco\Zed\Payolution\Business\Api\Converter\Converter
      */
     protected function getResponseConverter()
     {
@@ -225,9 +225,9 @@ class AbstractFacadeTest extends Unit
     }
 
     /**
-     * @param \Spryker\Zed\Payolution\Business\Api\Adapter\AdapterInterface $adapter
+     * @param \SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface $adapter
      *
-     * @return \Spryker\Zed\Payolution\Business\PayolutionFacade
+     * @return \SprykerEco\Zed\Payolution\Business\PayolutionFacade
      */
     protected function getFacadeMock(AdapterInterface $adapter)
     {
