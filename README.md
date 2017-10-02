@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-composer require spryker/payolution
+composer require spryker-eco/payolution
 ```
 
 ## Documentation

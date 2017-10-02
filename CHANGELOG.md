@@ -1,3 +1,3 @@
 # Payolution Changelog
 
-[Payolution Changelog](https://github.com/spryker/Payolution/releases)
+[Payolution Changelog](https://github.com/spryker-eco/payolution/releases)

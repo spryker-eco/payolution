@@ -1,7 +1,7 @@
 {
-  "name": "spryker/payolution",
+  "name": "spryker-eco/payolution",
   "description": "Payolution module",
-  "license": "proprietary",
+  "license": "MIT",
   "require": {
     "spryker/checkout": "^3.0.0",
     "spryker/glossary": "^3.0.0",
