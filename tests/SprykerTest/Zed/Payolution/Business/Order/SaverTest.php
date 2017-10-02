@@ -27,9 +27,9 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionQuery;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
-use Spryker\Shared\Payolution\PayolutionConstants;
-use Spryker\Zed\Payolution\Business\Order\Saver;
-use Spryker\Zed\Payolution\Business\PayolutionBusinessFactory;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Zed\Payolution\Business\Order\Saver;
+use SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory;
 
 /**
  * Auto-generated group annotations
@@ -100,7 +100,7 @@ class SaverTest extends Unit
     }
 
     /**
-     * @return \Spryker\Zed\Payolution\Business\PayolutionBusinessFactory
+     * @return \SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory
      */
     private function getPayolutionBusinessBusinessFactory()
     {

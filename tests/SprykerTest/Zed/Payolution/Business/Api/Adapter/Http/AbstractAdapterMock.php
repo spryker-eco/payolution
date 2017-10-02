@@ -7,7 +7,7 @@
 
 namespace SprykerTest\Zed\Payolution\Business\Api\Adapter\Http;
 
-use Spryker\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
+use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
 
 abstract class AbstractAdapterMock implements AdapterInterface
 {

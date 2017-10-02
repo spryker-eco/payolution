@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
-use Spryker\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\PreCheckAdapterMock;
 
 /**

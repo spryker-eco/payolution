@@ -9,21 +9,21 @@ namespace SprykerTest\Zed\Payolution\Business;
 
 use Codeception\Test\Unit;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use Spryker\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
-use Spryker\Zed\Payolution\Business\PayolutionBusinessFactory;
-use Spryker\Zed\Payolution\Business\PayolutionFacade;
-use Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
-use Spryker\Zed\Payolution\PayolutionConfig;
-use Spryker\Zed\Payolution\Persistence\PayolutionQueryContainer;
+use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
+use SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory;
+use SprykerEco\Zed\Payolution\Business\PayolutionFacade;
+use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
+use SprykerEco\Zed\Payolution\PayolutionConfig;
+use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainer;
 
 class PayolutionFacadeMockBuilder
 {
 
     /**
-     * @param \Spryker\Zed\Payolution\Business\Api\Adapter\AdapterInterface $adapter
+     * @param \SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface $adapter
      * @param \Codeception\Test\Unit $testCase
      *
-     * @return \Spryker\Zed\Payolution\Business\PayolutionFacade|\PHPUnit_Framework_MockObject_MockObject
+     * @return \SprykerEco\Zed\Payolution\Business\PayolutionFacade|\PHPUnit_Framework_MockObject_MockObject
      */
     public static function build(AdapterInterface $adapter, Unit $testCase)
     {
@@ -56,7 +56,7 @@ class PayolutionFacadeMockBuilder
     /**
      * @param \Codeception\Test\Unit $testCase
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Spryker\Zed\Payolution\Business\PayolutionBusinessFactory
+     * @return \PHPUnit_Framework_MockObject_MockObject|\SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory
      */
     protected static function getBusinessFactoryMock(Unit $testCase)
     {

@@ -9,8 +9,8 @@ namespace SprykerTest\Zed\Payolution\Business\Api\Response;
 
 use Codeception\Test\Unit;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use Spryker\Zed\Payolution\Business\Api\Converter\Converter;
-use Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
+use SprykerEco\Zed\Payolution\Business\Api\Converter\Converter;
+use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
 
 /**
  * Auto-generated group annotations
@@ -41,7 +41,7 @@ class ConverterTest extends Unit
     }
 
     /**
-     * @return \Spryker\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
+     * @return \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface
      */
     protected function getMoneyFacade()
     {

@@ -24,8 +24,8 @@ use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTableMap;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
-use Spryker\Zed\Payolution\Business\Payment\Method\ApiConstants;
-use Spryker\Zed\Payolution\Business\PayolutionFacade;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\PayolutionFacade;
 
 /**
  * Auto-generated group annotations
@@ -51,7 +51,7 @@ class PayolutionFacadeGatewayTest extends Unit
     private $paymentEntity;
 
     /**
-     * @var \Spryker\Zed\Payolution\Business\PayolutionFacade
+     * @var \SprykerEco\Zed\Payolution\Business\PayolutionFacade
      */
     private $payolutionFacade;
 

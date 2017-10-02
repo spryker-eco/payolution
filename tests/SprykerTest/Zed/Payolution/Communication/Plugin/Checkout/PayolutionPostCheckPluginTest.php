@@ -13,9 +13,9 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery;
-use Spryker\Zed\Payolution\Business\Payment\Method\ApiConstants;
-use Spryker\Zed\Payolution\Communication\Plugin\Checkout\PayolutionPostCheckPlugin;
-use Spryker\Zed\Payolution\Persistence\PayolutionQueryContainer;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Communication\Plugin\Checkout\PayolutionPostCheckPlugin;
+use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainer;
 
 /**
  * Auto-generated group annotations
@@ -84,7 +84,7 @@ class PayolutionPostCheckPluginTest extends Unit
     /**
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog $transactionStatusLogEntity
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Spryker\Zed\Payolution\Persistence\PayolutionQueryContainer
+     * @return \PHPUnit_Framework_MockObject_MockObject|\SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainer
      */
     private function getQueryContainerMock(SpyPaymentPayolutionTransactionStatusLog $transactionStatusLogEntity)
     {

@@ -13,9 +13,9 @@ use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use Spryker\Client\Payolution\PayolutionClientInterface;
-use Spryker\Yves\Payolution\Exception\PaymentMethodNotFoundException;
-use Spryker\Yves\Payolution\Handler\PayolutionHandler;
+use SprykerEco\Client\Payolution\PayolutionClientInterface;
+use SprykerEco\Yves\Payolution\Exception\PaymentMethodNotFoundException;
+use SprykerEco\Yves\Payolution\Handler\PayolutionHandler;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -78,7 +78,7 @@ class PayolutionHandlerTest extends Unit
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Spryker\Client\Payolution\PayolutionClientInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject|\SprykerEco\Client\Payolution\PayolutionClientInterface
      */
     private function getPayolutionClientMock()
     {
