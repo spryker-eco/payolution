@@ -9,17 +9,27 @@ namespace SprykerEco\Yves\Payolution\Form;
 
 use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
+use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements SubFormInterface
+abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
 
     const FIELD_DATE_OF_BIRTH = 'date_of_birth';
 
     const MIN_BIRTHDAY_DATE_STRING = '-18 years';
+
+    /**
+     * @return string
+     */
+    public function getProviderName()
+    {
+        return PayolutionConstants::PROVIDER_NAME;
+    }
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder

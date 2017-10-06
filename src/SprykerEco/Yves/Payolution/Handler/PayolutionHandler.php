@@ -81,7 +81,7 @@ class PayolutionHandler
     protected function setPaymentProviderAndMethod(QuoteTransfer $quoteTransfer, $paymentSelection)
     {
         $quoteTransfer->getPayment()
-            ->setPaymentProvider(PayolutionConfig::PROVIDER_NAME)
+            ->setPaymentProvider(PayolutionConstants::PROVIDER_NAME)
             ->setPaymentMethod(self::$paymentMethods[$paymentSelection]);
     }
 

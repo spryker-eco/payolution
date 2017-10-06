@@ -13,10 +13,6 @@ use SprykerEco\Shared\Payolution\PayolutionConstants;
 class PayolutionConfig extends AbstractBundleConfig
 {
 
-    const PROVIDER_NAME = 'payolution';
-    const PAYMENT_METHOD_INVOICE = 'payolutionInvoice';
-    const PAYMENT_METHOD_INSTALLMENT = 'payolutionInstallment';
-
     /**
      * @return string
      */
