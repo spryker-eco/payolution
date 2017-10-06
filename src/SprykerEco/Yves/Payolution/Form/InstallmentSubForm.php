@@ -10,7 +10,6 @@ namespace SprykerEco\Yves\Payolution\Form;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Payolution\PayolutionConstants;
-use SprykerEco\Zed\Payolution\PayolutionConfig;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -18,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class InstallmentSubForm extends AbstractPayolutionSubForm
 {
 
-    const PAYMENT_PROVIDER = PayolutionConstants::PAYOLUTION;
+    const PAYMENT_PROVIDER = PayolutionConstants::PROVIDER_NAME;
     const PAYMENT_METHOD = 'installment';
     const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
     const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
@@ -32,7 +31,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
      */
     public function getName()
     {
-        return PayolutionConfig::PAYMENT_METHOD_INSTALLMENT;
+        return PayolutionConstants::PAYMENT_METHOD_INSTALLMENT;
     }
 
     /**
@@ -40,7 +39,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
      */
     public function getPropertyPath()
     {
-        return PayolutionConfig::PAYMENT_METHOD_INSTALLMENT;
+        return PayolutionConstants::PAYMENT_METHOD_INSTALLMENT;
     }
 
     /**
@@ -48,7 +47,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
      */
     public function getTemplatePath()
     {
-        return PayolutionConstants::PAYOLUTION . '/' . self::PAYMENT_METHOD;
+        return PayolutionConstants::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
     }
 
     /**
