@@ -12,10 +12,10 @@ use Spryker\Shared\Kernel\Dependency\Injector\DependencyInjectorInterface;
 use Spryker\Yves\Checkout\CheckoutDependencyProvider;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginCollection;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 use SprykerEco\Yves\Payolution\Plugin\PayolutionHandlerPlugin;
 use SprykerEco\Yves\Payolution\Plugin\PayolutionInstallmentSubFormPlugin;
 use SprykerEco\Yves\Payolution\Plugin\PayolutionInvoiceSubFormPlugin;
-use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 class CheckoutDependencyInjector implements DependencyInjectorInterface
 {
@@ -60,8 +60,8 @@ class CheckoutDependencyInjector implements DependencyInjectorInterface
         $container->extend(CheckoutDependencyProvider::PAYMENT_METHOD_HANDLER, function (StepHandlerPluginCollection $paymentMethodHandler) {
             $payolutionHandlerPlugin = new PayolutionHandlerPlugin();
 
-            $paymentMethodHandler->add($payolutionHandlerPlugin, PayolutionConfig::PAYMENT_METHOD_INVOICE);
-            $paymentMethodHandler->add($payolutionHandlerPlugin, PayolutionConfig::PAYMENT_METHOD_INSTALLMENT);
+            $paymentMethodHandler->add($payolutionHandlerPlugin, PayolutionConstants::PAYMENT_METHOD_INVOICE);
+            $paymentMethodHandler->add($payolutionHandlerPlugin, PayolutionConstants::PAYMENT_METHOD_INSTALLMENT);
 
             return $paymentMethodHandler;
         });
