@@ -148,22 +148,19 @@ class InstallmentFormDataProvider implements StepEngineFormDataProviderInterface
         if (!$installment) {
             throw new InstallmentNotFoundException('Could not get installment');
         }
-        $choice =
-            $paymentDetail->getCurrency() .
-            $this->convertCentToDecimal($installment->getAmount()) .
-            $paymentDetail->getDuration();
+
+        $moneyTransfer = $this->moneyPlugin
+            ->fromInteger(
+                $installment->getAmount(),
+                $paymentDetail->getCurrency()
+            );
+
+        $choice = sprintf('%d × %s',
+            $paymentDetail->getDuration(),
+            $this->moneyPlugin->formatWithSymbol($moneyTransfer)
+        );
 
         return $choice;
-    }
-
-    /**
-     * @param int $amount
-     *
-     * @return float
-     */
-    protected function convertCentToDecimal($amount)
-    {
-        return $this->moneyPlugin->convertIntegerToDecimal((int)$amount);
     }
 
 }
