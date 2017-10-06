@@ -13,7 +13,6 @@ use Spryker\Shared\Kernel\Store;
 use SprykerEco\Client\Payolution\PayolutionClientInterface;
 use SprykerEco\Shared\Payolution\PayolutionConstants;
 use SprykerEco\Yves\Payolution\Exception\PaymentMethodNotFoundException;
-use SprykerEco\Zed\Payolution\PayolutionConfig;
 use Symfony\Component\HttpFoundation\Request;
 
 class PayolutionHandler
@@ -23,16 +22,16 @@ class PayolutionHandler
      * @var array
      */
     protected static $paymentMethods = [
-        PayolutionConfig::PAYMENT_METHOD_INVOICE => 'invoice',
-        PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'installment',
+        PayolutionConstants::PAYMENT_METHOD_INVOICE => 'invoice',
+        PayolutionConstants::PAYMENT_METHOD_INSTALLMENT => 'installment',
     ];
 
     /**
      * @var array
      */
     protected static $payolutionPaymentMethodMapper = [
-        PayolutionConfig::PAYMENT_METHOD_INVOICE => PayolutionConstants::BRAND_INVOICE,
-        PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => PayolutionConstants::BRAND_INSTALLMENT,
+        PayolutionConstants::PAYMENT_METHOD_INVOICE => PayolutionConstants::BRAND_INVOICE,
+        PayolutionConstants::PAYMENT_METHOD_INSTALLMENT => PayolutionConstants::BRAND_INSTALLMENT,
     ];
 
     /**
