@@ -12,6 +12,7 @@ use Spryker\Zed\Kernel\Container;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToGlossaryBridge;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMailBridge;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
+use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToRefundBridge;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesBridge;
 
 class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
@@ -20,6 +21,7 @@ class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
     const FACADE_MAIL = 'mail facade';
     const FACADE_GLOSSARY = 'glossary facade';
     const FACADE_MONEY = 'money facade';
+    const FACADE_REFUND = 'refund facade';
     const FACADE_SALES = 'sales facade';
 
     /**
@@ -49,6 +51,10 @@ class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
 
         $container[static::FACADE_GLOSSARY] = function (Container $container) {
             return new PayolutionToGlossaryBridge($container->getLocator()->glossary()->facade());
+        };
+
+        $container[static::FACADE_REFUND] = function (Container $container) {
+            return new PayolutionToRefundBridge($container->getLocator()->refund()->facade());
         };
 
         $container[static::FACADE_SALES] = function (Container $container) {

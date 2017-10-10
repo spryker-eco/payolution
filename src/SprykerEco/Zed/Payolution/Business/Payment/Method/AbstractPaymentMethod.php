@@ -118,7 +118,7 @@ abstract class AbstractPaymentMethod
         $uniqueId
     ) {
         $requestData = $this->getBaseTransactionRequest(
-            $orderTransfer->getTotals()->getGrandTotal(),
+            $orderTransfer->getTotals()->getRefundTotal(),
             $paymentEntity->getCurrencyIso3Code(),
             $orderTransfer->getIdSalesOrder()
         );

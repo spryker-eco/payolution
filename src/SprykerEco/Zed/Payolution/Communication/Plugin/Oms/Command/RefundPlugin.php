@@ -29,12 +29,26 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
         $orderTransfer = $this->getOrderTransfer($orderEntity);
+
+        $refundTransfer = $this->getFactory()
+            ->getRefundFacade()
+            ->calculateRefund($orderItems, $orderEntity);
+
+        $orderTransfer->getTotals()->setRefundTotal(
+            $refundTransfer->getAmount()
+        );
+
         $paymentEntity = $this->getPaymentEntity($orderEntity);
 
-        $this->getFacade()->refundPayment(
-            $orderTransfer,
-            $paymentEntity->getIdPaymentPayolution()
-        );
+        $this->getFacade()
+            ->refundPayment(
+                $orderTransfer,
+                $paymentEntity->getIdPaymentPayolution()
+            );
+
+        $this->getFactory()
+            ->getRefundFacade()
+            ->saveRefund($refundTransfer);
 
         return [];
     }
@@ -46,8 +60,7 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
      */
     protected function getOrderTransfer(SpySalesOrder $orderEntity)
     {
-        return $this
-            ->getFactory()
+        return $this->getFactory()
             ->getSalesFacade()
             ->getOrderByIdSalesOrder($orderEntity->getIdSalesOrder());
     }

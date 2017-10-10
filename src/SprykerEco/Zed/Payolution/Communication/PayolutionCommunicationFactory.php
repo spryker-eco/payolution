@@ -71,6 +71,14 @@ class PayolutionCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
+     * @return \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToRefundInterface
+     */
+    public function getRefundFacade()
+    {
+        return $this->getProvidedDependency(PayolutionDependencyProvider::FACADE_REFUND);
+    }
+
+    /**
      * @return \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesInterface
      */
     public function getSalesFacade()
