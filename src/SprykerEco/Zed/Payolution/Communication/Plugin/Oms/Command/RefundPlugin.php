@@ -7,10 +7,12 @@
 
 namespace SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Command;
 
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 
 /**
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
@@ -40,15 +42,17 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
 
         $paymentEntity = $this->getPaymentEntity($orderEntity);
 
-        $this->getFacade()
+        $responseTransfer = $this->getFacade()
             ->refundPayment(
                 $orderTransfer,
                 $paymentEntity->getIdPaymentPayolution()
             );
 
-        $this->getFactory()
-            ->getRefundFacade()
-            ->saveRefund($refundTransfer);
+        if ($this->isTransactionSuccessful($responseTransfer)) {
+            $this->getFactory()
+                ->getRefundFacade()
+                ->saveRefund($refundTransfer);
+        }
 
         return [];
     }
@@ -75,6 +79,26 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
         $paymentEntity = $orderEntity->getSpyPaymentPayolutions()->getFirst();
 
         return $paymentEntity;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer $transactionResponseTransfer
+     *
+     * @return bool
+     */
+    protected function isTransactionSuccessful(PayolutionTransactionResponseTransfer $transactionResponseTransfer)
+    {
+        if ($transactionResponseTransfer->getProcessingReasonCode() !== PayolutionConstants::REASON_CODE_SUCCESS) {
+            return false;
+        }
+        if ($transactionResponseTransfer->getProcessingStatusCode() !== PayolutionConstants::STATUS_CODE_SUCCESS) {
+            return false;
+        }
+        if ($transactionResponseTransfer->getPaymentCode() !== PayolutionConstants::PAYMENT_CODE_PRE_CHECK) {
+            return false;
+        }
+
+        return true;
     }
 
 }
