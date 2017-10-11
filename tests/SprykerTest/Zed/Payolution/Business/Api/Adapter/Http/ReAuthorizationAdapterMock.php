@@ -11,7 +11,7 @@ class ReAuthorizationAdapterMock extends AbstractAdapterMock
 {
 
     /**
-     * @return array
+     * @return string
      */
     public function getSuccessResponse()
     {
@@ -60,7 +60,7 @@ class ReAuthorizationAdapterMock extends AbstractAdapterMock
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getFailureResponse()
     {

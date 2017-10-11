@@ -118,7 +118,7 @@ abstract class AbstractPaymentMethod
         $uniqueId
     ) {
         $requestData = $this->getBaseTransactionRequest(
-            $orderTransfer->getTotals()->getRefundTotal(),
+            $this->getGrandTotal($orderTransfer),
             $paymentEntity->getCurrencyIso3Code(),
             $orderTransfer->getIdSalesOrder()
         );
@@ -177,6 +177,20 @@ abstract class AbstractPaymentMethod
             $addressTransfer->getAddress2(),
             $addressTransfer->getAddress3()
         ));
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return int
+     */
+    protected function getGrandTotal(OrderTransfer $orderTransfer)
+    {
+        if ($orderTransfer->getTotals()->getRefundTotal() > 0) {
+            return $orderTransfer->getTotals()->getRefundTotal();
+        }
+
+        return $orderTransfer->getTotals()->getGrandTotal();
     }
 
 }
