@@ -33,16 +33,12 @@
   "autoload": {
     "psr-0": {
       "SprykerEco": "src/",
-      "Function": "tests/"
+      "SprykerTest": "tests/"
     }
   },
   "autoload-dev": {
-    "psr-0": {
-      "Unit": "vendor/spryker-eco/payolution/tests",
-      "Functional": "vendor/spryker-eco/payolution/tests"
-    },
     "psr-4": {
-      "SprykerTest\\": "tests/SprykerTest/"
+      "SprykerTest\\": "vendor/spryker-eco/payolution/tests/SprykerTest/"
     }
   },
   "minimum-stability": "dev",
