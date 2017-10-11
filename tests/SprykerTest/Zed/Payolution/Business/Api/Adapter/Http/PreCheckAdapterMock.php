@@ -11,7 +11,7 @@ class PreCheckAdapterMock extends AbstractAdapterMock
 {
 
     /**
-     * @return array
+     * @return string
      */
     public function getSuccessResponse()
     {
@@ -67,7 +67,7 @@ class PreCheckAdapterMock extends AbstractAdapterMock
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getFailureResponse()
     {

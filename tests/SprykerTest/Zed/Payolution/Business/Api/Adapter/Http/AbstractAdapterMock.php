@@ -70,12 +70,12 @@ abstract class AbstractAdapterMock implements AdapterInterface
     }
 
     /**
-     * @return array
+     * @return string
      */
     abstract public function getSuccessResponse();
 
     /**
-     * @return array
+     * @return string
      */
     abstract public function getFailureResponse();
 

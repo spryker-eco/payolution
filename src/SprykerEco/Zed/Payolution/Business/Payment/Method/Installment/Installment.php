@@ -200,7 +200,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
                 ApiConstants::CONTACT_PHONE => $paymentEntity->getPhone(),
                 ApiConstants::CONTACT_MOBILE => $paymentEntity->getCellPhone(),
                 ApiConstants::CONTACT_IP => $paymentEntity->getClientIp(),
-                ApiConstants::IDENTIFICATION_SHOPPERID => $paymentEntity->getSpySalesOrder()->getFkCustomer(),
+                ApiConstants::IDENTIFICATION_SHOPPERID => $paymentEntity->getSpySalesOrder()->getCustomerReference(),
                 ApiConstants::CRITERION_PRE_CHECK_ID => $paymentEntity->getPreCheckId(),
                 ApiConstants::CRITERION_CUSTOMER_LANGUAGE => $paymentEntity->getLanguageIso2Code(),
                 ApiConstants::CRITERION_CALCULATION_ID => $paymentEntity->getInstallmentCalculationId(),

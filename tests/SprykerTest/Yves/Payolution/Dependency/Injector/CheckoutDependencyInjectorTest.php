@@ -12,8 +12,8 @@ use Spryker\Yves\Checkout\CheckoutDependencyProvider;
 use Spryker\Yves\Kernel\Container;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Form\SubFormPluginCollection;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 use SprykerEco\Yves\Payolution\Dependency\Injector\CheckoutDependencyInjector;
-use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 /**
  * Auto-generated group annotations
@@ -43,8 +43,8 @@ class CheckoutDependencyInjectorTest extends Unit
 
         $checkoutStepHandlerPluginCollection = $container[CheckoutDependencyProvider::PAYMENT_METHOD_HANDLER];
 
-        $this->assertTrue($checkoutStepHandlerPluginCollection->has(PayolutionConfig::PAYMENT_METHOD_INVOICE));
-        $this->assertTrue($checkoutStepHandlerPluginCollection->has(PayolutionConfig::PAYMENT_METHOD_INSTALLMENT));
+        $this->assertTrue($checkoutStepHandlerPluginCollection->has(PayolutionConstants::PAYMENT_METHOD_INVOICE));
+        $this->assertTrue($checkoutStepHandlerPluginCollection->has(PayolutionConstants::PAYMENT_METHOD_INSTALLMENT));
     }
 
     /**

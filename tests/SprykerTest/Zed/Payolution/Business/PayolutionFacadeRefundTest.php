@@ -7,6 +7,7 @@
 
 namespace SprykerTest\Zed\Payolution\Business;
 
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
 use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\CaptureAdapterMock;
 use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\PreAuthorizationAdapterMock;
@@ -44,7 +45,7 @@ class PayolutionFacadeRefundTest extends AbstractFacadeTest
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->refundPayment($orderTransfer, $idPayment);
 
-        $this->assertInstanceOf('Generated\Shared\Transfer\PayolutionTransactionResponseTransfer', $response);
+        $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
         $expectedResponseData = $adapterMock->getSuccessResponse();
         $expectedResponse = $this->getResponseConverter()->toTransactionResponseTransfer($expectedResponseData);
@@ -94,7 +95,7 @@ class PayolutionFacadeRefundTest extends AbstractFacadeTest
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->refundPayment($orderTransfer, $idPayment);
 
-        $this->assertInstanceOf('Generated\Shared\Transfer\PayolutionTransactionResponseTransfer', $response);
+        $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
         $expectedResponseData = $adapterMock->getFailureResponse();
         $expectedResponse = $this->getResponseConverter()->toTransactionResponseTransfer($expectedResponseData);

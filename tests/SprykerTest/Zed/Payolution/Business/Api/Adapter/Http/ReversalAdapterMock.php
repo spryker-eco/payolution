@@ -11,7 +11,7 @@ class ReversalAdapterMock extends AbstractAdapterMock
 {
 
     /**
-     * @return array
+     * @return string
      */
     public function getSuccessResponse()
     {
@@ -59,7 +59,7 @@ class ReversalAdapterMock extends AbstractAdapterMock
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function getFailureResponse()
     {

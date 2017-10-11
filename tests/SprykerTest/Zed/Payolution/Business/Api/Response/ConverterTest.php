@@ -8,6 +8,7 @@
 namespace SprykerTest\Zed\Payolution\Business\Api\Response;
 
 use Codeception\Test\Unit;
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Spryker\Zed\Money\Business\MoneyFacade;
 use SprykerEco\Zed\Payolution\Business\Api\Converter\Converter;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
@@ -33,7 +34,7 @@ class ConverterTest extends Unit
     {
         $exporter = new Converter($this->getMoneyFacade());
         $responseTransfer = $exporter->toTransactionResponseTransfer($this->getTestResponseData());
-        $this->assertInstanceOf('Generated\Shared\Transfer\PayolutionTransactionResponseTransfer', $responseTransfer);
+        $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $responseTransfer);
         $this->assertEquals('DE', $responseTransfer->getAddressCountry());
         $this->assertEquals('Berlin', $responseTransfer->getAddressCity());
         $this->assertEquals('10623', $responseTransfer->getAddressZip());
@@ -51,7 +52,7 @@ class ConverterTest extends Unit
     }
 
     /**
-     * @return array
+     * @return string
      */
     private function getTestResponseData()
     {
