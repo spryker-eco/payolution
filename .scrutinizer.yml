@@ -1,6 +1,7 @@
 build:
     dependencies:
         before:
+            - mkdir -p config/Shared
             - >
               echo "<?php
 
