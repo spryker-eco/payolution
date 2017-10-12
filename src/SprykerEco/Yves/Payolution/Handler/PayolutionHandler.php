@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PayolutionHandler
 {
-
     /**
      * @var array
      */
@@ -163,5 +162,4 @@ class PayolutionHandler
 
         return $payolutionPaymentTransfer;
     }
-
 }

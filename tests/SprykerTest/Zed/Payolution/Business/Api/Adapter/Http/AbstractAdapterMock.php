@@ -11,7 +11,6 @@ use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
 
 abstract class AbstractAdapterMock implements AdapterInterface
 {
-
     /**
      * @var bool
      */
@@ -78,5 +77,4 @@ abstract class AbstractAdapterMock implements AdapterInterface
      * @return string
      */
     abstract public function getFailureResponse();
-
 }

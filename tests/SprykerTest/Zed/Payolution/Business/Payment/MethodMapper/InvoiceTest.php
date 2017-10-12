@@ -37,7 +37,6 @@ use SprykerEco\Zed\Payolution\PayolutionConfig;
  */
 class InvoiceTest extends Unit
 {
-
     /**
      * @return void
      */
@@ -255,5 +254,4 @@ class InvoiceTest extends Unit
 
         return $payolutionToMoneyBridge;
     }
-
 }

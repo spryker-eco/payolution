@@ -9,7 +9,6 @@ namespace SprykerEco\Shared\Payolution;
 
 interface PayolutionConstants
 {
-
     const PROVIDER_NAME = 'payolution';
     const PAYMENT_METHOD_INVOICE = 'payolutionInvoice';
     const PAYMENT_METHOD_INSTALLMENT = 'payolutionInstallment';
@@ -62,5 +61,4 @@ interface PayolutionConstants
      * @api
      */
     const BASE_URL_YVES = 'PAYOLUTION:BASE_URL_YVES';
-
 }

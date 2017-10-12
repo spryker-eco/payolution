@@ -25,7 +25,6 @@ use SprykerEco\Zed\Payolution\PayolutionDependencyProvider;
  */
 class PayolutionBusinessFactory extends AbstractBusinessFactory
 {
-
     /**
      * @return \SprykerEco\Zed\Payolution\Business\Payment\Handler\Transaction\TransactionInterface
      */
@@ -124,5 +123,4 @@ class PayolutionBusinessFactory extends AbstractBusinessFactory
     {
         return new Installment($this->getConfig(), $this->getMoneyFacade());
     }
-
 }

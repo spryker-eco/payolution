@@ -9,7 +9,6 @@ namespace SprykerTest\Zed\Payolution\Business\Api\Adapter\Http;
 
 class ReversalAdapterMock extends AbstractAdapterMock
 {
-
     /**
      * @return string
      */
@@ -97,5 +96,4 @@ class ReversalAdapterMock extends AbstractAdapterMock
             'PRESENTATION_AMOUNT=10000.00' . '&' .
             'ADDRESS_COUNTRY=DE\r\n';
     }
-
 }

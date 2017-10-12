@@ -21,7 +21,6 @@ use SprykerEco\Yves\Payolution\Form\InstallmentSubForm;
 
 class InstallmentFormDataProvider implements StepEngineFormDataProviderInterface
 {
-
     /**
      * @var \SprykerEco\Client\Payolution\PayolutionClientInterface
      */
@@ -155,12 +154,12 @@ class InstallmentFormDataProvider implements StepEngineFormDataProviderInterface
                 $paymentDetail->getCurrency()
             );
 
-        $choice = sprintf('%d × %s',
+        $choice = sprintf(
+            '%d × %s',
             $paymentDetail->getDuration(),
             $this->moneyPlugin->formatWithSymbol($moneyTransfer)
         );
 
         return $choice;
     }
-
 }

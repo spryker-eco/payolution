@@ -18,7 +18,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements SubFormInterface, SubFormProviderNameInterface
 {
-
     const FIELD_DATE_OF_BIRTH = 'date_of_birth';
 
     const MIN_BIRTHDAY_DATE_STRING = '-18 years';
@@ -84,5 +83,4 @@ abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements 
             'groups' => $this->getPropertyPath(),
         ]);
     }
-
 }

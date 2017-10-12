@@ -29,7 +29,6 @@ use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\PreCheckAdapterMock;
  */
 class PayolutionFacadePreCheckTest extends AbstractFacadeTest
 {
-
     /**
      * @return void
      */
@@ -140,5 +139,4 @@ class PayolutionFacadePreCheckTest extends AbstractFacadeTest
 
         return $quoteTransfer;
     }
-
 }
