@@ -19,7 +19,6 @@ use SprykerEco\Yves\Payolution\Plugin\PayolutionInvoiceSubFormPlugin;
 
 class CheckoutDependencyInjector implements DependencyInjectorInterface
 {
-
     /**
      * @param \Spryker\Shared\Kernel\ContainerInterface|\Spryker\Yves\Kernel\Container $container
      *
@@ -68,5 +67,4 @@ class CheckoutDependencyInjector implements DependencyInjectorInterface
 
         return $container;
     }
-
 }

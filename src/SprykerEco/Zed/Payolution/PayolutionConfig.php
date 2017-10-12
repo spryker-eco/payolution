@@ -12,7 +12,6 @@ use SprykerEco\Shared\Payolution\PayolutionConstants;
 
 class PayolutionConfig extends AbstractBundleConfig
 {
-
     /**
      * @return string
      */
@@ -207,5 +206,4 @@ class PayolutionConfig extends AbstractBundleConfig
             // @deprecated this is just for backward compatibility
             : $this->get(PayolutionConstants::HOST_YVES);
     }
-
 }

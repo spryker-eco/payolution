@@ -17,7 +17,6 @@ use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesBridge;
 
 class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
 {
-
     const FACADE_MAIL = 'mail facade';
     const FACADE_GLOSSARY = 'glossary facade';
     const FACADE_MONEY = 'money facade';
@@ -63,5 +62,4 @@ class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
 
         return $container;
     }
-
 }

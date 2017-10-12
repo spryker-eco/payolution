@@ -20,7 +20,6 @@ use SprykerEco\Shared\Payolution\PayolutionConstants;
  */
 class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
-
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
@@ -100,5 +99,4 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
 
         return true;
     }
-
 }

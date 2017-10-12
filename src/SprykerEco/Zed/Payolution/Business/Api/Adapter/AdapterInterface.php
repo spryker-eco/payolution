@@ -9,7 +9,6 @@ namespace SprykerEco\Zed\Payolution\Business\Api\Adapter;
 
 interface AdapterInterface
 {
-
     /**
      * @param array|string $data
      *
@@ -25,5 +24,4 @@ interface AdapterInterface
      * @return string
      */
     public function sendAuthorizedRequest($data, $user, $password);
-
 }

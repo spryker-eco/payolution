@@ -27,7 +27,6 @@ use SprykerEco\Yves\Payolution\Dependency\Injector\CheckoutDependencyInjector;
  */
 class CheckoutDependencyInjectorTest extends Unit
 {
-
     /**
      * @return void
      */
@@ -62,5 +61,4 @@ class CheckoutDependencyInjectorTest extends Unit
 
         return $container;
     }
-
 }

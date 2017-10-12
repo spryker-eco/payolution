@@ -16,7 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class InstallmentSubForm extends AbstractPayolutionSubForm
 {
-
     const PAYMENT_PROVIDER = PayolutionConstants::PROVIDER_NAME;
     const PAYMENT_METHOD = 'installment';
     const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
@@ -190,5 +189,4 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
 
         return $this;
     }
-
 }

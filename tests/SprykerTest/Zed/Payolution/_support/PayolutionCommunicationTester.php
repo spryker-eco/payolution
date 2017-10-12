@@ -26,11 +26,9 @@ use Codeception\Actor;
  */
 class PayolutionCommunicationTester extends Actor
 {
-
     use _generated\PayolutionCommunicationTesterActions;
 
    /**
     * Define custom actions here
     */
-
 }

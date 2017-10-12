@@ -12,7 +12,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrder;
 
 class PayolutionToRefundBridge implements PayolutionToRefundInterface
 {
-
     /**
      * @var \Spryker\Zed\Refund\Business\RefundFacadeInterface
      */
@@ -46,5 +45,4 @@ class PayolutionToRefundBridge implements PayolutionToRefundInterface
     {
         return $this->refundFacade->saveRefund($refundTransfer);
     }
-
 }

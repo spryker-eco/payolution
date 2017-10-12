@@ -16,7 +16,6 @@ use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 abstract class AbstractPaymentMethod
 {
-
     const PAYOLUTION_DATE_FORMAT = 'Y-m-d';
 
     /**
@@ -192,5 +191,4 @@ abstract class AbstractPaymentMethod
 
         return $orderTransfer->getTotals()->getGrandTotal();
     }
-
 }

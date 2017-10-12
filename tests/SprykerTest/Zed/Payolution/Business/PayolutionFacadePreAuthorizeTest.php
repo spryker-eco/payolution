@@ -23,7 +23,6 @@ use SprykerTest\Zed\Payolution\Business\Api\Adapter\Http\PreAuthorizationAdapter
  */
 class PayolutionFacadePreAuthorizeTest extends AbstractFacadeTest
 {
-
     /**
      * @return void
      */
@@ -85,5 +84,4 @@ class PayolutionFacadePreAuthorizeTest extends AbstractFacadeTest
         $this->assertEquals(1, $this->getStatusLogCollectionForPayment()->count());
         $this->matchStatusLogWithResponse($statusLog, $expectedResponse);
     }
-
 }

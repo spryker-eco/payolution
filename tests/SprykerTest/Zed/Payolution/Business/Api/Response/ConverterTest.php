@@ -26,7 +26,6 @@ use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
  */
 class ConverterTest extends Unit
 {
-
     /**
      * @return void
      */
@@ -105,5 +104,4 @@ class ConverterTest extends Unit
             'CLEARING_FXDATE=2015-09-11 15:56:24' . '&' .
             'ADDRESS_ZIP=10623';
     }
-
 }

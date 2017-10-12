@@ -22,7 +22,6 @@ use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface;
 
 class Transaction extends AbstractPaymentHandler implements TransactionInterface
 {
-
     /**
      * @var \SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface
      */
@@ -243,5 +242,4 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
         $logEntity->setFkPaymentPayolution($idPayment);
         $logEntity->save();
     }
-
 }
