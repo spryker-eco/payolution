@@ -1,10 +1,11 @@
 build:
     dependencies:
-        before:
-            - composer config repositories.spryker composer https://code.spryker.com/repo/private
-    environment:
-        php:
-            version: 7.1
+        override:
+            - true
+
+environment:
+    php:
+        version: 7.1
 
 checks:
     php:
