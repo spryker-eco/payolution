@@ -107,10 +107,9 @@ build:
             - composer require --dev spryker/transfer
             - composer require --dev spryker/console
             - APPLICATION_STORE=DE APPLICATION_ENV=development vendor/bin/console transfer:generate
-
-environment:
-    php:
-        version: 7.1
+    environment:
+        php:
+            version: 7.1
 
 checks:
     php:
