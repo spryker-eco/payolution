@@ -27,7 +27,7 @@ class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPo
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
-     * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
+     * @return void
      */
     public function execute(QuoteTransfer $quoteTransfer, CheckoutResponseTransfer $checkoutResponseTransfer)
     {
@@ -42,8 +42,6 @@ class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPo
             $checkoutResponseTransfer->addError($checkoutErrorTransfer);
             $checkoutResponseTransfer->setIsSuccess(false);
         }
-
-        return $checkoutResponseTransfer;
     }
 
     /**

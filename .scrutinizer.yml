@@ -12,6 +12,7 @@ filter:
     - vendor/*
     - config/Shared/*
     - src/Generated/*
+    - src/Orm/*
     - src/Pyz/*
 checks:
   php:
