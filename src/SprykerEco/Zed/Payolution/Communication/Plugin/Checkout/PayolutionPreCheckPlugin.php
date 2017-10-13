@@ -24,7 +24,7 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
-     * @return \Generated\Shared\Transfer\CheckoutResponseTransfer
+     * @return void
      */
     public function execute(
         QuoteTransfer $quoteTransfer,
@@ -34,8 +34,6 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
         $this->checkForErrors($payolutionTransactionResponseTransfer, $checkoutResponseTransfer);
         $quoteTransfer->getPayment()->getPayolution()
             ->setPreCheckId($payolutionTransactionResponseTransfer->getIdentificationUniqueid());
-
-        return $checkoutResponseTransfer;
     }
 
     /**

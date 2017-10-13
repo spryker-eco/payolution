@@ -13,7 +13,7 @@ use Spryker\Client\ZedRequest\ZedRequestClientInterface;
 class PayolutionStub implements PayolutionStubInterface
 {
     /**
-     * @var \Spryker\Client\ZedRequest\ZedRequestClient
+     * @var \Spryker\Client\ZedRequest\ZedRequestClientInterface
      */
     protected $zedRequestClient;
 
