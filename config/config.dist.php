@@ -4,12 +4,12 @@
  * Copy over the following configs to your config
  */
 
-use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
 use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 $config[PayolutionConstants::TRANSACTION_GATEWAY_URL] = '';
 $config[PayolutionConstants::CALCULATION_GATEWAY_URL] = '';
@@ -42,6 +42,6 @@ $config[OmsConstants::ACTIVE_PROCESSES] = [
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
-    PaymentTransfer::PAYOLUTION_INVOICE => 'PayolutionPayment01',
-    PaymentTransfer::PAYOLUTION_INSTALLMENT => 'PayolutionPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INVOICE => 'PayolutionPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'PayolutionPayment01',
 ];
