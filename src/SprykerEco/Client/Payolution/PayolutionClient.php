@@ -32,7 +32,7 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     }
 
     /**
-     * @return \SprykerEco\Client\Payolution\Session\PayolutionSession
+     * @return \SprykerEco\Client\Payolution\Session\PayolutionSessionInterface
      */
     protected function getSession()
     {
