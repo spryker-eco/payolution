@@ -46,10 +46,14 @@ install:
   - echo "Cloning Demo Shop..."
   - git clone https://github.com/spryker/demoshop.git $SHOP_DIR
   - cd $SHOP_DIR/
-  - grep -v Payolution config/Shared/config_default.php > config/Shared/config_default.php
-  - grep -v Payolution config/Shared/config_default_DE.php > config/Shared/config_default_DE.php
-  - grep -v Payolution config/Shared/config_default-devtest.php > config/Shared/config_default-devtest.php
+  - grep -v Payolution config/Shared/config_default.php > config/Shared/config_default.php1
+  - mv config/Shared/config_default.php1 config/Shared/config_default.php
+  - grep -v Payolution config/Shared/config_default_DE.php > config/Shared/config_default_DE.php1
+  - mv config/Shared/config_default_DE.php1 config/Shared/config_default_DE.php
+  - grep -v Payolution config/Shared/config_default-devtest.php > config/Shared/config_default-devtest.php1
+  - mv config/Shared/config_default-devtest.php1 config/Shared/config_default-devtest.php
   - grep -v Payolution config/Shared/config_default-devtest_DE.php > config/Shared/config_default-devtest_DE.php
+  - mv Payolution config/Shared/config_default-devtest_DE.php1 config/Shared/config_default-devtest_DE.php
   - composer self-update && composer --version
   - composer install --no-interaction
   - config/Shared/ci/travis/install_elasticsearch.sh
