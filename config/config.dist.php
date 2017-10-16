@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copy over the following configs to your config
  */
@@ -29,20 +30,6 @@ $config[PayolutionConstants::MIN_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
 $config[PayolutionConstants::MAX_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
 $config[PayolutionConstants::PAYOLUTION_BCC_EMAIL] = '';
 
-$config[KernelConstants::DEPENDENCY_INJECTOR_YVES] = [
-    'Checkout' => [
-        'Payolution',
-    ],
-];
-$config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
-    'Payment' => [
-        'Payolution',
-    ],
-    'Oms' => [
-        'Payolution',
-    ],
-];
-
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
     $config[KernelConstants::SPRYKER_ROOT] . '/Payolution/config/Zed/Oms',
@@ -50,7 +37,7 @@ $config[OmsConstants::PROCESS_LOCATION] = [
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
-    'PayolutionPayment01'
+    'PayolutionPayment01',
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
