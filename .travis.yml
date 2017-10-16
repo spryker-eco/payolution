@@ -53,7 +53,7 @@ install:
   - grep -v Payolution config/Shared/config_default-devtest.php > config/Shared/config_default-devtest.php1
   - mv config/Shared/config_default-devtest.php1 config/Shared/config_default-devtest.php
   - grep -v Payolution config/Shared/config_default-devtest_DE.php > config/Shared/config_default-devtest_DE.php1
-  - mv Payolution config/Shared/config_default-devtest_DE.php1 config/Shared/config_default-devtest_DE.php
+  - mv config/Shared/config_default-devtest_DE.php1 config/Shared/config_default-devtest_DE.php
   - composer self-update && composer --version
   - composer install --no-interaction
   - config/Shared/ci/travis/install_elasticsearch.sh
