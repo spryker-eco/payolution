@@ -1,5 +1,7 @@
 # Payolution Module
 
+[![Build Status](https://travis-ci.org/spryker-eco/payolution.svg?branch=development)](https://travis-ci.org/spryker-eco/payolution)
+
 ## Installation
 
 ```

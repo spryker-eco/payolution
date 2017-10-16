@@ -1,0 +1,67 @@
+before_install:
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+ 
+language: php
+ 
+env:
+  global:
+    - APPLICATION_ENV=devtest
+    - APPLICATION_STORE=DE
+    - APPLICATION_=DE
+    - MODULE_DIR=module
+    - SHOP_DIR=current
+    - MODULE_NAME=payolution
+ 
+matrix:
+  fast_finish: true
+  include:
+     - php: "7.0"
+
+addons:
+  postgresql: 9.4
+ 
+  apt:
+    packages:
+      - graphviz
+ 
+  hosts:
+    - zed.de.spryker.test
+    - www.de.spryker.test
+ 
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+ 
+services:
+  - postgresql
+  - redis
+ 
+sudo: required
+ 
+install:
+  - echo "Moving module to subfolder..."
+  - if [[ *$TRAVIS_EVENT_TYPE* = 'cron' ]]; then git checkout $(git tag | tail -n 1); fi
+  - mkdir $MODULE_DIR && ls -1 | grep -v ^$MODULE_DIR | xargs -I{} mv {} $MODULE_DIR
+  - echo "Cloning Demo Shop..."
+  - git clone https://github.com/spryker/demoshop.git $SHOP_DIR
+  - cd $SHOP_DIR/
+  - composer self-update && composer --version
+  - composer install --no-interaction
+  - config/Shared/ci/travis/install_elasticsearch.sh
+ 
+before_script:
+  - mkdir -p data/DE/logs -m 0777
+  - chmod -R 777 data/
+  - mv config/Zed/propel.ci.yml config/Zed/propel.yml
+  - cat config/Shared/ci/travis/postgresql_ci.config >> config/Shared/ci/travis/config_ci.php
+  - cp config/Shared/ci/travis/config_ci.php config/Shared/config_default-devtest_DE.php
+  - cp config/Shared/ci/travis/params_test_env.sh deploy/setup/params_test_env.sh
+  - cd ..
+  - chmod a+x ./$MODULE_DIR/build/travis.sh
+ 
+script:
+  - ./$MODULE_DIR/build/travis.sh
+ 
+notifications:
+  email: false
