@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Payolution\Handler;
 
+use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Store;
@@ -21,16 +22,16 @@ class PayolutionHandler
      * @var array
      */
     protected static $paymentMethods = [
-        PayolutionConstants::PAYMENT_METHOD_INVOICE => 'invoice',
-        PayolutionConstants::PAYMENT_METHOD_INSTALLMENT => 'installment',
+        PaymentTransfer::PAYOLUTION_INVOICE => 'invoice',
+        PaymentTransfer::PAYOLUTION_INSTALLMENT => 'installment',
     ];
 
     /**
      * @var array
      */
     protected static $payolutionPaymentMethodMapper = [
-        PayolutionConstants::PAYMENT_METHOD_INVOICE => PayolutionConstants::BRAND_INVOICE,
-        PayolutionConstants::PAYMENT_METHOD_INSTALLMENT => PayolutionConstants::BRAND_INSTALLMENT,
+        PaymentTransfer::PAYOLUTION_INVOICE => PayolutionConstants::BRAND_INVOICE,
+        PaymentTransfer::PAYOLUTION_INSTALLMENT => PayolutionConstants::BRAND_INSTALLMENT,
     ];
 
     /**

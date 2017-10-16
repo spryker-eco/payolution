@@ -9,9 +9,7 @@ namespace SprykerEco\Shared\Payolution;
 
 interface PayolutionConstants
 {
-    const PROVIDER_NAME = 'payolution';
-    const PAYMENT_METHOD_INVOICE = 'payolutionInvoice';
-    const PAYMENT_METHOD_INSTALLMENT = 'payolutionInstallment';
+    const PROVIDER_NAME = 'Payolution';
 
     const TRANSACTION_GATEWAY_URL = 'PAYOLUTION_TRANSACTION_GATEWAY_URL';
     const CALCULATION_GATEWAY_URL = 'PAYOLUTION_CALCULATION_GATEWAY_URL';
@@ -51,9 +49,6 @@ interface PayolutionConstants
     const REASON_CODE_SUCCESS = '00';
     const STATUS_REASON_CODE_SUCCESS = self::STATUS_CODE_SUCCESS . '.' . self::REASON_CODE_SUCCESS;
     const SUCCESSFUL_PRE_AUTHORIZATION_PROCESSING_CODE = 'VA.PA.90.00';
-
-    /** @deprecated Please use PayolutionConstants::BASE_URL_YVES instead */
-    const HOST_YVES = 'HOST_YVES';
 
     /**
      * Base URL for Yves including scheme and port (e.g. http://www.de.demoshop.local:8080)

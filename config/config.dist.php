@@ -4,6 +4,7 @@
  * Copy over the following configs to your config
  */
 
+use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
 use Spryker\Shared\Sales\SalesConstants;
@@ -41,6 +42,6 @@ $config[OmsConstants::ACTIVE_PROCESSES] = [
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
-    PayolutionConstants::PAYMENT_METHOD_INVOICE => 'PayolutionPayment01',
-    PayolutionConstants::PAYMENT_METHOD_INSTALLMENT => 'PayolutionPayment01',
+    PaymentTransfer::PAYOLUTION_INVOICE => 'PayolutionPayment01',
+    PaymentTransfer::PAYOLUTION_INSTALLMENT => 'PayolutionPayment01',
 ];
