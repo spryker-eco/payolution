@@ -7,11 +7,15 @@
 
 namespace SprykerEco\Zed\Payolution;
 
+use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 use SprykerEco\Shared\Payolution\PayolutionConstants;
 
 class PayolutionConfig extends AbstractBundleConfig
 {
+    const PAYMENT_METHOD_INVOICE = 'payolutionInvoice';
+    const PAYMENT_METHOD_INSTALLMENT = 'payolutionInstallment';
+
     /**
      * @return string
      */
@@ -201,6 +205,6 @@ class PayolutionConfig extends AbstractBundleConfig
      */
     public function getWebshopUrl()
     {
-        return $this->get(PayolutionConstants::BASE_URL_YVES);
+        return $this->get(ApplicationConstants::BASE_URL_YVES);
     }
 }
