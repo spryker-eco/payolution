@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\Payolution\Form;
 
+use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Payolution\PayolutionConstants;
@@ -23,7 +24,7 @@ class InvoiceSubForm extends AbstractPayolutionSubForm
      */
     public function getName()
     {
-        return PayolutionConstants::PAYMENT_METHOD_INVOICE;
+        return PaymentTransfer::PAYOLUTION_INVOICE;
     }
 
     /**
@@ -31,7 +32,7 @@ class InvoiceSubForm extends AbstractPayolutionSubForm
      */
     public function getPropertyPath()
     {
-        return PayolutionConstants::PAYMENT_METHOD_INVOICE;
+        return PaymentTransfer::PAYOLUTION_INVOICE;
     }
 
     /**
