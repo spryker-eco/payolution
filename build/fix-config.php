@@ -1,6 +1,8 @@
 <?php
 
-if (count($argv)<2) die('Not enough arguments. Path to config file is required.');
+if (count($argv) < 2) {
+    die('Not enough arguments. Path to config file is required.');
+}
 
 $filename = $argv[1];
 
