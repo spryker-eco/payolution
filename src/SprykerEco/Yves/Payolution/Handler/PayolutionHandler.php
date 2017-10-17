@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Shared\Kernel\Store;
 use SprykerEco\Client\Payolution\PayolutionClientInterface;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Yves\Payolution\Exception\PaymentMethodNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,8 +30,8 @@ class PayolutionHandler
      * @var array
      */
     protected static $payolutionPaymentMethodMapper = [
-        PaymentTransfer::PAYOLUTION_INVOICE => PayolutionConstants::BRAND_INVOICE,
-        PaymentTransfer::PAYOLUTION_INSTALLMENT => PayolutionConstants::BRAND_INSTALLMENT,
+        PaymentTransfer::PAYOLUTION_INVOICE => PayolutionConfig::BRAND_INVOICE,
+        PaymentTransfer::PAYOLUTION_INSTALLMENT => PayolutionConfig::BRAND_INSTALLMENT,
     ];
 
     /**
@@ -80,7 +80,7 @@ class PayolutionHandler
     protected function setPaymentProviderAndMethod(QuoteTransfer $quoteTransfer, $paymentSelection)
     {
         $quoteTransfer->getPayment()
-            ->setPaymentProvider(PayolutionConstants::PROVIDER_NAME)
+            ->setPaymentProvider(PayolutionConfig::PROVIDER_NAME)
             ->setPaymentMethod(self::$paymentMethods[$paymentSelection]);
     }
 
@@ -106,7 +106,7 @@ class PayolutionHandler
             ->setLanguageIso2Code($billingAddress->getIso2Code())
             ->setClientIp($request->getClientIp());
 
-        if ($payolutionPaymentTransfer->getAccountBrand() === PayolutionConstants::BRAND_INSTALLMENT) {
+        if ($payolutionPaymentTransfer->getAccountBrand() === PayolutionConfig::BRAND_INSTALLMENT) {
             $this->setPayolutionInstallmentPayment($payolutionPaymentTransfer);
         }
 

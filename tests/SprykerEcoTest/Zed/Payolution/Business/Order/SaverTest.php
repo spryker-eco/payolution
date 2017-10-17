@@ -27,7 +27,7 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionQuery;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Order\Saver;
 use SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory;
 
@@ -138,7 +138,7 @@ class SaverTest extends Unit
             ->setGender(SpyPaymentPayolutionTableMap::COL_GENDER_MALE)
             ->setDateOfBirth('1970-01-02')
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(PayolutionConstants::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setLanguageIso2Code('DE')
             ->setCurrencyIso3Code('EUR')
             ->setAddress($paymentAddressTransfer);

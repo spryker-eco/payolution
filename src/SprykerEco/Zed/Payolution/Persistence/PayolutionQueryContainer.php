@@ -12,7 +12,7 @@ use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTransactionStatusLogT
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Propel;
 use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 
 /**
  * @method \SprykerEco\Zed\Payolution\Persistence\PayolutionPersistenceFactory getFactory()
@@ -79,7 +79,7 @@ class PayolutionQueryContainer extends AbstractQueryContainer implements Payolut
         return $this
             ->queryTransactionStatusLog()
             ->filterByFkPaymentPayolution($idPayment)
-            ->filterByProcessingCode(PayolutionConstants::SUCCESSFUL_PRE_AUTHORIZATION_PROCESSING_CODE);
+            ->filterByProcessingCode(PayolutionConfig::SUCCESSFUL_PRE_AUTHORIZATION_PROCESSING_CODE);
     }
 
     /**

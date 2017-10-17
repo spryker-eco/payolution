@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin as BaseAbstractPlugin;
 use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPreCheckPluginInterface;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 
 /**
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
@@ -46,9 +46,9 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
         PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
-        if (PayolutionConstants::REASON_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingReasonCode()
-            || PayolutionConstants::STATUS_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingStatusCode()
-            || PayolutionConstants::PAYMENT_CODE_PRE_CHECK !== $payolutionTransactionResponseTransfer->getPaymentCode()
+        if (PayolutionConfig::REASON_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingReasonCode()
+            || PayolutionConfig::STATUS_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingStatusCode()
+            || PayolutionConfig::PAYMENT_CODE_PRE_CHECK !== $payolutionTransactionResponseTransfer->getPaymentCode()
         ) {
             $errorCode = (int)preg_replace('/[^\d]+/', '', $payolutionTransactionResponseTransfer->getProcessingCode());
             $error = new CheckoutErrorTransfer();

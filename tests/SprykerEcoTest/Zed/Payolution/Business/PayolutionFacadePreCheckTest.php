@@ -14,7 +14,7 @@ use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEcoTest\Zed\Payolution\Business\Api\Adapter\Http\PreCheckAdapterMock;
 
 /**
@@ -116,7 +116,7 @@ class PayolutionFacadePreCheckTest extends AbstractFacadeTest
             ->setGender('Male')
             ->setDateOfBirth('1970-01-01')
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(PayolutionConstants::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setAddress($paymentAddressTransfer);
 
         $quoteTransfer = new QuoteTransfer();
