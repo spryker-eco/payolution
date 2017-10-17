@@ -15,7 +15,7 @@ env:
 matrix:
   fast_finish: true
   include:
-     - php: "7.0"
+     - php: "7.1"
 
 addons:
   postgresql: 9.4
