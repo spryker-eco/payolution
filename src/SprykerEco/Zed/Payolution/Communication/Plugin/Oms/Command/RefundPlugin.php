@@ -12,7 +12,7 @@ use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 
 /**
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
@@ -87,13 +87,13 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
      */
     protected function isTransactionSuccessful(PayolutionTransactionResponseTransfer $transactionResponseTransfer)
     {
-        if ($transactionResponseTransfer->getProcessingReasonCode() !== PayolutionConstants::REASON_CODE_SUCCESS) {
+        if ($transactionResponseTransfer->getProcessingReasonCode() !== PayolutionConfig::REASON_CODE_SUCCESS) {
             return false;
         }
-        if ($transactionResponseTransfer->getProcessingStatusCode() !== PayolutionConstants::STATUS_CODE_SUCCESS) {
+        if ($transactionResponseTransfer->getProcessingStatusCode() !== PayolutionConfig::STATUS_CODE_SUCCESS) {
             return false;
         }
-        if ($transactionResponseTransfer->getPaymentCode() !== PayolutionConstants::PAYMENT_CODE_PRE_CHECK) {
+        if ($transactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_PRE_CHECK) {
             return false;
         }
 

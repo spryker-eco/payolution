@@ -9,7 +9,7 @@ namespace SprykerEco\Zed\Payolution\Business\Payment\Handler\Calculation;
 
 use Generated\Shared\Transfer\PayolutionCalculationResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Handler\AbstractPaymentHandler;
 
 class Calculation extends AbstractPaymentHandler implements CalculationInterface
@@ -22,7 +22,7 @@ class Calculation extends AbstractPaymentHandler implements CalculationInterface
     public function calculateInstallmentPayments(QuoteTransfer $quoteTransfer)
     {
         $requestData = $this
-            ->getMethodMapper(PayolutionConstants::BRAND_INSTALLMENT)
+            ->getMethodMapper(PayolutionConfig::BRAND_INSTALLMENT)
             ->buildCalculationRequest($quoteTransfer);
 
         $responseTransfer = $this->sendRequest($requestData);

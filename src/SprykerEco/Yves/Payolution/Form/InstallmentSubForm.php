@@ -10,14 +10,14 @@ namespace SprykerEco\Yves\Payolution\Form;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class InstallmentSubForm extends AbstractPayolutionSubForm
 {
-    const PAYMENT_PROVIDER = PayolutionConstants::PROVIDER_NAME;
+    const PAYMENT_PROVIDER = PayolutionConfig::PROVIDER_NAME;
     const PAYMENT_METHOD = 'installment';
     const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
     const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
@@ -47,7 +47,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
      */
     public function getTemplatePath()
     {
-        return PayolutionConstants::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
+        return PayolutionConfig::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
     }
 
     /**

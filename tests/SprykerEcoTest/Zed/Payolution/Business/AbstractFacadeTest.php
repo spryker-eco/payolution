@@ -22,7 +22,7 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
 use SprykerEco\Zed\Payolution\Business\Api\Converter\Converter as ResponseConverter;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
@@ -146,7 +146,7 @@ class AbstractFacadeTest extends Unit
     {
         $this->paymentEntity = (new SpyPaymentPayolution())
             ->setFkSalesOrder($this->getOrderEntity()->getIdSalesOrder())
-            ->setAccountBrand(PayolutionConstants::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setClientIp('127.0.0.1')
             ->setFirstName('Jane')
             ->setLastName('Doe')

@@ -10,7 +10,7 @@ namespace SprykerEco\Yves\Payolution\Form;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
-use SprykerEco\Shared\Payolution\PayolutionConstants;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -40,7 +40,7 @@ class InvoiceSubForm extends AbstractPayolutionSubForm
      */
     public function getTemplatePath()
     {
-        return PayolutionConstants::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
+        return PayolutionConfig::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
     }
 
     /**
