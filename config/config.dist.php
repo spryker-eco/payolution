@@ -33,7 +33,6 @@ $config[PayolutionConstants::PAYOLUTION_BCC_EMAIL_ADDRESS] = '';
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
-    $config[KernelConstants::SPRYKER_ROOT] . '/Payolution/config/Zed/Oms',
     APPLICATION_VENDOR_DIR . '/spryker-eco/payolution/config/Zed/Oms',
 ];
 
