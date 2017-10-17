@@ -165,7 +165,7 @@ class PayolutionConfig extends AbstractBundleConfig
      */
     public function getPayolutionBccEmail()
     {
-        return $this->get(PayolutionConstants::EMAIL_BCC_ADDRESS);
+        return $this->get(PayolutionConstants::PAYOLUTION_BCC_EMAIL_ADDRESS);
     }
 
     /**

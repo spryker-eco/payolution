@@ -29,7 +29,7 @@ $config[PayolutionConstants::MIN_ORDER_GRAND_TOTAL_INVOICE] = '';
 $config[PayolutionConstants::MAX_ORDER_GRAND_TOTAL_INVOICE] = '';
 $config[PayolutionConstants::MIN_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
 $config[PayolutionConstants::MAX_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
-$config[PayolutionConstants::EMAIL_BCC_ADDRESS] = '';
+$config[PayolutionConstants::PAYOLUTION_BCC_EMAIL_ADDRESS] = '';
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
