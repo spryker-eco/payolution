@@ -10,7 +10,7 @@ composer require spryker-eco/payolution
 
 ## Documentation
 
-[Documentation](https://spryker.github.io)
+[Documentation](https://academy.spryker.com/developing_with_spryker/industry_partner_integration/payolution/integration_payment_payolution.html)
 
 ## Code checks
 
