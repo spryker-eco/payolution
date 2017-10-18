@@ -13,6 +13,9 @@ use Generated\Shared\Transfer\QuoteTransfer;
 interface PayolutionClientInterface
 {
     /**
+     * Specification:
+     * - Calculates installment payments
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -22,6 +25,9 @@ interface PayolutionClientInterface
     public function calculateInstallmentPayments(QuoteTransfer $quoteTransfer);
 
     /**
+     * Specification:
+     * - Stores installment payments in session
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionCalculationResponseTransfer $payolutionCalculationResponseTransfer
@@ -31,6 +37,9 @@ interface PayolutionClientInterface
     public function storeInstallmentPaymentsInSession(PayolutionCalculationResponseTransfer $payolutionCalculationResponseTransfer);
 
     /**
+     * Specification:
+     * - Checks if session has saved installment payments
+     *
      * @api
      *
      * @return bool
@@ -38,6 +47,9 @@ interface PayolutionClientInterface
     public function hasInstallmentPaymentsInSession();
 
     /**
+     * Specification:
+     * - Fetches saved installment payments from session
+     *
      * @api
      *
      * @return \Generated\Shared\Transfer\PayolutionCalculationResponseTransfer
@@ -45,6 +57,9 @@ interface PayolutionClientInterface
     public function getInstallmentPaymentsFromSession();
 
     /**
+     * Specification:
+     * - Removes saved installment payments from session
+     *
      * @api
      *
      * @return bool
