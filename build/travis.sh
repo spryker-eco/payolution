@@ -6,8 +6,6 @@ buildResult=1
 buildMessage=""
 
 function runTests {
-    composer dump-autoload
-
     grep APPLICATION_ROOT_DIR "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
     if [ "$?" = 1 ]; then
         echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
