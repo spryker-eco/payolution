@@ -6,10 +6,14 @@ buildResult=1
 buildMessage=""
 
 function runTests {
-    echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
+    grep APPLICATION_ROOT_DIR "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
+    if [ "$?" = 1 ]; then
+        echo "define('APPLICATION_ROOT_DIR', '$TRAVIS_BUILD_DIR/$SHOP_DIR');" >> "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/composer/autoload_real.php"
+    fi
+
     echo "Running tests..."
-    cd "vendor/spryker-eco/$MODULE_NAME/"
-    "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/codecept" run
+    "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/codecept" build -c "vendor/spryker-eco/$MODULE_NAME"
+    "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/codecept" run -c "vendor/spryker-eco/$MODULE_NAME"
     if [ "$?" = 0 ]; then
         buildMessage="${buildMessage}\n${GREEN}Tests are passing"
         result=0
