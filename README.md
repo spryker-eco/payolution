@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/spryker-eco/payolution.svg?branch=development)](https://travis-ci.org/spryker-eco/payolution)
-
 # Payolution Module
+
+[![Build Status](https://travis-ci.org/spryker-eco/payolution.svg?branch=development)](https://travis-ci.org/spryker-eco/payolution)
+[![License](https://img.shields.io/github/license/spryker-eco/payolution.svg)](https://github.com/spryker-eco/payolution/)
 
 Payolution is an integration module for implementing Payolution payment provider (https://www.payolution.com/en/). Integrated payment options are invoice and installment.
 
