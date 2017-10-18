@@ -1,13 +1,9 @@
-before_install:
-  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
- 
 language: php
  
 env:
   global:
     - APPLICATION_ENV=devtest
     - APPLICATION_STORE=DE
-    - APPLICATION_=DE
     - MODULE_DIR=module
     - SHOP_DIR=current
     - MODULE_NAME=payolution
@@ -39,6 +35,9 @@ services:
  
 sudo: required
  
+before_install:
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+ 
 install:
   - echo "Moving module to subfolder..."
   - if [[ *$TRAVIS_EVENT_TYPE* = 'cron' ]]; then git checkout $(git tag | tail -n 1); fi
@@ -60,8 +59,10 @@ before_script:
   - cp config/Shared/ci/travis/params_test_env.sh deploy/setup/params_test_env.sh
   - cd ..
   - chmod a+x ./$MODULE_DIR/build/travis.sh
- 
+  - $TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/console transfer:generate
+
 script:
+  - $TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/console transfer:validate
   - ./$MODULE_DIR/build/travis.sh
  
 notifications:
