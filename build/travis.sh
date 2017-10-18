@@ -12,7 +12,7 @@ function runTests {
     fi
 
     echo "Setup test environment..."
-    "$TRAVIS_BUILD_DIR/$SHOP_DIR/setup_test"
+    "$TRAVIS_BUILD_DIR/$SHOP_DIR/setup_test" -f
 
     echo "Running tests..."
     "$TRAVIS_BUILD_DIR/$SHOP_DIR/vendor/bin/codecept" build -c "vendor/spryker-eco/$MODULE_NAME"
