@@ -16,7 +16,7 @@ use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Yves\Payolution\Exception\PaymentMethodNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 
-class PayolutionHandler
+class PayolutionHandler implements PayolutionHandlerInterface
 {
     /**
      * @var array

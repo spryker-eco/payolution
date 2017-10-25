@@ -8,7 +8,7 @@
 namespace SprykerEcoTest\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEcoTest\Zed\Payolution\Business\Api\Adapter\Http\PreAuthorizationAdapterMock;
 
 /**
@@ -48,7 +48,7 @@ class PayolutionFacadePreAuthorizeTest extends AbstractFacadeTest
         /** @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLog $requestLog */
         $requestLog = $this->getRequestLogCollectionForPayment()->getLast();
         $this->assertEquals(1, $this->getRequestLogCollectionForPayment()->count());
-        $this->assertEquals(ApiConstants::PAYMENT_CODE_PRE_AUTHORIZATION, $requestLog->getPaymentCode());
+        $this->assertEquals(ApiConfig::PAYMENT_CODE_PRE_AUTHORIZATION, $requestLog->getPaymentCode());
         $this->assertEquals($orderTransfer->getTotals()->getGrandTotal() / 100, $requestLog->getPresentationAmount());
         $this->assertNull($requestLog->getReferenceId());
 

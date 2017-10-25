@@ -13,7 +13,7 @@ use Spryker\Service\UtilText\Model\Url\Url;
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
-class Payments extends AbstractTable
+class Payments extends AbstractTable implements GuiTableInterface
 {
     const FIELD_VIEW = 'FIELD_VIEW';
     const URL_PAYOLUTION_DETAILS = '/payolution/details';

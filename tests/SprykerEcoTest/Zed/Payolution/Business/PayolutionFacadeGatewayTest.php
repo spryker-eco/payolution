@@ -24,7 +24,7 @@ use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTableMap;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Business\PayolutionFacade;
 
 /**
@@ -84,12 +84,12 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setSalutation(SpyCustomerTableMap::COL_SALUTATION_MR);
 
         $payolutionPaymentTransfer = new PayolutionPaymentTransfer();
-        $payolutionPaymentTransfer->setAccountBrand(ApiConstants::BRAND_INVOICE)
+        $payolutionPaymentTransfer->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setClientIp('127.0.0.1')
             ->setDateOfBirth('1970-01-02')
             ->setGender(SpyCustomerTableMap::COL_GENDER_MALE)
             ->setAddress($addressTransfer)
-            ->setAccountBrand(ApiConstants::BRAND_INVOICE)
+            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setLanguageIso2Code('DE')
             ->setCurrencyIso3Code('EUR')
             ->setEmail($addressTransfer->getEmail());
@@ -113,7 +113,7 @@ class PayolutionFacadeGatewayTest extends Unit
         $paymentEntity = $this->orderEntity->getSpyPaymentPayolutions()->getFirst();
 
         $this->assertInstanceOf(SpyPaymentPayolution::class, $paymentEntity);
-        $this->assertEquals(ApiConstants::BRAND_INVOICE, $paymentEntity->getAccountBrand());
+        $this->assertEquals(ApiConfig::BRAND_INVOICE, $paymentEntity->getAccountBrand());
         $this->assertEquals('127.0.0.1', $paymentEntity->getClientIp());
     }
 
@@ -146,7 +146,7 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setGender('Male')
             ->setDateOfBirth('1970-01-01')
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(ApiConstants::BRAND_INVOICE)
+            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setAddress($addressTransfer)
             ->setLanguageIso2Code('DE')
             ->setCurrencyIso3Code('EUR');
@@ -330,7 +330,7 @@ class PayolutionFacadeGatewayTest extends Unit
     {
         $this->paymentEntity = (new SpyPaymentPayolution())
             ->setFkSalesOrder($this->orderEntity->getIdSalesOrder())
-            ->setAccountBrand(ApiConstants::BRAND_INVOICE)
+            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setClientIp('127.0.0.1')
             ->setFirstName('Jane')
             ->setLastName('Doe')

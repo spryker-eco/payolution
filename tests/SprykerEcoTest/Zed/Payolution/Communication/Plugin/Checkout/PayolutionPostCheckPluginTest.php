@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Communication\Plugin\Checkout\PayolutionPostCheckPlugin;
 use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainer;
 
@@ -69,7 +69,7 @@ class PayolutionPostCheckPluginTest extends Unit
         $this->assertFalse($checkoutResponseTransfer->getIsSuccess());
         $expectedError = $checkoutResponseTransfer->getErrors()[0];
 
-        $this->assertSame(ApiConstants::CHECKOUT_ERROR_CODE_PAYMENT_FAILED, $expectedError->getErrorCode());
+        $this->assertSame(ApiConfig::CHECKOUT_ERROR_CODE_PAYMENT_FAILED, $expectedError->getErrorCode());
     }
 
     /**

@@ -8,7 +8,7 @@
 namespace SprykerEcoTest\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEcoTest\Zed\Payolution\Business\Api\Adapter\Http\PreAuthorizationAdapterMock;
 use SprykerEcoTest\Zed\Payolution\Business\Api\Adapter\Http\ReversalAdapterMock;
 
@@ -57,7 +57,7 @@ class PayolutionFacadeRevertTest extends AbstractFacadeTest
         /** @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLog $requestLog */
         $requestLog = $this->getRequestLogCollectionForPayment()->getLast();
         $this->assertEquals(2, $this->getRequestLogCollectionForPayment()->count());
-        $this->assertEquals(ApiConstants::PAYMENT_CODE_REVERSAL, $requestLog->getPaymentCode());
+        $this->assertEquals(ApiConfig::PAYMENT_CODE_REVERSAL, $requestLog->getPaymentCode());
         $this->assertEquals($orderTransfer->getTotals()->getGrandTotal() / 100, $requestLog->getPresentationAmount());
         $this->assertEquals($preAuthorizationResponse->getIdentificationUniqueid(), $requestLog->getReferenceId());
 
@@ -103,7 +103,7 @@ class PayolutionFacadeRevertTest extends AbstractFacadeTest
         /** @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLog $requestLog */
         $requestLog = $this->getRequestLogCollectionForPayment()->getLast();
         $this->assertEquals(2, $this->getRequestLogCollectionForPayment()->count());
-        $this->assertEquals(ApiConstants::PAYMENT_CODE_REVERSAL, $requestLog->getPaymentCode());
+        $this->assertEquals(ApiConfig::PAYMENT_CODE_REVERSAL, $requestLog->getPaymentCode());
         $this->assertEquals($orderTransfer->getTotals()->getGrandTotal() / 100, $requestLog->getPresentationAmount());
         $this->assertEquals($preAuthorizationResponse->getIdentificationUniqueid(), $requestLog->getReferenceId());
 

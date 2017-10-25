@@ -16,7 +16,7 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog;
 use SprykerEco\Zed\Payolution\Business\Api\Adapter\AdapterInterface;
 use SprykerEco\Zed\Payolution\Business\Api\Converter\ConverterInterface;
 use SprykerEco\Zed\Payolution\Business\Payment\Handler\AbstractPaymentHandler;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface;
 
@@ -218,11 +218,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     {
         $logEntity = new SpyPaymentPayolutionTransactionRequestLog();
         $logEntity
-            ->setPaymentCode($requestData[ApiConstants::PAYMENT_CODE])
-            ->setPresentationAmount($requestData[ApiConstants::PRESENTATION_AMOUNT])
-            ->setPresentationCurrency($requestData[ApiConstants::PRESENTATION_CURRENCY])
-            ->setTransactionId($requestData[ApiConstants::IDENTIFICATION_TRANSACTIONID])
-            ->setReferenceId($requestData[ApiConstants::IDENTIFICATION_REFERENCEID])
+            ->setPaymentCode($requestData[ApiConfig::PAYMENT_CODE])
+            ->setPresentationAmount($requestData[ApiConfig::PRESENTATION_AMOUNT])
+            ->setPresentationCurrency($requestData[ApiConfig::PRESENTATION_CURRENCY])
+            ->setTransactionId($requestData[ApiConfig::IDENTIFICATION_TRANSACTIONID])
+            ->setReferenceId($requestData[ApiConfig::IDENTIFICATION_REFERENCEID])
             ->setFkPaymentPayolution($idPayment);
         $logEntity->save();
 

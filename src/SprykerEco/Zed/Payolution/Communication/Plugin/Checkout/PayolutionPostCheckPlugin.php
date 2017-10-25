@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLog;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin as BaseAbstractPlugin;
 use Spryker\Zed\Payment\Dependency\Plugin\Checkout\CheckoutPostCheckPluginInterface;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -69,7 +69,7 @@ class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPo
      */
     protected function isPreAuthorizationApproved(SpyPaymentPayolutionTransactionStatusLog $transactionStatusLogEntity)
     {
-        $successStatusCode = ApiConstants::PAYMENT_CODE_PRE_AUTHORIZATION . '.' . ApiConstants::STATUS_REASON_CODE_SUCCESS;
+        $successStatusCode = ApiConfig::PAYMENT_CODE_PRE_AUTHORIZATION . '.' . ApiConfig::STATUS_REASON_CODE_SUCCESS;
 
         return ($transactionStatusLogEntity && $transactionStatusLogEntity->getProcessingCode() === $successStatusCode);
     }

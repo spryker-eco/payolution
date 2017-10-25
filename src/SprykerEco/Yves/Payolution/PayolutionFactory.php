@@ -18,7 +18,7 @@ use SprykerEco\Yves\Payolution\Handler\PayolutionHandler;
 class PayolutionFactory extends AbstractFactory
 {
     /**
-     * @return \SprykerEco\Yves\Payolution\Form\InvoiceSubForm
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createInvoiceForm()
     {
@@ -26,7 +26,7 @@ class PayolutionFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Payolution\Form\InstallmentSubForm
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface
      */
     public function createInstallmentForm()
     {
@@ -34,7 +34,7 @@ class PayolutionFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Payolution\Form\DataProvider\InstallmentFormDataProvider
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createInstallmentFormDataProvider()
     {
@@ -50,7 +50,7 @@ class PayolutionFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Payolution\Form\DataProvider\InvoiceFormDataProvider
+     * @return \Spryker\Yves\StepEngine\Dependency\Form\StepEngineFormDataProviderInterface
      */
     public function createInvoiceFormDataProvider()
     {
@@ -58,7 +58,7 @@ class PayolutionFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\Payolution\Handler\PayolutionHandler
+     * @return \SprykerEco\Yves\Payolution\Handler\PayolutionHandlerInterface
      */
     public function createPayolutionHandler()
     {

@@ -13,7 +13,7 @@ use Generated\Shared\Transfer\PayolutionCalculationInstallmentTransfer;
 use Generated\Shared\Transfer\PayolutionCalculationPaymentDetailTransfer;
 use Generated\Shared\Transfer\PayolutionCalculationResponseTransfer;
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyInterface;
 
 class Converter implements ConverterInterface
@@ -153,12 +153,12 @@ class Converter implements ConverterInterface
      */
     protected function createXmlElement(DOMDocument $xml, array $data)
     {
-        $elementValue = empty($data[ApiConstants::CALCULATION_XML_ELEMENT_VALUE]) === false ?
-            $data[ApiConstants::CALCULATION_XML_ELEMENT_VALUE] :
+        $elementValue = empty($data[ApiConfig::CALCULATION_XML_ELEMENT_VALUE]) === false ?
+            $data[ApiConfig::CALCULATION_XML_ELEMENT_VALUE] :
             null;
 
         return $xml->createElement(
-            $data[ApiConstants::CALCULATION_XML_ELEMENT_NAME],
+            $data[ApiConfig::CALCULATION_XML_ELEMENT_NAME],
             $elementValue
         );
     }
@@ -171,10 +171,10 @@ class Converter implements ConverterInterface
      */
     protected function fillXmlAttributes(DOMElement $element, array $data)
     {
-        if (empty($data[ApiConstants::CALCULATION_XML_ELEMENT_ATTRIBUTES]) === false &&
-            is_array($data[ApiConstants::CALCULATION_XML_ELEMENT_ATTRIBUTES]) === true
+        if (empty($data[ApiConfig::CALCULATION_XML_ELEMENT_ATTRIBUTES]) === false &&
+            is_array($data[ApiConfig::CALCULATION_XML_ELEMENT_ATTRIBUTES]) === true
         ) {
-            foreach ($data[ApiConstants::CALCULATION_XML_ELEMENT_ATTRIBUTES] as $attributeKey => $attributeValue) {
+            foreach ($data[ApiConfig::CALCULATION_XML_ELEMENT_ATTRIBUTES] as $attributeKey => $attributeValue) {
                 $element->setAttribute($attributeKey, $attributeValue);
             }
         }

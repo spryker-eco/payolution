@@ -19,7 +19,7 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Service\UtilText\UtilTextService;
 use Spryker\Zed\Money\Business\MoneyFacade;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\Invoice\Invoice;
 use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToMoneyBridge;
 use SprykerEco\Zed\Payolution\PayolutionConfig;
@@ -47,10 +47,10 @@ class InvoiceTest extends Unit
 
         $requestData = $methodMapper->buildPreCheckRequest($quoteTransfer);
 
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_PRE_CHECK, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_PRE_CHECK, $requestData['PAYMENT.CODE']);
         $this->assertSame('Straße des 17. Juni 135', $requestData['ADDRESS.STREET']);
-        $this->assertSame(ApiConstants::CRITERION_PRE_CHECK, 'CRITERION.PAYOLUTION_PRE_CHECK');
+        $this->assertSame(ApiConfig::CRITERION_PRE_CHECK, 'CRITERION.PAYOLUTION_PRE_CHECK');
         $this->assertSame('TRUE', $requestData['CRITERION.PAYOLUTION_PRE_CHECK']);
     }
 
@@ -86,7 +86,7 @@ class InvoiceTest extends Unit
             ->setGender('Male')
             ->setDateOfBirth('1970-01-01')
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(ApiConstants::BRAND_INVOICE)
+            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setAddress($addressTransfer);
 
         $payment = new PaymentTransfer();
@@ -107,8 +107,8 @@ class InvoiceTest extends Unit
         $requestData = $methodMapper->buildPreAuthorizationRequest($orderTransfer, $paymentEntityMock);
 
         $this->assertSame($paymentEntityMock->getEmail(), $requestData['CONTACT.EMAIL']);
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_PRE_AUTHORIZATION, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_PRE_AUTHORIZATION, $requestData['PAYMENT.CODE']);
     }
 
     /**
@@ -122,8 +122,8 @@ class InvoiceTest extends Unit
         $orderTransfer = $this->createOrderTransfer();
         $requestData = $methodMapper->buildReAuthorizationRequest($orderTransfer, $paymentEntityMock, $uniqueId);
 
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_RE_AUTHORIZATION, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_RE_AUTHORIZATION, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
     }
 
@@ -148,8 +148,8 @@ class InvoiceTest extends Unit
         $orderTransfer = $this->createOrderTransfer();
         $requestData = $methodMapper->buildRevertRequest($orderTransfer, $paymentEntityMock, $uniqueId);
 
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_REVERSAL, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_REVERSAL, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
     }
 
@@ -164,8 +164,8 @@ class InvoiceTest extends Unit
         $orderTransfer = $this->createOrderTransfer();
         $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId);
 
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
     }
 
@@ -180,8 +180,8 @@ class InvoiceTest extends Unit
         $orderTransfer = $this->createOrderTransfer();
         $requestData = $methodMapper->buildRefundRequest($orderTransfer, $paymentEntityMock, $uniqueId);
 
-        $this->assertSame(ApiConstants::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
-        $this->assertSame(ApiConstants::PAYMENT_CODE_REFUND, $requestData['PAYMENT.CODE']);
+        $this->assertSame(ApiConfig::BRAND_INVOICE, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_REFUND, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
     }
 
@@ -230,7 +230,7 @@ class InvoiceTest extends Unit
         $paymentEntityMock
             ->setIdPaymentPayolution(1)
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(ApiConstants::BRAND_INVOICE)
+            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
             ->setFirstName('John')
             ->setLastName('Doe')
             ->setEmail('john@doe.com')

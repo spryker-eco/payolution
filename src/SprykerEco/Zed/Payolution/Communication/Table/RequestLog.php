@@ -12,7 +12,7 @@ use Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLogQuer
 use Spryker\Zed\Gui\Communication\Table\AbstractTable;
 use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
-class RequestLog extends AbstractTable
+class RequestLog extends AbstractTable implements GuiTableInterface
 {
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLogQuery

@@ -20,7 +20,7 @@ use SprykerEco\Zed\Payolution\PayolutionDependencyProvider;
 class PayolutionCommunicationFactory extends AbstractCommunicationFactory
 {
     /**
-     * @return \SprykerEco\Zed\Payolution\Communication\Table\Payments
+     * @return \SprykerEco\Zed\Payolution\Communication\Table\GuiTableInterface
      */
     public function createPaymentsTable()
     {
@@ -32,7 +32,7 @@ class PayolutionCommunicationFactory extends AbstractCommunicationFactory
     /**
      * @param int $idPayment
      *
-     * @return \SprykerEco\Zed\Payolution\Communication\Table\RequestLog
+     * @return \SprykerEco\Zed\Payolution\Communication\Table\GuiTableInterface
      */
     public function createRequestLogTable($idPayment)
     {
@@ -44,7 +44,7 @@ class PayolutionCommunicationFactory extends AbstractCommunicationFactory
     /**
      * @param int $idPayment
      *
-     * @return \SprykerEco\Zed\Payolution\Communication\Table\StatusLog
+     * @return \SprykerEco\Zed\Payolution\Communication\Table\GuiTableInterface
      */
     public function createStatusLogTable($idPayment)
     {

@@ -11,7 +11,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\AbstractPaymentMethod;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 
 class Invoice extends AbstractPaymentMethod implements InvoiceInterface
 {
@@ -20,7 +20,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      */
     public function getAccountBrand()
     {
-        return ApiConstants::BRAND_INVOICE;
+        return ApiConfig::BRAND_INVOICE;
     }
 
     /**
@@ -64,23 +64,23 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         $this->addRequestData(
             $requestData,
             [
-                ApiConstants::PAYMENT_CODE => ApiConstants::PAYMENT_CODE_PRE_CHECK,
-                ApiConstants::TRANSACTION_CHANNEL => $this->config->getTransactionChannelPreCheck(),
-                ApiConstants::NAME_GIVEN => $addressTransfer->getFirstName(),
-                ApiConstants::NAME_FAMILY => $addressTransfer->getLastName(),
-                ApiConstants::NAME_TITLE => $addressTransfer->getSalutation(),
-                ApiConstants::NAME_SEX => $this->mapGender($payolutionTransfer->getGender()),
-                ApiConstants::NAME_BIRTHDATE => $payolutionTransfer->getDateOfBirth(),
-                ApiConstants::ADDRESS_STREET => $this->formatAddress($addressTransfer),
-                ApiConstants::ADDRESS_ZIP => $addressTransfer->getZipCode(),
-                ApiConstants::ADDRESS_CITY => $addressTransfer->getCity(),
-                ApiConstants::ADDRESS_COUNTRY => $addressTransfer->getIso2Code(),
-                ApiConstants::CONTACT_EMAIL => $payolutionTransfer->getEmail(),
-                ApiConstants::CONTACT_PHONE => $addressTransfer->getPhone(),
-                ApiConstants::CONTACT_MOBILE => $addressTransfer->getCellPhone(),
-                ApiConstants::CONTACT_IP => $payolutionTransfer->getClientIp(),
-                ApiConstants::CRITERION_PRE_CHECK => 'TRUE',
-                ApiConstants::CRITERION_CUSTOMER_LANGUAGE => $payolutionTransfer->getLanguageIso2Code(),
+                ApiConfig::PAYMENT_CODE => ApiConfig::PAYMENT_CODE_PRE_CHECK,
+                ApiConfig::TRANSACTION_CHANNEL => $this->config->getTransactionChannelPreCheck(),
+                ApiConfig::NAME_GIVEN => $addressTransfer->getFirstName(),
+                ApiConfig::NAME_FAMILY => $addressTransfer->getLastName(),
+                ApiConfig::NAME_TITLE => $addressTransfer->getSalutation(),
+                ApiConfig::NAME_SEX => $this->mapGender($payolutionTransfer->getGender()),
+                ApiConfig::NAME_BIRTHDATE => $payolutionTransfer->getDateOfBirth(),
+                ApiConfig::ADDRESS_STREET => $this->formatAddress($addressTransfer),
+                ApiConfig::ADDRESS_ZIP => $addressTransfer->getZipCode(),
+                ApiConfig::ADDRESS_CITY => $addressTransfer->getCity(),
+                ApiConfig::ADDRESS_COUNTRY => $addressTransfer->getIso2Code(),
+                ApiConfig::CONTACT_EMAIL => $payolutionTransfer->getEmail(),
+                ApiConfig::CONTACT_PHONE => $addressTransfer->getPhone(),
+                ApiConfig::CONTACT_MOBILE => $addressTransfer->getCellPhone(),
+                ApiConfig::CONTACT_IP => $payolutionTransfer->getClientIp(),
+                ApiConfig::CRITERION_PRE_CHECK => 'TRUE',
+                ApiConfig::CRITERION_CUSTOMER_LANGUAGE => $payolutionTransfer->getLanguageIso2Code(),
             ]
         );
 
@@ -98,28 +98,28 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         $requestData = $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
-            ApiConstants::PAYMENT_CODE_PRE_AUTHORIZATION,
+            ApiConfig::PAYMENT_CODE_PRE_AUTHORIZATION,
             null
         );
         $this->addRequestData(
             $requestData,
             [
-                ApiConstants::NAME_GIVEN => $paymentEntity->getFirstName(),
-                ApiConstants::NAME_FAMILY => $paymentEntity->getLastName(),
-                ApiConstants::NAME_TITLE => $paymentEntity->getSalutation(),
-                ApiConstants::NAME_SEX => $this->mapGender($paymentEntity->getGender()),
-                ApiConstants::NAME_BIRTHDATE => $paymentEntity->getDateOfBirth(self::PAYOLUTION_DATE_FORMAT),
-                ApiConstants::ADDRESS_STREET => $paymentEntity->getStreet(),
-                ApiConstants::ADDRESS_ZIP => $paymentEntity->getZipCode(),
-                ApiConstants::ADDRESS_CITY => $paymentEntity->getCity(),
-                ApiConstants::ADDRESS_COUNTRY => $paymentEntity->getCountryIso2Code(),
-                ApiConstants::CONTACT_EMAIL => $paymentEntity->getEmail(),
-                ApiConstants::CONTACT_PHONE => $paymentEntity->getPhone(),
-                ApiConstants::CONTACT_MOBILE => $paymentEntity->getCellPhone(),
-                ApiConstants::CONTACT_IP => $paymentEntity->getClientIp(),
-                ApiConstants::IDENTIFICATION_SHOPPERID => $paymentEntity->getSpySalesOrder()->getCustomerReference(),
-                ApiConstants::CRITERION_PRE_CHECK_ID => $paymentEntity->getPreCheckId(),
-                ApiConstants::CRITERION_CUSTOMER_LANGUAGE => $paymentEntity->getLanguageIso2Code(),
+                ApiConfig::NAME_GIVEN => $paymentEntity->getFirstName(),
+                ApiConfig::NAME_FAMILY => $paymentEntity->getLastName(),
+                ApiConfig::NAME_TITLE => $paymentEntity->getSalutation(),
+                ApiConfig::NAME_SEX => $this->mapGender($paymentEntity->getGender()),
+                ApiConfig::NAME_BIRTHDATE => $paymentEntity->getDateOfBirth(self::PAYOLUTION_DATE_FORMAT),
+                ApiConfig::ADDRESS_STREET => $paymentEntity->getStreet(),
+                ApiConfig::ADDRESS_ZIP => $paymentEntity->getZipCode(),
+                ApiConfig::ADDRESS_CITY => $paymentEntity->getCity(),
+                ApiConfig::ADDRESS_COUNTRY => $paymentEntity->getCountryIso2Code(),
+                ApiConfig::CONTACT_EMAIL => $paymentEntity->getEmail(),
+                ApiConfig::CONTACT_PHONE => $paymentEntity->getPhone(),
+                ApiConfig::CONTACT_MOBILE => $paymentEntity->getCellPhone(),
+                ApiConfig::CONTACT_IP => $paymentEntity->getClientIp(),
+                ApiConfig::IDENTIFICATION_SHOPPERID => $paymentEntity->getSpySalesOrder()->getCustomerReference(),
+                ApiConfig::CRITERION_PRE_CHECK_ID => $paymentEntity->getPreCheckId(),
+                ApiConfig::CRITERION_CUSTOMER_LANGUAGE => $paymentEntity->getLanguageIso2Code(),
             ]
         );
 
@@ -141,7 +141,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
-            ApiConstants::PAYMENT_CODE_RE_AUTHORIZATION,
+            ApiConfig::PAYMENT_CODE_RE_AUTHORIZATION,
             $uniqueId
         );
     }
@@ -161,7 +161,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
-            ApiConstants::PAYMENT_CODE_REVERSAL,
+            ApiConfig::PAYMENT_CODE_REVERSAL,
             $uniqueId
         );
     }
@@ -181,7 +181,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
-            ApiConstants::PAYMENT_CODE_CAPTURE,
+            ApiConfig::PAYMENT_CODE_CAPTURE,
             $uniqueId
         );
     }
@@ -201,7 +201,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
-            ApiConstants::PAYMENT_CODE_REFUND,
+            ApiConfig::PAYMENT_CODE_REFUND,
             $uniqueId
         );
     }

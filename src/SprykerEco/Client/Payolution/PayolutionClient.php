@@ -17,6 +17,8 @@ use Spryker\Client\Kernel\AbstractClient;
 class PayolutionClient extends AbstractClient implements PayolutionClientInterface
 {
     /**
+     * {@inheritdoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
@@ -32,14 +34,8 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     }
 
     /**
-     * @return \SprykerEco\Client\Payolution\Session\PayolutionSessionInterface
-     */
-    protected function getSession()
-    {
-        return $this->getFactory()->createPayolutionSession();
-    }
-
-    /**
+     * {@inheritdoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionCalculationResponseTransfer $payolutionCalculationResponseTransfer
@@ -54,6 +50,8 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @api
      *
      * @return bool
@@ -64,6 +62,8 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @api
      *
      * @return \Generated\Shared\Transfer\PayolutionCalculationResponseTransfer
@@ -74,6 +74,8 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @api
      *
      * @return bool
@@ -81,5 +83,13 @@ class PayolutionClient extends AbstractClient implements PayolutionClientInterfa
     public function removeInstallmentPaymentsFromSession()
     {
         return $this->getSession()->removeInstallmentPayments();
+    }
+
+    /**
+     * @return \SprykerEco\Client\Payolution\Session\PayolutionSessionInterface
+     */
+    protected function getSession()
+    {
+        return $this->getFactory()->createPayolutionSession();
     }
 }

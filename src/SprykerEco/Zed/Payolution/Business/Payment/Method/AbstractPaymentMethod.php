@@ -22,8 +22,8 @@ abstract class AbstractPaymentMethod
      * @var static string[]
      */
     protected static $genderMap = [
-        SpyPaymentPayolutionTableMap::COL_GENDER_MALE => ApiConstants::SEX_MALE,
-        SpyPaymentPayolutionTableMap::COL_GENDER_FEMALE => ApiConstants::SEX_FEMALE,
+        SpyPaymentPayolutionTableMap::COL_GENDER_MALE => ApiConfig::SEX_MALE,
+        SpyPaymentPayolutionTableMap::COL_GENDER_FEMALE => ApiConfig::SEX_FEMALE,
     ];
 
     /**
@@ -84,21 +84,21 @@ abstract class AbstractPaymentMethod
     protected function getBaseTransactionRequest($grandTotal, $currency, $idOrder = null)
     {
         return [
-            ApiConstants::ACCOUNT_BRAND => $this->getAccountBrand(),
-            ApiConstants::TRANSACTION_MODE => $this->getConfig()->getTransactionMode(),
-            ApiConstants::SECURITY_SENDER => $this->getConfig()->getTransactionSecuritySender(),
-            ApiConstants::USER_LOGIN => $this->getConfig()->getTransactionUserLogin(),
-            ApiConstants::USER_PWD => $this->getConfig()->getTransactionUserPassword(),
-            ApiConstants::PRESENTATION_AMOUNT => $this->moneyFacade->convertIntegerToDecimal((int)$grandTotal),
-            ApiConstants::PRESENTATION_USAGE => $idOrder,
-            ApiConstants::PRESENTATION_CURRENCY => $currency,
-            ApiConstants::IDENTIFICATION_TRANSACTIONID => $idOrder,
-            ApiConstants::CRITERION_REQUEST_SYSTEM_VENDOR => ApiConstants::CRITERION_REQUEST_SYSTEM_VENDOR_VALUE,
-            ApiConstants::CRITERION_REQUEST_SYSTEM_VERSION => ApiConstants::CRITERION_REQUEST_SYSTEM_VERSION_VALUE,
-            ApiConstants::CRITERION_REQUEST_SYSTEM_TYPE => ApiConstants::CRITERION_REQUEST_SYSTEM_TYPE_VALUE,
-            ApiConstants::CRITERION_MODULE_NAME => ApiConstants::CRITERION_MODULE_NAME_VALUE,
-            ApiConstants::CRITERION_MODULE_VERSION => ApiConstants::CRITERION_MODULE_VERSION_VALUE,
-            ApiConstants::CRITERION_WEBSHOP_URL => $this->getConfig()->getWebshopUrl(),
+            ApiConfig::ACCOUNT_BRAND => $this->getAccountBrand(),
+            ApiConfig::TRANSACTION_MODE => $this->getConfig()->getTransactionMode(),
+            ApiConfig::SECURITY_SENDER => $this->getConfig()->getTransactionSecuritySender(),
+            ApiConfig::USER_LOGIN => $this->getConfig()->getTransactionUserLogin(),
+            ApiConfig::USER_PWD => $this->getConfig()->getTransactionUserPassword(),
+            ApiConfig::PRESENTATION_AMOUNT => $this->moneyFacade->convertIntegerToDecimal((int)$grandTotal),
+            ApiConfig::PRESENTATION_USAGE => $idOrder,
+            ApiConfig::PRESENTATION_CURRENCY => $currency,
+            ApiConfig::IDENTIFICATION_TRANSACTIONID => $idOrder,
+            ApiConfig::CRITERION_REQUEST_SYSTEM_VENDOR => ApiConfig::CRITERION_REQUEST_SYSTEM_VENDOR_VALUE,
+            ApiConfig::CRITERION_REQUEST_SYSTEM_VERSION => ApiConfig::CRITERION_REQUEST_SYSTEM_VERSION_VALUE,
+            ApiConfig::CRITERION_REQUEST_SYSTEM_TYPE => ApiConfig::CRITERION_REQUEST_SYSTEM_TYPE_VALUE,
+            ApiConfig::CRITERION_MODULE_NAME => ApiConfig::CRITERION_MODULE_NAME_VALUE,
+            ApiConfig::CRITERION_MODULE_VERSION => ApiConfig::CRITERION_MODULE_VERSION_VALUE,
+            ApiConfig::CRITERION_WEBSHOP_URL => $this->getConfig()->getWebshopUrl(),
         ];
     }
 
@@ -125,9 +125,9 @@ abstract class AbstractPaymentMethod
         $this->addRequestData(
             $requestData,
             [
-                ApiConstants::TRANSACTION_CHANNEL => $this->getTransactionChannel(),
-                ApiConstants::PAYMENT_CODE => $paymentCode,
-                ApiConstants::IDENTIFICATION_REFERENCEID => $uniqueId,
+                ApiConfig::TRANSACTION_CHANNEL => $this->getTransactionChannel(),
+                ApiConfig::PAYMENT_CODE => $paymentCode,
+                ApiConfig::IDENTIFICATION_REFERENCEID => $uniqueId,
             ]
         );
 

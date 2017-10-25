@@ -14,7 +14,7 @@ use SprykerEco\Zed\Payolution\Business\Log\TransactionStatusLog;
 use SprykerEco\Zed\Payolution\Business\Order\Saver;
 use SprykerEco\Zed\Payolution\Business\Payment\Handler\Calculation\Calculation;
 use SprykerEco\Zed\Payolution\Business\Payment\Handler\Transaction\Transaction;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConstants;
+use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\Installment\Installment;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\Invoice\Invoice;
 use SprykerEco\Zed\Payolution\PayolutionDependencyProvider;
@@ -31,7 +31,7 @@ class PayolutionBusinessFactory extends AbstractBusinessFactory
     public function createPaymentTransactionHandler()
     {
         $paymentTransactionHandler = new Transaction(
-            $this->createAdapter($this->getConfig()->getTransactionGatewayUrl(), ApiConstants::TRANSACTION_REQUEST_CONTENT_TYPE),
+            $this->createAdapter($this->getConfig()->getTransactionGatewayUrl(), ApiConfig::TRANSACTION_REQUEST_CONTENT_TYPE),
             $this->createConverter(),
             $this->getQueryContainer(),
             $this->getConfig()
@@ -53,7 +53,7 @@ class PayolutionBusinessFactory extends AbstractBusinessFactory
     public function createPaymentCalculationHandler()
     {
         $paymentCalculationHandler = new Calculation(
-            $this->createAdapter($this->getConfig()->getCalculationGatewayUrl(), ApiConstants::CALCULATION_REQUEST_CONTENT_TYPE),
+            $this->createAdapter($this->getConfig()->getCalculationGatewayUrl(), ApiConfig::CALCULATION_REQUEST_CONTENT_TYPE),
             $this->createConverter(),
             $this->getConfig()
         );
