@@ -38,13 +38,13 @@ class PayolutionFactory extends AbstractFactory
      */
     public function createInstallmentFormDataProvider()
     {
-        return new InstallmentFormDataProvider($this->getPayolutionClient(), $this->getMoneyPlugin());
+        return new InstallmentFormDataProvider($this->getPayolutionClient(), $this->createMoneyPlugin());
     }
 
     /**
      * @return \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface
      */
-    public function getMoneyPlugin()
+    public function createMoneyPlugin()
     {
         return new MoneyPlugin();
     }
