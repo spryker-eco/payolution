@@ -26,7 +26,7 @@ addons:
  
 cache:
   directories:
-    - vendor
+    - $SHOP_DIR/current/vendor
     - $HOME/.composer/cache
  
 services:
@@ -44,7 +44,7 @@ install:
   - mkdir $MODULE_DIR && ls -1 | grep -v ^$MODULE_DIR | xargs -I{} mv {} $MODULE_DIR
   - echo "Cloning Demo Shop..."
   - git clone https://github.com/spryker/demoshop.git $SHOP_DIR
-  - cd $SHOP_DIR/
+  - cd $SHOP_DIR
   - git checkout feature/no-payolution-payment
   - composer self-update && composer --version
   - composer install --no-interaction
