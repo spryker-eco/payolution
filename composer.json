@@ -32,13 +32,9 @@
     "spryker/payolution": "*"
   },
   "autoload": {
-    "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+    "psr-0": {
+      "SprykerEco": "src/",
+      "SprykerEcoTest": "tests/"
     }
   },
   "minimum-stability": "dev",
