@@ -37,6 +37,9 @@
     }
   },
   "autoload-dev": {
+    "psr-0": {
+      "SprykerEcoTest": "tests"
+    },
     "psr-4": {
       "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
