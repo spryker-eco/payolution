@@ -77,13 +77,7 @@ class PayolutionFacadeMockBuilder
      */
     protected static function getConfigMock(Unit $testCase)
     {
-        $configMock = $testCase->getMockBuilder(PayolutionConfig::class)
-            ->setMethods(['getTransactionGatewayUrl'])
-            ->getMock();
-
-        $configMock->expects($testCase->any())
-            ->method('getTransactionGatewayUrl')
-            ->willReturn('foo.bar');
+        $configMock = $testCase->getMockBuilder(PayolutionConfig::class)->getMock();
 
         return $configMock;
     }
