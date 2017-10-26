@@ -33,13 +33,13 @@
   },
   "autoload": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/",
-      "SprykerEcoTest\\Zed\\Payolution\\Business\\": "tests/SprykerEcoTest/Zed/Payolution/Business/"
+      "SprykerEco\\": "src/SprykerEco/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SprykerEcoTest\\": "tests/SprykerEcoTest/"
+      "SprykerEcoTest\\": "tests/SprykerEcoTest/",
+      "SprykerEcoTest\\Zed\\Payolution\\Business\\": "tests/SprykerEcoTest/Zed/Payolution/Business/"
     }
   },
   "minimum-stability": "dev",

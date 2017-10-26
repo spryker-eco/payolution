@@ -29,7 +29,7 @@ class PayolutionFacadeMockBuilder
         // Mock business factory to override return value of createExecutionAdapter to
         // place a mocked adapter that doesn't establish an actual connection.
         $businessFactoryMock = self::getBusinessFactoryMock($testCase);
-        $businessFactoryMock->setConfig(new PayolutionConfig());
+        $businessFactoryMock->setConfig(self::getConfigMock($testCase));
         $businessFactoryMock
             ->expects($testCase->any())
             ->method('createAdapter')
@@ -68,5 +68,23 @@ class PayolutionFacadeMockBuilder
         $businessFactoryMock->method('getMoneyFacade')->willReturn($payolutionToMoneyBridge);
 
         return $businessFactoryMock;
+    }
+
+    /**
+     * @param \Codeception\Test\Unit $testCase
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject|\SprykerEco\Zed\Payolution\PayolutionConfig
+     */
+    protected static function getConfigMock(Unit $testCase)
+    {
+        $configMock = $testCase->getMockBuilder(PayolutionConfig::class)
+            ->setMethods(['getTransactionGatewayUrl'])
+            ->getMock();
+
+        $configMock->expects($testCase->any())
+            ->method('getTransactionGatewayUrl')
+            ->willReturn('foo.bar');
+
+        return $configMock;
     }
 }
