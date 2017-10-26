@@ -33,13 +33,11 @@
   },
   "autoload": {
     "psr-4": {
-      "SprykerEco\\": "src/SprykerEco/"
+      "SprykerEco\\": "src/SprykerEco/",
+      "SprykerEcoTest\\Zed\\Payolution\\Business\\Api\\Adapter\\Http\\": "tests/SprykerEcoTest/Zed/Payolution/Business/Api/Adapter/Http/"
     }
   },
   "autoload-dev": {
-    "psr-0": {
-      "SprykerEcoTest": "tests"
-    },
     "psr-4": {
       "SprykerEcoTest\\": "tests/SprykerEcoTest/"
     }
