@@ -10,6 +10,7 @@ namespace SprykerEco\Zed\Payolution\Business\Payment\Method\Invoice;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\AbstractPaymentMethod;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 
@@ -20,7 +21,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      */
     public function getAccountBrand()
     {
-        return ApiConfig::BRAND_INVOICE;
+        return PayolutionConfig::BRAND_INVOICE;
     }
 
     /**

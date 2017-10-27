@@ -11,6 +11,9 @@ interface PayolutionConfig
 {
     const PROVIDER_NAME = 'Payolution';
 
+    const PAYMENT_METHOD_INVOICE = 'payolutionInvoice';
+    const PAYMENT_METHOD_INSTALLMENT = 'payolutionInstallment';
+
     const BRAND_INVOICE = 'PAYOLUTION_INVOICE';
     const BRAND_INSTALLMENT = 'PAYOLUTION_INS';
 

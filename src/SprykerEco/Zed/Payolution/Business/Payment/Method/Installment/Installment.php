@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Spryker\Shared\Kernel\Store;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\AbstractPaymentMethod;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 
@@ -21,7 +22,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      */
     public function getAccountBrand()
     {
-        return ApiConfig::BRAND_INSTALLMENT;
+        return PayolutionConfig::BRAND_INSTALLMENT;
     }
 
     /**

@@ -10,8 +10,6 @@ namespace SprykerEco\Zed\Payolution\Business\Payment\Method;
 interface ApiConfig
 {
     const ACCOUNT_BRAND = 'ACCOUNT.BRAND';
-    const BRAND_INVOICE = 'PAYOLUTION_INVOICE';
-    const BRAND_INSTALLMENT = 'PAYOLUTION_INS';
 
     const TRANSACTION_MODE = 'TRANSACTION.MODE';
     const TRANSACTION_MODE_TEST = 'CONNECTOR_TEST';
