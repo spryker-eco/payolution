@@ -81,6 +81,7 @@ class PayolutionFacadeMockBuilder
         $configMock->expects($testCase->any())
             ->method('getMaxOrderGrandTotalInvoice')
             ->willReturn(999999);
+
         return $configMock;
     }
 }

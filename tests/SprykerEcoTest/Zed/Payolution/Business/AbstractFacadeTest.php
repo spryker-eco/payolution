@@ -315,7 +315,10 @@ class AbstractFacadeTest extends Unit
         $payolutionPaymentTransfer
             ->setGender('Male')
             ->setDateOfBirth('1970-01-01')
+            ->setLanguageIso2Code('EN')
+            ->setCurrencyIso3Code('EUR')
             ->setClientIp('127.0.0.1')
+            ->setEmail('john@doe.com')
             ->setAccountBrand($accountBrand)
             ->setAddress($paymentAddressTransfer);
 
