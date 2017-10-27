@@ -34,6 +34,9 @@ class PayolutionFacadePreAuthorizeTest extends AbstractFacadeTest
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->preAuthorizePayment($orderTransfer, $this->getPaymentEntity()->getIdPaymentPayolution());
 
+        $isApproved = $facade->isPreAuthorizationApproved($orderTransfer);
+        $this->assertEquals(true, $isApproved);
+
         $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
         $expectedResponseData = $adapterMock->getSuccessResponse();
@@ -69,6 +72,9 @@ class PayolutionFacadePreAuthorizeTest extends AbstractFacadeTest
         $adapterMock = (new PreAuthorizationAdapterMock())->expectFailure();
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->preAuthorizePayment($orderTransfer, $this->getPaymentEntity()->getIdPaymentPayolution());
+
+        $isApproved = $facade->isPreAuthorizationApproved($orderTransfer);
+        $this->assertEquals(false, $isApproved);
 
         $expectedResponseData = $adapterMock->getFailureResponse();
         $expectedResponse = $this->getResponseConverter()->toTransactionResponseTransfer($expectedResponseData);

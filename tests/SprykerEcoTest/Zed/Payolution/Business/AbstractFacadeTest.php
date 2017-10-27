@@ -8,8 +8,13 @@
 namespace SprykerEcoTest\Zed\Payolution\Business;
 
 use Codeception\Test\Unit;
+use Generated\Shared\Transfer\AddressTransfer;
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PaymentTransfer;
+use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
+use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\TotalsTransfer;
 use Orm\Zed\Country\Persistence\SpyCountryQuery;
 use Orm\Zed\Customer\Persistence\Map\SpyCustomerTableMap;
@@ -101,6 +106,7 @@ class AbstractFacadeTest extends Unit
             ->setAddress1('Straße des 17. Juni 135')
             ->setCity('Berlin')
             ->setZipCode('10623');
+
         $billingAddress->save();
 
         $customer = (new SpyCustomerQuery())
@@ -119,7 +125,7 @@ class AbstractFacadeTest extends Unit
             ->setIsTest(true)
             ->setFkSalesOrderAddressBilling($billingAddress->getIdSalesOrderAddress())
             ->setFkSalesOrderAddressShipping($billingAddress->getIdSalesOrderAddress())
-            ->setCustomer($customer)
+            ->setCustomerReference($customer->getCustomerReference())
             ->setOrderReference('foo-bar-baz-2');
 
         $this->orderEntity->save();
@@ -255,5 +261,82 @@ class AbstractFacadeTest extends Unit
         $this->assertNotNull($statusLog->getIdentificationUniqueid());
         $this->assertNotNull($statusLog->getIdentificationShortid());
         $this->assertNotNull($statusLog->getProcessingTimestamp());
+    }
+
+    /**
+     * @param string $accountBrand
+     *
+     * @return \Generated\Shared\Transfer\QuoteTransfer
+     */
+    protected function createCheckoutRequestTransfer($accountBrand)
+    {
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer
+            ->setSku('1234567890')
+            ->setQuantity(1)
+            ->setUnitSubtotalAggregation(10000)
+            ->setName('Socken');
+
+        $billingAddressTransfer = new AddressTransfer();
+        $billingAddressTransfer
+            ->setIso2Code('DE')
+            ->setEmail('john@doe.com')
+            ->setFirstName('John')
+            ->setLastName('Doe')
+            ->setAddress1('Straße des 17. Juni')
+            ->setAddress2('135')
+            ->setZipCode('10623')
+            ->setCity('Berlin');
+
+        $shippingAddressTransfer = new AddressTransfer();
+        $shippingAddressTransfer
+            ->setIso2Code('DE')
+            ->setEmail('john@doe.com')
+            ->setFirstName('John')
+            ->setLastName('Doe')
+            ->setAddress1('Fraunhoferstraße')
+            ->setAddress2('120')
+            ->setZipCode('80469')
+            ->setCity('München');
+
+        $paymentAddressTransfer = new AddressTransfer();
+        $paymentAddressTransfer
+            ->setFirstName('John')
+            ->setLastName('Doe')
+            ->setSalutation('Mr')
+            ->setEmail('john@doe.com')
+            ->setCity('Berlin')
+            ->setIso2Code('DE')
+            ->setAddress1('Straße des 17. Juni')
+            ->setAddress2('135')
+            ->setZipCode('10623');
+
+        $payolutionPaymentTransfer = new PayolutionPaymentTransfer();
+        $payolutionPaymentTransfer
+            ->setGender('Male')
+            ->setDateOfBirth('1970-01-01')
+            ->setClientIp('127.0.0.1')
+            ->setAccountBrand($accountBrand)
+            ->setAddress($paymentAddressTransfer);
+
+        $quoteTransfer = new QuoteTransfer();
+
+        $totalsTransfer = new TotalsTransfer();
+        $totalsTransfer
+            ->setGrandTotal(10000)
+            ->setSubtotal(9000);
+
+        $quoteTransfer->setTotals($totalsTransfer);
+
+        $paymentTransfer = new PaymentTransfer();
+        $paymentTransfer->setPaymentSelection('no_payment');
+        $paymentTransfer->setPayolution($payolutionPaymentTransfer);
+        $quoteTransfer->setPayment($paymentTransfer);
+
+        $quoteTransfer
+            ->setShippingAddress($shippingAddressTransfer)
+            ->setBillingAddress($billingAddressTransfer);
+
+        return $quoteTransfer;
     }
 }

@@ -29,7 +29,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Order\Saver;
-use SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory;
 
 /**
  * Auto-generated group annotations
@@ -50,7 +49,7 @@ class SaverTest extends Unit
     {
         $checkoutResponseTransfer = $this->createCheckoutResponse();
         $quoteTransfer = $this->getQuoteTransfer($checkoutResponseTransfer);
-        $orderManager = new Saver($this->getPayolutionBusinessBusinessFactory());
+        $orderManager = new Saver();
 
         $orderManager->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
 
@@ -70,14 +69,16 @@ class SaverTest extends Unit
     {
         $checkoutResponseTransfer = $this->createCheckoutResponse();
         $quoteTransfer = $this->getQuoteTransfer($checkoutResponseTransfer);
-        $orderManager = new Saver($this->getPayolutionBusinessBusinessFactory());
+        $orderManager = new Saver();
 
         $orderManager->saveOrderPayment($quoteTransfer, $checkoutResponseTransfer);
 
         $paymentTransfer = $quoteTransfer->getPayment()->getPayolution();
         $addressTransfer = $paymentTransfer->getAddress();
         /** @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity */
-        $paymentEntity = SpyPaymentPayolutionQuery::create()->findOneByFkSalesOrder($checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder());
+        $paymentEntity = SpyPaymentPayolutionQuery::create()->findOneByFkSalesOrder(
+            $checkoutResponseTransfer->getSaveOrder()->getIdSalesOrder()
+        );
         $this->assertEquals($addressTransfer->getCity(), $paymentEntity->getCity());
         $this->assertEquals($addressTransfer->getIso2Code(), $paymentEntity->getCountryIso2Code());
         $this->assertEquals($addressTransfer->getZipCode(), $paymentEntity->getZipCode());
@@ -96,16 +97,6 @@ class SaverTest extends Unit
             )),
             $paymentEntity->getStreet()
         );
-    }
-
-    /**
-     * @return \SprykerEco\Zed\Payolution\Business\PayolutionBusinessFactory
-     */
-    private function getPayolutionBusinessBusinessFactory()
-    {
-        $businessFactory = new PayolutionBusinessFactory();
-
-        return $businessFactory;
     }
 
     /**
@@ -178,7 +169,8 @@ class SaverTest extends Unit
     {
         $country = SpyCountryQuery::create()->findOneByIso2Code('DE');
 
-        $billingAddress = (new SpySalesOrderAddress())
+        $billingAddress = new SpySalesOrderAddress();
+        $billingAddress
             ->setFkCountry($country->getIdCountry())
             ->setFirstName('John')
             ->setLastName('Doe')
@@ -187,7 +179,8 @@ class SaverTest extends Unit
             ->setZipCode('10623');
         $billingAddress->save();
 
-        $customer = (new SpyCustomer())
+        $customer = new SpyCustomer();
+        $customer
             ->setFirstName('John')
             ->setLastName('Doe')
             ->setEmail('john@doe.com')
@@ -201,7 +194,7 @@ class SaverTest extends Unit
             ->setIsTest(true)
             ->setFkSalesOrderAddressBilling($billingAddress->getIdSalesOrderAddress())
             ->setFkSalesOrderAddressShipping($billingAddress->getIdSalesOrderAddress())
-            ->setCustomer($customer)
+            ->setCustomerReference($customer->getCustomerReference())
             ->setOrderReference('foo-bar-baz-2');
         $orderEntity->save();
 

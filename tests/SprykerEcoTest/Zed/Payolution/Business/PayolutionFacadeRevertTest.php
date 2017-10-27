@@ -39,6 +39,9 @@ class PayolutionFacadeRevertTest extends AbstractFacadeTest
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->revertPayment($orderTransfer, $idPayment);
 
+        $isApproved = $facade->isReversalApproved($orderTransfer);
+        $this->assertEquals(true, $isApproved);
+
         $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
         $expectedResponseData = $adapterMock->getSuccessResponse();
@@ -84,6 +87,9 @@ class PayolutionFacadeRevertTest extends AbstractFacadeTest
         $adapterMock->expectFailure();
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->revertPayment($orderTransfer, $idPayment);
+
+        $isApproved = $facade->isReversalApproved($orderTransfer);
+        $this->assertEquals(false, $isApproved);
 
         $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 

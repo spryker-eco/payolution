@@ -24,7 +24,7 @@ use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTableMap;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Orm\Zed\Sales\Persistence\SpySalesOrderAddress;
-use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\PayolutionFacade;
 
 /**
@@ -69,11 +69,10 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testSaveOrderPayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
 
-        $addressTransfer = (new AddressTransfer())
+        $addressTransfer = new AddressTransfer();
+        $addressTransfer
             ->setCity('Berlin')
             ->setZipCode('10623')
             ->setAddress1('Straße des 17. Juni 135')
@@ -84,12 +83,13 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setSalutation(SpyCustomerTableMap::COL_SALUTATION_MR);
 
         $payolutionPaymentTransfer = new PayolutionPaymentTransfer();
-        $payolutionPaymentTransfer->setAccountBrand(ApiConfig::BRAND_INVOICE)
+        $payolutionPaymentTransfer
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setClientIp('127.0.0.1')
             ->setDateOfBirth('1970-01-02')
             ->setGender(SpyCustomerTableMap::COL_GENDER_MALE)
             ->setAddress($addressTransfer)
-            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setLanguageIso2Code('DE')
             ->setCurrencyIso3Code('EUR')
             ->setEmail($addressTransfer->getEmail());
@@ -113,7 +113,7 @@ class PayolutionFacadeGatewayTest extends Unit
         $paymentEntity = $this->orderEntity->getSpyPaymentPayolutions()->getFirst();
 
         $this->assertInstanceOf(SpyPaymentPayolution::class, $paymentEntity);
-        $this->assertEquals(ApiConfig::BRAND_INVOICE, $paymentEntity->getAccountBrand());
+        $this->assertEquals(PayolutionConfig::BRAND_INVOICE, $paymentEntity->getAccountBrand());
         $this->assertEquals('127.0.0.1', $paymentEntity->getClientIp());
     }
 
@@ -122,8 +122,6 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testPreCheckPayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
 
         $totalsTransfer = new TotalsTransfer();
@@ -132,7 +130,8 @@ class PayolutionFacadeGatewayTest extends Unit
         $quoteTransfer = new QuoteTransfer();
         $quoteTransfer->setTotals($totalsTransfer);
 
-        $addressTransfer = (new AddressTransfer())
+        $addressTransfer = new AddressTransfer();
+        $addressTransfer
             ->setCity('Berlin')
             ->setZipCode('10623')
             ->setAddress1('Straße des 17. Juni 135')
@@ -142,11 +141,12 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setEmail('john@doe.com')
             ->setIso2Code('DE');
 
-        $payolutionPaymentTransfer = (new PayolutionPaymentTransfer())
+        $payolutionPaymentTransfer = new PayolutionPaymentTransfer();
+        $payolutionPaymentTransfer
             ->setGender('Male')
             ->setDateOfBirth('1970-01-01')
             ->setClientIp('127.0.0.1')
-            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setAddress($addressTransfer)
             ->setLanguageIso2Code('DE')
             ->setCurrencyIso3Code('EUR');
@@ -167,8 +167,6 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testPreAuthorizePayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
         $this->setPaymentTestData();
 
@@ -185,8 +183,6 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testReAuthorizePayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
         $this->setPaymentTestData();
 
@@ -215,8 +211,6 @@ class PayolutionFacadeGatewayTest extends Unit
             $preAuthorizationStatusLogEntity->getIdentificationUniqueid(),
             $reAuthorizationRequestLogEntity->getReferenceId()
         );
-
-        // @todo CD-408 Test $responseTransfer fields
     }
 
     /**
@@ -224,8 +218,6 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testRevertPayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
         $this->setPaymentTestData();
 
@@ -258,8 +250,6 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     public function testRefundPayment()
     {
-        $this->markTestSkipped('Payolution request is too slow');
-
         $this->setBaseTestData();
         $this->setPaymentTestData();
 
@@ -295,7 +285,8 @@ class PayolutionFacadeGatewayTest extends Unit
     {
         $country = SpyCountryQuery::create()->findOneByIso2Code('DE');
 
-        $billingAddress = (new SpySalesOrderAddress())
+        $billingAddress = new SpySalesOrderAddress();
+        $billingAddress
             ->setFkCountry($country->getIdCountry())
             ->setFirstName('John')
             ->setLastName('Doe')
@@ -304,7 +295,8 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setZipCode('10623');
         $billingAddress->save();
 
-        $customer = (new SpyCustomer())
+        $customer = new SpyCustomer();
+        $customer
             ->setFirstName('John')
             ->setLastName('Doe')
             ->setEmail('john@doe.com')
@@ -313,12 +305,13 @@ class PayolutionFacadeGatewayTest extends Unit
             ->setCustomerReference('payolution-pre-authorization-test');
         $customer->save();
 
-        $this->orderEntity = (new SpySalesOrder())
+        $this->orderEntity = new SpySalesOrder();
+        $this->orderEntity
             ->setEmail('john@doe.com')
             ->setIsTest(true)
             ->setFkSalesOrderAddressBilling($billingAddress->getIdSalesOrderAddress())
             ->setFkSalesOrderAddressShipping($billingAddress->getIdSalesOrderAddress())
-            ->setCustomer($customer)
+            ->setCustomerReference($customer->getCustomerReference())
             ->setOrderReference('foo-bar-baz-2');
         $this->orderEntity->save();
     }
@@ -328,9 +321,10 @@ class PayolutionFacadeGatewayTest extends Unit
      */
     private function setPaymentTestData()
     {
-        $this->paymentEntity = (new SpyPaymentPayolution())
+        $this->paymentEntity = new SpyPaymentPayolution();
+        $this->paymentEntity
             ->setFkSalesOrder($this->orderEntity->getIdSalesOrder())
-            ->setAccountBrand(ApiConfig::BRAND_INVOICE)
+            ->setAccountBrand(PayolutionConfig::BRAND_INVOICE)
             ->setClientIp('127.0.0.1')
             ->setFirstName('Jane')
             ->setLastName('Doe')
@@ -358,6 +352,7 @@ class PayolutionFacadeGatewayTest extends Unit
         $orderTransfer = new OrderTransfer();
         $orderTransfer->fromArray($this->orderEntity->toArray(), true);
         $orderTransfer->setTotals($totalsTransfer);
+
         return $orderTransfer;
     }
 }

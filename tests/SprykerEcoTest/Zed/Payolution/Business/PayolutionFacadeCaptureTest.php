@@ -40,6 +40,9 @@ class PayolutionFacadeCaptureTest extends AbstractFacadeTest
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->capturePayment($orderTransfer, $idPayment);
 
+        $isApproved = $facade->isCaptureApproved($orderTransfer);
+        $this->assertEquals(true, $isApproved);
+
         $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
         $expectedResponseData = $adapterMock->getSuccessResponse();
@@ -85,6 +88,9 @@ class PayolutionFacadeCaptureTest extends AbstractFacadeTest
         $adapterMock->expectFailure();
         $facade = $this->getFacadeMock($adapterMock);
         $response = $facade->capturePayment($orderTransfer, $idPayment);
+
+        $isApproved = $facade->isCaptureApproved($orderTransfer);
+        $this->assertEquals(false, $isApproved);
 
         $this->assertInstanceOf(PayolutionTransactionResponseTransfer::class, $response);
 
