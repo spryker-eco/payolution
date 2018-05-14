@@ -11,6 +11,7 @@ use Spryker\Yves\StepEngine\Dependency\Form\AbstractSubFormType;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormProviderNameInterface;
 use SprykerEco\Shared\Payolution\PayolutionConfig;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -38,7 +39,7 @@ abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements 
     {
         $builder->add(
             self::FIELD_DATE_OF_BIRTH,
-            'birthday',
+            BirthdayType::class,
             [
                 'label' => false,
                 'required' => true,
@@ -72,13 +73,11 @@ abstract class AbstractPayolutionSubForm extends AbstractSubFormType implements 
     protected function createBirthdayConstraint()
     {
         return new Callback([
-            'methods' => [
-                function ($date, ExecutionContextInterface $context) {
-                    if (strtotime($date) > strtotime(self::MIN_BIRTHDAY_DATE_STRING)) {
-                        $context->addViolation('checkout.step.payment.must_be_older_than_18_years');
-                    }
-                },
-            ],
+            'callback' => function ($date, ExecutionContextInterface $context) {
+                if (strtotime($date) > strtotime(self::MIN_BIRTHDAY_DATE_STRING)) {
+                    $context->addViolation('checkout.step.payment.must_be_older_than_18_years');
+                }
+            },
             'groups' => $this->getPropertyPath(),
         ]);
     }

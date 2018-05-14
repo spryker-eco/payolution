@@ -11,6 +11,8 @@ use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
 use Spryker\Yves\StepEngine\Dependency\Form\SubFormInterface;
 use SprykerEco\Shared\Payolution\PayolutionConfig;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -99,9 +101,9 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     {
         $builder->add(
             self::FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX,
-            'choice',
+            ChoiceType::class,
             [
-                'choices' => $options['select_options'][self::OPTION_INSTALLMENT_PAYMENT_DETAIL],
+                'choices' => array_flip($options['select_options'][self::OPTION_INSTALLMENT_PAYMENT_DETAIL]),
                 'label' => false,
                 'required' => true,
                 'expanded' => false,
@@ -125,7 +127,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     {
         $builder->add(
             self::FIELD_BANK_ACCOUNT_HOLDER,
-            'text',
+            TextType::class,
             [
                 'label' => false,
                 'required' => true,
@@ -150,7 +152,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     {
         $builder->add(
             self::FIELD_BANK_ACCOUNT_IBAN,
-            'text',
+            TextType::class,
             [
                 'label' => false,
                 'required' => true,
@@ -175,7 +177,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     {
         $builder->add(
             self::FIELD_BANK_ACCOUNT_BIC,
-            'text',
+            TextType::class,
             [
                 'label' => false,
                 'required' => true,
