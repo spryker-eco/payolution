@@ -93,7 +93,7 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
         if ($transactionResponseTransfer->getProcessingStatusCode() !== PayolutionConfig::STATUS_CODE_SUCCESS) {
             return false;
         }
-        if ($transactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_PRE_CHECK) {
+        if ($transactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_REFUND) {
             return false;
         }
 

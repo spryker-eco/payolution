@@ -18,6 +18,7 @@ interface PayolutionConfig
     const BRAND_INSTALLMENT = 'PAYOLUTION_INS';
 
     const PAYMENT_CODE_PRE_CHECK = 'VA.PA';
+    const PAYMENT_CODE_REFUND = 'VA.RF';
 
     const STATUS_CODE_SUCCESS = '90';
     const REASON_CODE_SUCCESS = '00';
