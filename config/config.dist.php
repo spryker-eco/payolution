@@ -36,10 +36,11 @@ $config[OmsConstants::PROCESS_LOCATION] = [
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
-    'PayolutionPayment01',
+    'PayolutionInstalmentPayment01',
+    'PayolutionInvoicePayment01',
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
-    PayolutionConfig::PAYMENT_METHOD_INVOICE => 'PayolutionPayment01',
-    PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'PayolutionPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'PayolutionInstalmentPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INVOICE => 'PayolutionInvoicePayment01',
 ];
