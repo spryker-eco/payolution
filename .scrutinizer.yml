@@ -1,6 +1,19 @@
-tools:
-    external_code_coverage: true
-
-checks:
+build:
+  dependencies:
+    override:
+      - true
+  environment:
     php:
-        code_rating: true
+      version: 7.1
+filter:
+  excluded_paths:
+    - build/*
+    - tests/*
+    - vendor/*
+    - config/Shared/*
+    - src/Generated/*
+    - src/Orm/*
+    - src/Pyz/*
+checks:
+  php:
+    code_rating: true

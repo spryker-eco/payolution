@@ -1,8 +1,8 @@
-namespace: SprykerTest
+namespace: Payolution
 
 include:
-    - tests/SprykerTest/Yves/Payolution
-    - tests/SprykerTest/Zed/Payolution
+    - tests/SprykerEcoTest/Yves/Payolution
+    - tests/SprykerEcoTest/Zed/Payolution
 
 paths:
     tests: tests
@@ -21,11 +21,3 @@ settings:
 coverage:
     enabled: true
     whitelist: { include: ['src/*'] }
-
-extensions:
-    enabled:
-        - Codeception\Extension\Phantoman
-
-    config:
-        Codeception\Extension\Phantoman:
-            suites: ['Presentation']

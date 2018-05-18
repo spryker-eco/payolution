@@ -1,14 +1,14 @@
 <?php
+
 /**
  * Copy over the following configs to your config
  */
 
-use Spryker\Shared\Kernel\KernelConstants;
 use Spryker\Shared\Oms\OmsConstants;
-use Spryker\Shared\Payolution\PayolutionConstants;
 use Spryker\Shared\Sales\SalesConstants;
 use Spryker\Zed\Oms\OmsConfig;
-use Spryker\Zed\Payolution\PayolutionConfig;
+use SprykerEco\Shared\Payolution\PayolutionConfig;
+use SprykerEco\Shared\Payolution\PayolutionConstants;
 
 $config[PayolutionConstants::TRANSACTION_GATEWAY_URL] = '';
 $config[PayolutionConstants::CALCULATION_GATEWAY_URL] = '';
@@ -28,32 +28,19 @@ $config[PayolutionConstants::MIN_ORDER_GRAND_TOTAL_INVOICE] = '';
 $config[PayolutionConstants::MAX_ORDER_GRAND_TOTAL_INVOICE] = '';
 $config[PayolutionConstants::MIN_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
 $config[PayolutionConstants::MAX_ORDER_GRAND_TOTAL_INSTALLMENT] = '';
-$config[PayolutionConstants::PAYOLUTION_BCC_EMAIL] = '';
-
-$config[KernelConstants::DEPENDENCY_INJECTOR_YVES] = [
-    'Checkout' => [
-        'Payolution',
-    ],
-];
-$config[KernelConstants::DEPENDENCY_INJECTOR_ZED] = [
-    'Payment' => [
-        'Payolution',
-    ],
-    'Oms' => [
-        'Payolution',
-    ],
-];
+$config[PayolutionConstants::PAYOLUTION_BCC_EMAIL_ADDRESS] = '';
 
 $config[OmsConstants::PROCESS_LOCATION] = [
     OmsConfig::DEFAULT_PROCESS_LOCATION,
-    $config[KernelConstants::SPRYKER_ROOT] . '/Payolution/config/Zed/Oms',
+    APPLICATION_VENDOR_DIR . '/spryker-eco/payolution/config/Zed/Oms',
 ];
 
 $config[OmsConstants::ACTIVE_PROCESSES] = [
-    'PayolutionPayment01'
+    'PayolutionInstalmentPayment01',
+    'PayolutionInvoicePayment01',
 ];
 
 $config[SalesConstants::PAYMENT_METHOD_STATEMACHINE_MAPPING] = [
-    PayolutionConfig::PAYMENT_METHOD_INVOICE => 'PayolutionPayment01',
-    PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'PayolutionPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INSTALLMENT => 'PayolutionInstalmentPayment01',
+    PayolutionConfig::PAYMENT_METHOD_INVOICE => 'PayolutionInvoicePayment01',
 ];
