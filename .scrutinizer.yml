@@ -1,19 +1,24 @@
 build:
-  dependencies:
-    override:
-      - true
   environment:
-    php:
-      version: 7.1
-filter:
-  excluded_paths:
-    - build/*
-    - tests/*
-    - vendor/*
-    - config/Shared/*
-    - src/Generated/*
-    - src/Orm/*
-    - src/Pyz/*
+    php: '7.1'
+
+  tests:
+    override:
+      - true # disable test execution on scrutinizer
+
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+
 checks:
   php:
     code_rating: true
+
+filter:
+  excluded_paths:
+    - config/*
+    - tests/*
+    - src/Generated/*
+    - src/Pyz/*
