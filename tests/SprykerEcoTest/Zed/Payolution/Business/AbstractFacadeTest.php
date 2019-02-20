@@ -216,6 +216,7 @@ class AbstractFacadeTest extends Unit
     {
         return $this
             ->getRequestLogQuery()
+            ->orderByIdPaymentPayolutionTransactionRequestLog()
             ->findByFkPaymentPayolution($this->getPaymentEntity()->getIdPaymentPayolution());
     }
 
@@ -226,6 +227,7 @@ class AbstractFacadeTest extends Unit
     {
         return $this
             ->getStatusLogQuery()
+            ->orderByIdPaymentPayolutionTransactionStatusLog()
             ->findByFkPaymentPayolution($this->getPaymentEntity()->getIdPaymentPayolution());
     }
 
