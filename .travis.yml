@@ -10,19 +10,15 @@ matrix:
   include:
     - php: 7.1
       env:
-        - PRODUCT_NAME=spryker/demoshop
+        - PRODUCT_NAME=suite
       
     - php: 7.1
       env:
-        - PRODUCT_NAME=spryker-shop/suite
+        - PRODUCT_NAME=b2c-demo-shop
       
     - php: 7.1
       env:
-        - PRODUCT_NAME=spryker-shop/b2c-demo-shop
-      
-    - php: 7.1
-      env:
-        - PRODUCT_NAME=spryker-shop/b2b-demo-shop
+        - PRODUCT_NAME=b2b-demo-shop
         
 services:
   - postgresql
