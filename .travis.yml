@@ -54,5 +54,5 @@ before_install:
   - phpenv config-rm xdebug.ini
 
 script:
-  - git clone -b feature/ECO-2616-add-multiple-products-compatibility https://github.com/spryker-eco/eco-ci.git ecoci
+  - git clone -b feature/eco-2616-add-spryker-products-compatibility https://github.com/spryker-eco/eco-ci.git ecoci
   - ./ecoci/build/travis.sh
