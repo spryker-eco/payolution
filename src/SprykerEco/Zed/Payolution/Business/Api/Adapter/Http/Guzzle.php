@@ -14,7 +14,7 @@ use SprykerEco\Zed\Payolution\Business\Exception\ApiHttpRequestException;
 
 class Guzzle extends AbstractHttpAdapter
 {
-    const DEFAULT_TIMEOUT = 45;
+    public const DEFAULT_TIMEOUT = 45;
 
     /**
      * @var \GuzzleHttp\Client

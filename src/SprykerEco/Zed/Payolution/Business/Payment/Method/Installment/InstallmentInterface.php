@@ -30,37 +30,41 @@ interface InstallmentInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
+     * @param array $orderItems
      *
      * @return array
      */
-    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity);
+    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, array $orderItems);
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param array $orderItems
      *
      * @return array
      */
-    public function buildReAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId);
+    public function buildReAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId, array $orderItems);
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param array $orderItems
      *
      * @return array
      */
-    public function buildRevertRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId);
+    public function buildRevertRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId, array $orderItems);
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param array $orderItems
      *
      * @return array
      */
-    public function buildCaptureRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId);
+    public function buildCaptureRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $uniqueId, array $orderItems);
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer

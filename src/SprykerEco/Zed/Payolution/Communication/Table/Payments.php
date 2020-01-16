@@ -15,9 +15,9 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 class Payments extends AbstractTable implements GuiTableInterface
 {
-    const FIELD_VIEW = 'FIELD_VIEW';
-    const URL_PAYOLUTION_DETAILS = '/payolution/details';
-    const PARAM_ID_PAYMENT = 'id-payment';
+    public const FIELD_VIEW = 'FIELD_VIEW';
+    public const URL_PAYOLUTION_DETAILS = '/payolution/details';
+    public const PARAM_ID_PAYMENT = 'id-payment';
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionQuery

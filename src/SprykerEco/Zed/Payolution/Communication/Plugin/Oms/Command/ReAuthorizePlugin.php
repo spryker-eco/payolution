@@ -8,7 +8,6 @@
 namespace SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Command;
 
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
-use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 
@@ -16,9 +15,11 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class ReAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
+class ReAuthorizePlugin extends AbstractPayolutionCommandPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param array $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
@@ -27,39 +28,12 @@ class ReAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterfac
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $orderTransfer = $this->getOrderTransfer($orderEntity);
-        $paymentEntity = $this->getPaymentEntity($orderEntity);
-
         $this->getFacade()->reAuthorizePayment(
-            $orderTransfer,
-            $paymentEntity->getIdPaymentPayolution()
+            $this->getOrderTransfer($orderEntity),
+            $this->getPaymentEntity($orderEntity)->getIdPaymentPayolution(),
+            $this->getPartialOrderItems($orderItems, $orderEntity)
         );
 
         return [];
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
-    protected function getOrderTransfer(SpySalesOrder $orderEntity)
-    {
-        return $this
-            ->getFactory()
-            ->getSalesFacade()
-            ->getOrderByIdSalesOrder($orderEntity->getIdSalesOrder());
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution
-     */
-    protected function getPaymentEntity(SpySalesOrder $orderEntity)
-    {
-        $paymentEntity = $orderEntity->getSpyPaymentPayolutions()->getFirst();
-
-        return $paymentEntity;
     }
 }

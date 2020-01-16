@@ -19,14 +19,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class InstallmentSubForm extends AbstractPayolutionSubForm
 {
-    const PAYMENT_PROVIDER = PayolutionConfig::PROVIDER_NAME;
-    const PAYMENT_METHOD = 'installment';
-    const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
-    const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
-    const FIELD_BANK_ACCOUNT_IBAN = 'bank_account_iban';
-    const FIELD_BANK_ACCOUNT_BIC = 'bank_account_bic';
+    public const PAYMENT_PROVIDER = PayolutionConfig::PROVIDER_NAME;
+    public const PAYMENT_METHOD = 'installment';
+    public const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
+    public const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
+    public const FIELD_BANK_ACCOUNT_IBAN = 'bank_account_iban';
+    public const FIELD_BANK_ACCOUNT_BIC = 'bank_account_bic';
 
-    const OPTION_INSTALLMENT_PAYMENT_DETAIL = 'installment_payment_detail';
+    public const OPTION_INSTALLMENT_PAYMENT_DETAIL = 'installment_payment_detail';
 
     /**
      * @return string
@@ -121,7 +121,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      *
-     * @return \SprykerEco\Yves\Payolution\Form\InstallmentSubForm
+     * @return $this
      */
     protected function addBankAccountHolder(FormBuilderInterface $builder)
     {

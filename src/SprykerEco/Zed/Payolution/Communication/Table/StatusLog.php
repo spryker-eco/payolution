@@ -14,7 +14,7 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 class StatusLog extends AbstractTable implements GuiTableInterface
 {
-    const FIELD_DETAILS = 'FIELD_DETAILS';
+    public const FIELD_DETAILS = 'FIELD_DETAILS';
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery

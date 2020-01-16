@@ -9,6 +9,7 @@ namespace SprykerEcoTest\Zed\Payolution\Business\Payment\MethodMapper;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\AddressTransfer;
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
@@ -96,6 +97,17 @@ class AbstractMethodMapperTest extends Unit
     {
         $orderTransfer = new OrderTransfer();
         $totalTransfer = new TotalsTransfer();
+
+        $itemTransfer1 = new ItemTransfer();
+        $itemTransfer1->setIdSalesOrderItem(1);
+        $itemTransfer1->setUnitPriceToPayAggregation(500);
+        $orderTransfer->addItem($itemTransfer1);
+
+        $itemTransfer2 = new ItemTransfer();
+        $itemTransfer2->setIdSalesOrderItem(2);
+        $itemTransfer2->setUnitPriceToPayAggregation(500);
+        $orderTransfer->addItem($itemTransfer2);
+
         $totalTransfer->setGrandTotal(1000);
         $orderTransfer->setTotals($totalTransfer);
 

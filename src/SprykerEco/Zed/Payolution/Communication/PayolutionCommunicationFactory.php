@@ -16,6 +16,7 @@ use SprykerEco\Zed\Payolution\PayolutionDependencyProvider;
 /**
  * @method \SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface getQueryContainer()
  * @method \SprykerEco\Zed\Payolution\PayolutionConfig getConfig()
+ * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacadeInterface getFacade()
  */
 class PayolutionCommunicationFactory extends AbstractCommunicationFactory
 {

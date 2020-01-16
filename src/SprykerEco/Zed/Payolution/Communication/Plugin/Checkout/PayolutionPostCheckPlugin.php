@@ -21,9 +21,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPostCheckPluginInterface
 {
-    const ERROR_CODE_PAYMENT_FAILED = 'payment failed';
+    public const ERROR_CODE_PAYMENT_FAILED = 'payment failed';
 
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *

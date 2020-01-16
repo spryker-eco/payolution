@@ -18,8 +18,7 @@ class CalculateInstallmentAdapterMock extends AbstractAdapterMock
      */
     public function sendAuthorizedRequest($data, $user, $password)
     {
-        return
-            '<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+        return '<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Response version="2.0">
     <TransactionType>B2C</TransactionType>
     <OperationType>CALCULATION</OperationType>

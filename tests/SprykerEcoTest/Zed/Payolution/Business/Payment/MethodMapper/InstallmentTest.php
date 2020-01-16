@@ -7,6 +7,7 @@
 
 namespace SprykerEcoTest\Zed\Payolution\Business\Payment\MethodMapper;
 
+use Generated\Shared\Transfer\ItemTransfer;
 use SprykerEco\Shared\Payolution\PayolutionConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\ApiConfig;
 use SprykerEco\Zed\Payolution\Business\Payment\Method\Installment\Installment;
@@ -49,7 +50,7 @@ class InstallmentTest extends AbstractMethodMapperTest
         $methodMapper = new Installment($this->getPayolutionConfigMock(), $this->getMoneyFacade());
         $paymentEntityMock = $this->getPaymentEntityMock(PayolutionConfig::BRAND_INSTALLMENT);
         $orderTransfer = $this->createOrderTransfer();
-        $requestData = $methodMapper->buildPreAuthorizationRequest($orderTransfer, $paymentEntityMock);
+        $requestData = $methodMapper->buildPreAuthorizationRequest($orderTransfer, $paymentEntityMock, []);
 
         $this->assertSame($paymentEntityMock->getEmail(), $requestData['CONTACT.EMAIL']);
         $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
@@ -65,11 +66,20 @@ class InstallmentTest extends AbstractMethodMapperTest
         $methodMapper = new Installment($this->getPayolutionConfigMock(), $this->getMoneyFacade());
         $paymentEntityMock = $this->getPaymentEntityMock(PayolutionConfig::BRAND_INSTALLMENT);
         $orderTransfer = $this->createOrderTransfer();
-        $requestData = $methodMapper->buildReAuthorizationRequest($orderTransfer, $paymentEntityMock, $uniqueId);
+        $requestData = $methodMapper->buildReAuthorizationRequest($orderTransfer, $paymentEntityMock, $uniqueId, []);
 
         $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
         $this->assertSame(ApiConfig::PAYMENT_CODE_RE_AUTHORIZATION, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(1);
+        $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId, [$itemTransfer]);
+
+        $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
+        $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+        $this->assertSame(5.0, $requestData['PRESENTATION.AMOUNT']);
     }
 
     /**
@@ -81,11 +91,20 @@ class InstallmentTest extends AbstractMethodMapperTest
         $methodMapper = new Installment($this->getPayolutionConfigMock(), $this->getMoneyFacade());
         $paymentEntityMock = $this->getPaymentEntityMock(PayolutionConfig::BRAND_INSTALLMENT);
         $orderTransfer = $this->createOrderTransfer();
-        $requestData = $methodMapper->buildRevertRequest($orderTransfer, $paymentEntityMock, $uniqueId);
+        $requestData = $methodMapper->buildRevertRequest($orderTransfer, $paymentEntityMock, $uniqueId, []);
 
         $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
         $this->assertSame(ApiConfig::PAYMENT_CODE_REVERSAL, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(1);
+        $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId, [$itemTransfer]);
+
+        $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
+        $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+        $this->assertSame(5.0, $requestData['PRESENTATION.AMOUNT']);
     }
 
     /**
@@ -97,11 +116,20 @@ class InstallmentTest extends AbstractMethodMapperTest
         $methodMapper = new Installment($this->getPayolutionConfigMock(), $this->getMoneyFacade());
         $paymentEntityMock = $this->getPaymentEntityMock(PayolutionConfig::BRAND_INSTALLMENT);
         $orderTransfer = $this->createOrderTransfer();
-        $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId);
+        $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId, []);
 
         $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
         $this->assertSame(ApiConfig::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
         $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(1);
+        $requestData = $methodMapper->buildCaptureRequest($orderTransfer, $paymentEntityMock, $uniqueId, [$itemTransfer]);
+
+        $this->assertSame(PayolutionConfig::BRAND_INSTALLMENT, $requestData['ACCOUNT.BRAND']);
+        $this->assertSame(ApiConfig::PAYMENT_CODE_CAPTURE, $requestData['PAYMENT.CODE']);
+        $this->assertSame($uniqueId, $requestData['IDENTIFICATION.REFERENCEID']);
+        $this->assertSame(5.0, $requestData['PRESENTATION.AMOUNT']);
     }
 
     /**

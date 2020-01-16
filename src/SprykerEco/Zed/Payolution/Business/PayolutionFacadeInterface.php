@@ -40,40 +40,44 @@ interface PayolutionFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
+    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
+    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function revertPayment(OrderTransfer $orderTransfer, $idPayment);
+    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function capturePayment(OrderTransfer $orderTransfer, $idPayment);
+    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
 
     /**
      * @api

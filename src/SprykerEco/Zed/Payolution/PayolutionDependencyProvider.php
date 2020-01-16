@@ -17,11 +17,11 @@ use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesBridge;
 
 class PayolutionDependencyProvider extends AbstractBundleDependencyProvider
 {
-    const FACADE_MAIL = 'mail facade';
-    const FACADE_GLOSSARY = 'glossary facade';
-    const FACADE_MONEY = 'money facade';
-    const FACADE_REFUND = 'refund facade';
-    const FACADE_SALES = 'sales facade';
+    public const FACADE_MAIL = 'mail facade';
+    public const FACADE_GLOSSARY = 'glossary facade';
+    public const FACADE_MONEY = 'money facade';
+    public const FACADE_REFUND = 'refund facade';
+    public const FACADE_SALES = 'sales facade';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
