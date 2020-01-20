@@ -30,8 +30,8 @@ use SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainer;
  */
 class PayolutionPostCheckPluginTest extends Unit
 {
-    public const PROCESSING_SUCCESS_CODE = 'VA.PA.90.00';
-    public const PROCESSING_ERROR_CODE = 'error code';
+    protected const PROCESSING_SUCCESS_CODE = 'VA.PA.90.00';
+    protected const PROCESSING_ERROR_CODE = 'error code';
 
     /**
      * @return void

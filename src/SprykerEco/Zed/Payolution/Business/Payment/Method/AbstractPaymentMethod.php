@@ -107,7 +107,7 @@ abstract class AbstractPaymentMethod
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $paymentCode
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return array
      */
@@ -182,15 +182,14 @@ abstract class AbstractPaymentMethod
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param array $salesOrderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $salesOrderItems
      *
      * @return int
      */
-    protected function getGrandTotal(OrderTransfer $orderTransfer, array $salesOrderItems)
+    protected function getGrandTotal(OrderTransfer $orderTransfer, array $salesOrderItems): int
     {
         $idSalesOrderItems = [];
 
-        /** @var \Orm\Zed\Sales\Persistence\SpySalesOrderItem $salesOrderItem */
         foreach ($salesOrderItems as $salesOrderItem) {
             $idSalesOrderItems[] = $salesOrderItem->getIdSalesOrderItem();
         }
@@ -200,7 +199,7 @@ abstract class AbstractPaymentMethod
 
             foreach ($orderTransfer->getItems() as $item) {
                 if (in_array($item->getIdSalesOrderItem(), $idSalesOrderItems)) {
-                    $grandTotal += $item->getUnitPriceToPayAggregation();
+                    $grandTotal += $item->getSumPriceToPayAggregation();
                 }
             }
 

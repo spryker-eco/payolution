@@ -48,10 +48,7 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
         PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
-        if ($payolutionTransactionResponseTransfer->getProcessingReasonCode() !== PayolutionConfig::REASON_CODE_SUCCESS
-            || $payolutionTransactionResponseTransfer->getProcessingStatusCode() !== PayolutionConfig::STATUS_CODE_SUCCESS
-            || $payolutionTransactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_PRE_CHECK
-        ) {
+        if ($this->isResponseInvalid($payolutionTransactionResponseTransfer)) {
             $errorCode = (int)preg_replace('/[^\d]+/', '', $payolutionTransactionResponseTransfer->getProcessingCode());
             $error = new CheckoutErrorTransfer();
             $error
@@ -59,5 +56,17 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
                 ->setMessage($payolutionTransactionResponseTransfer->getProcessingReturn());
             $checkoutResponseTransfer->addError($error);
         }
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer
+     *
+     * @return bool
+     */
+    protected function isResponseInvalid(PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer): bool
+    {
+        return $payolutionTransactionResponseTransfer->getProcessingReasonCode() !== PayolutionConfig::REASON_CODE_SUCCESS
+            || $payolutionTransactionResponseTransfer->getProcessingStatusCode() !== PayolutionConfig::STATUS_CODE_SUCCESS
+            || $payolutionTransactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_PRE_CHECK;
     }
 }

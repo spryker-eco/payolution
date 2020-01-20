@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class InvoiceSubForm extends AbstractPayolutionSubForm
 {
-    public const PAYMENT_METHOD = 'invoice';
+    protected const PAYMENT_METHOD = 'invoice';
 
     /**
      * @return string
@@ -40,7 +40,7 @@ class InvoiceSubForm extends AbstractPayolutionSubForm
      */
     public function getTemplatePath()
     {
-        return PayolutionConfig::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
+        return PayolutionConfig::PROVIDER_NAME . '/' . static::PAYMENT_METHOD;
     }
 
     /**

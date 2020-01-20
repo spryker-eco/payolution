@@ -66,7 +66,7 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
@@ -89,7 +89,7 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
@@ -108,7 +108,7 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
@@ -127,7 +127,7 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */

@@ -91,7 +91,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return array
      */
@@ -133,7 +133,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return array
      */
@@ -156,7 +156,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      *
      * @return array
      */
