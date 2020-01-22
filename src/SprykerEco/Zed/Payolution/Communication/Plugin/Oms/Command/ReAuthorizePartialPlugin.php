@@ -16,7 +16,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class ReAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
+class ReAuthorizePartialPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * @api

@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer;
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 /**
@@ -40,44 +42,76 @@ interface PayolutionFacadeInterface
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
+    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function preAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
+    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function reAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
+    public function revertPayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function revertPartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = []);
+    public function capturePayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function capturePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api

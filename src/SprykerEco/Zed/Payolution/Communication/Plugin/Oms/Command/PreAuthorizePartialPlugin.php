@@ -16,12 +16,12 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class ReAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
+class PreAuthorizePartialPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * @api
      *
-     * @param array $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
      *
@@ -31,7 +31,7 @@ class ReAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterfac
     {
         $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
 
-        $this->getFacade()->reAuthorizePayment(
+        $this->getFacade()->preAuthorizePayment(
             $omsEntityConverter->extractOrderTransfer($orderEntity),
             $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution(),
             $omsEntityConverter->extractPartialOrderItems($orderItems, $orderEntity)

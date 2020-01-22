@@ -142,6 +142,16 @@ class AbstractFacadeTest extends Unit
         $orderTransfer->setTotals($totalTransfer);
         $orderTransfer->setIdSalesOrder($this->orderEntity->getIdSalesOrder());
 
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(1);
+        $itemTransfer->setSumPriceToPayAggregation(400);
+        $orderTransfer->addItem($itemTransfer);
+
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(2);
+        $itemTransfer->setSumPriceToPayAggregation(600);
+        $orderTransfer->addItem($itemTransfer);
+
         return $orderTransfer;
     }
 

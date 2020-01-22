@@ -173,11 +173,11 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
-    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, array $orderItems)
+    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $orderItems)
     {
         $requestData = $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -222,7 +222,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -245,7 +245,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -268,7 +268,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */

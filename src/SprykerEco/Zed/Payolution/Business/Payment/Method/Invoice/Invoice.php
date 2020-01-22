@@ -91,11 +91,11 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
-    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, array $orderItems)
+    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $orderItems)
     {
         $requestData = $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -133,7 +133,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -141,7 +141,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -156,7 +156,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -164,7 +164,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -179,7 +179,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -187,7 +187,7 @@ class Invoice extends AbstractPaymentMethod implements InvoiceInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,

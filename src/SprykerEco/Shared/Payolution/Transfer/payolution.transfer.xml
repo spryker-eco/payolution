@@ -108,6 +108,12 @@
         <property name="due" type="string"/>
     </transfer>
 
+    <transfer name="PayolutionOmsOperationRequest">
+        <property name="Order" type="Order"/>
+        <property name="idPayment" type="int"/>
+        <property name="selectedItems" type="Item[]" singular="selectedItem"/>
+    </transfer>
+
     <transfer name="Order">
         <property name="idSalesOrder" type="int" />
         <property name="payolutionPayment" type="PayolutionPayment"/>

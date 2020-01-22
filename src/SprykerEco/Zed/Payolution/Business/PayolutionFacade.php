@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer;
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
@@ -55,16 +57,39 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = [])
+    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment)
     {
         return $this
             ->getFactory()
             ->createPaymentTransactionHandler()
-            ->preAuthorizePayment($orderTransfer, $idPayment, $orderItems);
+            ->preAuthorizePayment($orderTransfer, $idPayment);
+    }
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function preAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+//        $isAo = $payolutionOmsOperationRequestTransfer->getSelectedItems() instanceof \ArrayObject;
+//
+//        echo $isAo ? 'YES' : 'NO';
+//        exit;
+
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->preAuthorizePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
     }
 
     /**
@@ -72,16 +97,34 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = [])
+    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment)
     {
         return $this
             ->getFactory()
             ->createPaymentTransactionHandler()
-            ->reAuthorizePayment($orderTransfer, $idPayment, $orderItems);
+            ->reAuthorizePayment($orderTransfer, $idPayment);
+    }
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function reAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->reAuthorizePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
     }
 
     /**
@@ -89,34 +132,72 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = [])
+    public function revertPayment(OrderTransfer $orderTransfer, $idPayment)
     {
         return $this
             ->getFactory()
             ->createPaymentTransactionHandler()
-            ->revertPayment($orderTransfer, $idPayment, $orderItems);
+            ->revertPayment($orderTransfer, $idPayment);
     }
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function revertPartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->revertPayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
+    }
+
 
     /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems = [])
+    public function capturePayment(OrderTransfer $orderTransfer, $idPayment)
     {
         return $this
             ->getFactory()
             ->createPaymentTransactionHandler()
-            ->capturePayment($orderTransfer, $idPayment, $orderItems);
+            ->capturePayment($orderTransfer, $idPayment);
     }
+
+    /**
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function capturePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->capturePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
+    }
+
 
     /**
      * @api

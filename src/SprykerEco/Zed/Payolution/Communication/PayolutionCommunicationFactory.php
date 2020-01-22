@@ -7,7 +7,10 @@
 
 namespace SprykerEco\Zed\Payolution\Communication;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrder;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
+use SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Converter\OmsEntityConverter;
+use SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Converter\OmsEntityConverterInterface;
 use SprykerEco\Zed\Payolution\Communication\Table\Payments;
 use SprykerEco\Zed\Payolution\Communication\Table\RequestLog;
 use SprykerEco\Zed\Payolution\Communication\Table\StatusLog;
@@ -52,6 +55,17 @@ class PayolutionCommunicationFactory extends AbstractCommunicationFactory
         $statusLogQuery = $this->getQueryContainer()->queryTransactionStatusLogByPaymentId($idPayment);
 
         return new StatusLog($statusLogQuery, $idPayment);
+    }
+
+    /**
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
+     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
+     *
+     * @return \SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Converter\OmsEntityConverter
+     */
+    public function createOmsEntityConverter(array $orderItems, SpySalesOrder $orderEntity): OmsEntityConverterInterface
+    {
+        return new OmsEntityConverter($orderItems, $orderEntity, $this->getSalesFacade());
     }
 
     /**
