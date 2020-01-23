@@ -58,14 +58,11 @@ class PayolutionCommunicationFactory extends AbstractCommunicationFactory
     }
 
     /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
      * @return \SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Converter\OmsEntityConverter
      */
-    public function createOmsEntityConverter(array $orderItems, SpySalesOrder $orderEntity): OmsEntityConverterInterface
+    public function createOmsEntityConverter(): OmsEntityConverterInterface
     {
-        return new OmsEntityConverter($orderItems, $orderEntity, $this->getSalesFacade());
+        return new OmsEntityConverter($this->getSalesFacade());
     }
 
     /**

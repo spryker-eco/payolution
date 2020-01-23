@@ -29,12 +29,10 @@ class CapturePartialPlugin extends AbstractPlugin implements CommandByOrderInter
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
 
-        $this->getFacade()->capturePayment(
-            $omsEntityConverter->extractOrderTransfer($orderEntity),
-            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution(),
-            $omsEntityConverter->extractPartialOrderItems($orderItems, $orderEntity)
+        $this->getFacade()->capturePartialPayment(
+            $omsEntityConverter->extractPayolutionOmsOperationRequest($orderItems, $orderEntity)
         );
 
         return [];

@@ -2,6 +2,7 @@
 
 namespace SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Converter;
 
+use ArrayObject;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer;
 use Generated\Shared\Transfer\PayolutionPaymentTransfer;
@@ -12,16 +13,6 @@ use SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesInterface;
 class OmsEntityConverter implements OmsEntityConverterInterface
 {
     /**
-     * @var \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
-     */
-    protected $orderItems;
-
-    /**
-     * @var \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     */
-    protected $orderEntity;
-
-    /**
      * @var \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesInterface $salesFacade
      */
     protected $salesFacade;
@@ -31,10 +22,8 @@ class OmsEntityConverter implements OmsEntityConverterInterface
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \SprykerEco\Zed\Payolution\Dependency\Facade\PayolutionToSalesInterface $salesFacade
      */
-    public function __construct(array $orderItems, SpySalesOrder $orderEntity, PayolutionToSalesInterface $salesFacade)
+    public function __construct(PayolutionToSalesInterface $salesFacade)
     {
-        $this->orderItems = $orderItems;
-        $this->orderEntity = $orderEntity;
         $this->salesFacade = $salesFacade;
     }
 
@@ -42,9 +31,9 @@ class OmsEntityConverter implements OmsEntityConverterInterface
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem[]
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem[]|ArrayObject
      */
-    public function extractPartialOrderItems(array $orderItems, SpySalesOrder $orderEntity): array
+    public function extractPartialOrderItems(array $orderItems, SpySalesOrder $orderEntity)
     {
         if (count($orderItems) < count($orderEntity->getItems())) {
             $orderItemIds = [];
@@ -55,18 +44,18 @@ class OmsEntityConverter implements OmsEntityConverterInterface
 
             $orderTransfer = $this->extractOrderTransfer($orderEntity);
 
-            $orderItemTransfers = [];
+            $orderItemTransfers = new ArrayObject();
             /** @var \Generated\Shared\Transfer\ItemTransfer $itemTransfer */
             foreach ($orderTransfer->getItems() as $itemTransfer) {
                 if (in_array($itemTransfer->getIdSalesOrderItem(), $orderItemIds)) {
-                    $orderItemTransfers[]= $itemTransfer;
+                    $orderItemTransfers->append($itemTransfer);
                 }
             }
 
             return $orderItemTransfers;
         }
 
-        return [];
+        return new ArrayObject();
     }
 
     /**

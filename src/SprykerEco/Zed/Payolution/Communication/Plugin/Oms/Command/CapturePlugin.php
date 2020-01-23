@@ -29,12 +29,11 @@ class CapturePlugin extends AbstractPlugin implements CommandByOrderInterface
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
 
         $this->getFacade()->capturePayment(
             $omsEntityConverter->extractOrderTransfer($orderEntity),
-            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution(),
-            $omsEntityConverter->extractPartialOrderItems($orderItems, $orderEntity)
+            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution()
         );
 
         return [];

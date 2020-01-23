@@ -29,12 +29,10 @@ class RevertPartialPlugin extends AbstractPlugin implements CommandByOrderInterf
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
 
-        $this->getFacade()->revertPayment(
-            $omsEntityConverter->extractOrderTransfer($orderEntity),
-            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution(),
-            $omsEntityConverter->extractPartialOrderItems($orderItems, $orderEntity)
+        $this->getFacade()->revertPartialPayment(
+            $omsEntityConverter->extractPayolutionOmsOperationRequest($orderItems, $orderEntity)
         );
 
         return [];

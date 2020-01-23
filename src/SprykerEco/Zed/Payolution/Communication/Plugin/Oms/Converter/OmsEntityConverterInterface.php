@@ -16,7 +16,7 @@ interface OmsEntityConverterInterface
      *
      * @return \int[]
      */
-    public function extractPartialOrderItems(array $orderItems, SpySalesOrder $orderEntity): array;
+    public function extractPartialOrderItems(array $orderItems, SpySalesOrder $orderEntity);
 
     /**
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
