@@ -77,11 +77,6 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
      */
     public function preAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
     {
-//        $isAo = $payolutionOmsOperationRequestTransfer->getSelectedItems() instanceof \ArrayObject;
-//
-//        echo $isAo ? 'YES' : 'NO';
-//        exit;
-
         return $this
             ->getFactory()
             ->createPaymentTransactionHandler()
