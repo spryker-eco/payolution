@@ -109,7 +109,7 @@
     </transfer>
 
     <transfer name="PayolutionOmsOperationRequest">
-        <property name="Order" type="Order"/>
+        <property name="order" type="Order"/>
         <property name="idPayment" type="int"/>
         <property name="selectedItems" type="Item[]" singular="selectedItem"/>
     </transfer>
