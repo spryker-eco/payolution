@@ -69,6 +69,8 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -104,6 +106,8 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -139,6 +143,8 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -175,6 +181,8 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
