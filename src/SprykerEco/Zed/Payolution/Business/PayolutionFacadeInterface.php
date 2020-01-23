@@ -48,6 +48,10 @@ interface PayolutionFacadeInterface
     public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes PreAuthorize payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -67,6 +71,10 @@ interface PayolutionFacadeInterface
     public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes PreAuthorize payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -86,6 +94,10 @@ interface PayolutionFacadeInterface
     public function revertPayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes Revert payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
@@ -105,6 +117,10 @@ interface PayolutionFacadeInterface
     public function capturePayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes Capture payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
