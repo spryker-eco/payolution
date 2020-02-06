@@ -230,7 +230,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -253,7 +253,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -276,7 +276,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,

@@ -47,27 +47,27 @@ class AbstractFacadeTest extends Unit
     /**
      * @var \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    private $orderEntity;
+    protected $orderEntity;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution
      */
-    private $paymentEntity;
+    protected $paymentEntity;
 
     /**
      * @var \SprykerEco\Zed\Payolution\Business\Api\Converter\Converter
      */
-    private $responseConverter;
+    protected $responseConverter;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLogQuery
      */
-    private $requestLogQuery;
+    protected $requestLogQuery;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery
      */
-    private $statusLogQuery;
+    protected $statusLogQuery;
 
     /**
      * @return void
@@ -158,7 +158,7 @@ class AbstractFacadeTest extends Unit
     /**
      * @return void
      */
-    private function setUpPaymentTestData()
+    protected function setUpPaymentTestData()
     {
         $this->paymentEntity = (new SpyPaymentPayolution())
             ->setFkSalesOrder($this->getOrderEntity()->getIdSalesOrder())

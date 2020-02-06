@@ -78,8 +78,13 @@ class PayolutionFacadeMockBuilder
     protected static function getConfigMock(Unit $testCase)
     {
         $configMock = $testCase->getMockBuilder(PayolutionConfig::class)->getMock();
+
         $configMock->expects($testCase->any())
             ->method('getMaxOrderGrandTotalInvoice')
+            ->willReturn(999999);
+
+        $configMock->expects($testCase->any())
+            ->method('getMaxOrderGrandTotalInstallment')
             ->willReturn(999999);
 
         return $configMock;
