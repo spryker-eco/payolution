@@ -18,10 +18,14 @@ use SprykerEco\Zed\Payolution\PayolutionConfig;
 /**
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
+ * @method \SprykerEco\Zed\Payolution\PayolutionConfig getConfig()
+ * @method \SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface getQueryContainer()
  */
 class MailPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data

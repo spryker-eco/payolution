@@ -15,9 +15,9 @@ use Spryker\Zed\Gui\Communication\Table\TableConfiguration;
 
 class Payments extends AbstractTable implements GuiTableInterface
 {
-    const FIELD_VIEW = 'FIELD_VIEW';
-    const URL_PAYOLUTION_DETAILS = '/payolution/details';
-    const PARAM_ID_PAYMENT = 'id-payment';
+    protected const FIELD_VIEW = 'FIELD_VIEW';
+    protected const URL_PAYOLUTION_DETAILS = '/payolution/details';
+    protected const PARAM_ID_PAYMENT = 'id-payment';
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionQuery
@@ -44,7 +44,7 @@ class Payments extends AbstractTable implements GuiTableInterface
             SpyPaymentPayolutionTableMap::COL_FK_SALES_ORDER => 'Order ID',
             SpyPaymentPayolutionTableMap::COL_EMAIL => 'Email',
             SpyPaymentPayolutionTableMap::COL_CREATED_AT => 'Created',
-            self::FIELD_VIEW => 'View',
+            static::FIELD_VIEW => 'View',
         ]);
 
         $config->addRawColumn(self::FIELD_VIEW);
@@ -71,7 +71,7 @@ class Payments extends AbstractTable implements GuiTableInterface
                 SpyPaymentPayolutionTableMap::COL_FK_SALES_ORDER => $paymentItem[SpyPaymentPayolutionTableMap::COL_FK_SALES_ORDER],
                 SpyPaymentPayolutionTableMap::COL_EMAIL => $paymentItem[SpyPaymentPayolutionTableMap::COL_EMAIL],
                 SpyPaymentPayolutionTableMap::COL_CREATED_AT => $paymentItem[SpyPaymentPayolutionTableMap::COL_CREATED_AT],
-                self::FIELD_VIEW => implode(' ', $this->buildOptionsUrls($paymentItem)),
+                static::FIELD_VIEW => implode(' ', $this->buildOptionsUrls($paymentItem)),
             ];
         }
 
@@ -88,8 +88,8 @@ class Payments extends AbstractTable implements GuiTableInterface
         $urls = [];
 
         $urls[] = $this->generateViewButton(
-            Url::generate(self::URL_PAYOLUTION_DETAILS, [
-                self::PARAM_ID_PAYMENT => $paymentItem[SpyPaymentPayolutionTableMap::COL_ID_PAYMENT_PAYOLUTION],
+            Url::generate(static::URL_PAYOLUTION_DETAILS, [
+                static::PARAM_ID_PAYMENT => $paymentItem[SpyPaymentPayolutionTableMap::COL_ID_PAYMENT_PAYOLUTION],
             ]),
             'View'
         );

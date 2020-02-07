@@ -173,16 +173,18 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
-    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity)
+    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $orderItems)
     {
         $requestData = $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
             ApiConfig::PAYMENT_CODE_PRE_AUTHORIZATION,
-            null
+            null,
+            $orderItems
         );
         $this->addRequestData(
             $requestData,
@@ -220,19 +222,22 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
     public function buildReAuthorizationRequest(
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
-        $uniqueId
+        $uniqueId,
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
             ApiConfig::PAYMENT_CODE_RE_AUTHORIZATION,
-            $uniqueId
+            $uniqueId,
+            $orderItems
         );
     }
 
@@ -240,19 +245,22 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
     public function buildRevertRequest(
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
-        $uniqueId
+        $uniqueId,
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
             ApiConfig::PAYMENT_CODE_REVERSAL,
-            $uniqueId
+            $uniqueId,
+            $orderItems
         );
     }
 
@@ -260,19 +268,22 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
     public function buildCaptureRequest(
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
-        $uniqueId
+        $uniqueId,
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
             $paymentEntity,
             ApiConfig::PAYMENT_CODE_CAPTURE,
-            $uniqueId
+            $uniqueId,
+            $orderItems
         );
     }
 
@@ -292,7 +303,8 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
             $orderTransfer,
             $paymentEntity,
             ApiConfig::PAYMENT_CODE_REFUND,
-            $uniqueId
+            $uniqueId,
+            []
         );
     }
 }

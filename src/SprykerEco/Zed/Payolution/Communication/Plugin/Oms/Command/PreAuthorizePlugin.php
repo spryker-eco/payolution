@@ -19,6 +19,8 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 class PreAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
@@ -27,39 +29,13 @@ class PreAuthorizePlugin extends AbstractPlugin implements CommandByOrderInterfa
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $orderTransfer = $this->getOrderTransfer($orderEntity);
-        $paymentEntity = $this->getPaymentEntity($orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
 
         $this->getFacade()->preAuthorizePayment(
-            $orderTransfer,
-            $paymentEntity->getIdPaymentPayolution()
+            $omsEntityConverter->extractOrderTransfer($orderEntity),
+            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution()
         );
 
         return [];
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
-    protected function getOrderTransfer(SpySalesOrder $orderEntity)
-    {
-        return $this
-            ->getFactory()
-            ->getSalesFacade()
-            ->getOrderByIdSalesOrder($orderEntity->getIdSalesOrder());
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution
-     */
-    protected function getPaymentEntity(SpySalesOrder $orderEntity)
-    {
-        $paymentEntity = $orderEntity->getSpyPaymentPayolutions()->getFirst();
-
-        return $paymentEntity;
     }
 }

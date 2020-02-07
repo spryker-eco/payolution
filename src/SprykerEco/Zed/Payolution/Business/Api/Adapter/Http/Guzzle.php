@@ -14,7 +14,7 @@ use SprykerEco\Zed\Payolution\Business\Exception\ApiHttpRequestException;
 
 class Guzzle extends AbstractHttpAdapter
 {
-    const DEFAULT_TIMEOUT = 45;
+    protected const DEFAULT_TIMEOUT = 45;
 
     /**
      * @var \GuzzleHttp\Client
@@ -30,7 +30,7 @@ class Guzzle extends AbstractHttpAdapter
         parent::__construct($gatewayUrl, $contentType);
 
         $this->client = new Client([
-            'timeout' => self::DEFAULT_TIMEOUT,
+            'timeout' => static::DEFAULT_TIMEOUT,
         ]);
     }
 
@@ -40,7 +40,7 @@ class Guzzle extends AbstractHttpAdapter
     protected function buildRequest()
     {
         $headers = [
-            'Content-Type' => self::$requestContentTypes[$this->contentType],
+            'Content-Type' => static::$requestContentTypes[$this->contentType],
         ];
         $request = new Request('POST', $this->gatewayUrl, $headers);
 

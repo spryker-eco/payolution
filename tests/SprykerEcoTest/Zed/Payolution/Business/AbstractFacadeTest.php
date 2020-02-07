@@ -47,27 +47,27 @@ class AbstractFacadeTest extends Unit
     /**
      * @var \Orm\Zed\Sales\Persistence\SpySalesOrder
      */
-    private $orderEntity;
+    protected $orderEntity;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution
      */
-    private $paymentEntity;
+    protected $paymentEntity;
 
     /**
      * @var \SprykerEco\Zed\Payolution\Business\Api\Converter\Converter
      */
-    private $responseConverter;
+    protected $responseConverter;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionRequestLogQuery
      */
-    private $requestLogQuery;
+    protected $requestLogQuery;
 
     /**
      * @var \Orm\Zed\Payolution\Persistence\SpyPaymentPayolutionTransactionStatusLogQuery
      */
-    private $statusLogQuery;
+    protected $statusLogQuery;
 
     /**
      * @return void
@@ -142,13 +142,23 @@ class AbstractFacadeTest extends Unit
         $orderTransfer->setTotals($totalTransfer);
         $orderTransfer->setIdSalesOrder($this->orderEntity->getIdSalesOrder());
 
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(1);
+        $itemTransfer->setSumPriceToPayAggregation(400);
+        $orderTransfer->addItem($itemTransfer);
+
+        $itemTransfer = new ItemTransfer();
+        $itemTransfer->setIdSalesOrderItem(2);
+        $itemTransfer->setSumPriceToPayAggregation(600);
+        $orderTransfer->addItem($itemTransfer);
+
         return $orderTransfer;
     }
 
     /**
      * @return void
      */
-    private function setUpPaymentTestData()
+    protected function setUpPaymentTestData()
     {
         $this->paymentEntity = (new SpyPaymentPayolution())
             ->setFkSalesOrder($this->getOrderEntity()->getIdSalesOrder())

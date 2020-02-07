@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PayolutionSession implements PayolutionSessionInterface
 {
-    const PAYOLUTION_SESSION_IDENTIFIER = 'payolution session identifier';
+    public const PAYOLUTION_SESSION_IDENTIFIER = 'payolution session identifier';
 
     /**
      * @var \Symfony\Component\HttpFoundation\Session\SessionInterface

@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  * @method \SprykerEco\Zed\Payolution\Persistence\PayolutionQueryContainerInterface getQueryContainer()
+ * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacadeInterface getFacade()
  */
 class DetailsController extends AbstractController
 {

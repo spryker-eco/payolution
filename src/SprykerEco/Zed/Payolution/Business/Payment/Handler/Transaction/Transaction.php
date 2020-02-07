@@ -66,10 +66,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment)
+    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $methodMapper = $this->getMethodMapper($paymentEntity->getAccountBrand());
@@ -80,7 +81,7 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
             $methodMapper->getMaxGrandTotal()
         );
 
-        $requestData = $methodMapper->buildPreAuthorizationRequest($orderTransfer, $paymentEntity);
+        $requestData = $methodMapper->buildPreAuthorizationRequest($orderTransfer, $paymentEntity, $orderItems);
 
         return $this->sendLoggedRequest($requestData, $paymentEntity);
     }
@@ -88,17 +89,18 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment)
+    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);
 
         $requestData = $this
             ->getMethodMapper($paymentEntity->getAccountBrand())
-            ->buildReAuthorizationRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid());
+            ->buildReAuthorizationRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid(), $orderItems);
 
         return $this->sendLoggedRequest($requestData, $paymentEntity);
     }
@@ -106,17 +108,18 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function revertPayment(OrderTransfer $orderTransfer, $idPayment)
+    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);
 
         $requestData = $this
             ->getMethodMapper($paymentEntity->getAccountBrand())
-            ->buildRevertRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid());
+            ->buildRevertRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid(), $orderItems);
 
         return $this->sendLoggedRequest($requestData, $paymentEntity);
     }
@@ -124,17 +127,18 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function capturePayment(OrderTransfer $orderTransfer, $idPayment)
+    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);
 
         $requestData = $this
             ->getMethodMapper($paymentEntity->getAccountBrand())
-            ->buildCaptureRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid());
+            ->buildCaptureRequest($orderTransfer, $paymentEntity, $statusLogEntity->getIdentificationUniqueid(), $orderItems);
 
         return $this->sendLoggedRequest($requestData, $paymentEntity);
     }

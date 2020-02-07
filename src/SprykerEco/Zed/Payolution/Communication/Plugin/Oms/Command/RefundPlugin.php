@@ -21,6 +21,8 @@ use SprykerEco\Shared\Payolution\PayolutionConfig;
 class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
+     * @api
+     *
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem[] $orderItems
      * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
      * @param \Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject $data
@@ -29,7 +31,8 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $orderTransfer = $this->getOrderTransfer($orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
+        $orderTransfer = $omsEntityConverter->extractOrderTransfer($orderEntity);
 
         $refundTransfer = $this->getFactory()
             ->getRefundFacade()
@@ -39,7 +42,7 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
             $refundTransfer->getAmount()
         );
 
-        $paymentEntity = $this->getPaymentEntity($orderEntity);
+        $paymentEntity = $omsEntityConverter->extractPaymentEntity($orderEntity);
 
         $responseTransfer = $this->getFacade()
             ->refundPayment(
@@ -54,30 +57,6 @@ class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
         }
 
         return [];
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
-    protected function getOrderTransfer(SpySalesOrder $orderEntity)
-    {
-        return $this->getFactory()
-            ->getSalesFacade()
-            ->getOrderByIdSalesOrder($orderEntity->getIdSalesOrder());
-    }
-
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $orderEntity
-     *
-     * @return \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution
-     */
-    protected function getPaymentEntity(SpySalesOrder $orderEntity)
-    {
-        $paymentEntity = $orderEntity->getSpyPaymentPayolutions()->getFirst();
-
-        return $paymentEntity;
     }
 
     /**

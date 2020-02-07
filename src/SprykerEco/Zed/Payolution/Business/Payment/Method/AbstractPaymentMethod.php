@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Payolution\Business\Payment\Method;
 
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTableMap;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
@@ -16,7 +17,7 @@ use SprykerEco\Zed\Payolution\PayolutionConfig;
 
 abstract class AbstractPaymentMethod
 {
-    const PAYOLUTION_DATE_FORMAT = 'Y-m-d';
+    public const PAYOLUTION_DATE_FORMAT = 'Y-m-d';
 
     /**
      * @var static string[]
@@ -107,6 +108,7 @@ abstract class AbstractPaymentMethod
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $paymentCode
      * @param string $uniqueId
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -114,10 +116,11 @@ abstract class AbstractPaymentMethod
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $paymentCode,
-        $uniqueId
+        $uniqueId,
+        $orderItems
     ) {
         $requestData = $this->getBaseTransactionRequest(
-            $this->getGrandTotal($orderTransfer),
+            $this->getGrandTotal($orderTransfer, $orderItems),
             $paymentEntity->getCurrencyIso3Code(),
             $orderTransfer->getIdSalesOrder()
         );
@@ -180,11 +183,30 @@ abstract class AbstractPaymentMethod
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $salesOrderItems
      *
      * @return int
      */
-    protected function getGrandTotal(OrderTransfer $orderTransfer)
+    protected function getGrandTotal(OrderTransfer $orderTransfer, $salesOrderItems): int
     {
+        $idSalesOrderItems = [];
+
+        foreach ($salesOrderItems as $salesOrderItem) {
+            $idSalesOrderItems[] = $salesOrderItem->getIdSalesOrderItem();
+        }
+
+        if (!empty($idSalesOrderItems)) {
+            $grandTotal = 0;
+
+            foreach ($orderTransfer->getItems() as $item) {
+                if (in_array($item->getIdSalesOrderItem(), $idSalesOrderItems)) {
+                    $grandTotal += $item->getSumPriceToPayAggregation();
+                }
+            }
+
+            return $grandTotal;
+        }
+
         if ($orderTransfer->getTotals()->getRefundTotal() > 0) {
             return $orderTransfer->getTotals()->getRefundTotal();
         }

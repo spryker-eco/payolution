@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer;
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 
 /**
@@ -46,6 +48,19 @@ interface PayolutionFacadeInterface
     public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes PreAuthorize payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function preAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
+
+    /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
@@ -54,6 +69,19 @@ interface PayolutionFacadeInterface
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
     public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * Specification:
+     * - Executes PreAuthorize payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function reAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api
@@ -66,6 +94,19 @@ interface PayolutionFacadeInterface
     public function revertPayment(OrderTransfer $orderTransfer, $idPayment);
 
     /**
+     * Specification:
+     * - Executes Revert payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function revertPartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
+
+    /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
@@ -74,6 +115,19 @@ interface PayolutionFacadeInterface
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
     public function capturePayment(OrderTransfer $orderTransfer, $idPayment);
+
+    /**
+     * Specification:
+     * - Executes Capture payolution payment request and persists stores result in database.
+     * - Can be used for partial and full operations in OMS
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function capturePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer;
 
     /**
      * @api

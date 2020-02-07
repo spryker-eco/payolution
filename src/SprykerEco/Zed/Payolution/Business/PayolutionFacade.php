@@ -9,6 +9,8 @@ namespace SprykerEco\Zed\Payolution\Business;
 
 use Generated\Shared\Transfer\CheckoutResponseTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
+use Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer;
+use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
@@ -67,6 +69,27 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function preAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->preAuthorizePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
+    }
+
+    /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
@@ -80,6 +103,27 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
             ->getFactory()
             ->createPaymentTransactionHandler()
             ->reAuthorizePayment($orderTransfer, $idPayment);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function reAuthorizePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->reAuthorizePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
     }
 
     /**
@@ -99,6 +143,28 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function revertPartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->revertPayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
+    }
+
+
+    /**
      * @api
      *
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
@@ -113,6 +179,28 @@ class PayolutionFacade extends AbstractFacade implements PayolutionFacadeInterfa
             ->createPaymentTransactionHandler()
             ->capturePayment($orderTransfer, $idPayment);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
+     */
+    public function capturePartialPayment(PayolutionOmsOperationRequestTransfer $payolutionOmsOperationRequestTransfer): PayolutionTransactionResponseTransfer
+    {
+        return $this
+            ->getFactory()
+            ->createPaymentTransactionHandler()
+            ->capturePayment(
+                $payolutionOmsOperationRequestTransfer->getOrder(),
+                $payolutionOmsOperationRequestTransfer->getIdPayment(),
+                $payolutionOmsOperationRequestTransfer->getSelectedItems()
+            );
+    }
+
 
     /**
      * @api

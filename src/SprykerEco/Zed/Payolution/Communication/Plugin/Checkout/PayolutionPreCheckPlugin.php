@@ -21,6 +21,8 @@ use SprykerEco\Shared\Payolution\PayolutionConfig;
 class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPreCheckPluginInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      * @param \Generated\Shared\Transfer\CheckoutResponseTransfer $checkoutResponseTransfer
      *
@@ -46,10 +48,7 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
         PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer,
         CheckoutResponseTransfer $checkoutResponseTransfer
     ) {
-        if (PayolutionConfig::REASON_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingReasonCode()
-            || PayolutionConfig::STATUS_CODE_SUCCESS !== $payolutionTransactionResponseTransfer->getProcessingStatusCode()
-            || PayolutionConfig::PAYMENT_CODE_PRE_CHECK !== $payolutionTransactionResponseTransfer->getPaymentCode()
-        ) {
+        if ($this->isResponseInvalid($payolutionTransactionResponseTransfer)) {
             $errorCode = (int)preg_replace('/[^\d]+/', '', $payolutionTransactionResponseTransfer->getProcessingCode());
             $error = new CheckoutErrorTransfer();
             $error
@@ -57,5 +56,17 @@ class PayolutionPreCheckPlugin extends BaseAbstractPlugin implements CheckoutPre
                 ->setMessage($payolutionTransactionResponseTransfer->getProcessingReturn());
             $checkoutResponseTransfer->addError($error);
         }
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer
+     *
+     * @return bool
+     */
+    protected function isResponseInvalid(PayolutionTransactionResponseTransfer $payolutionTransactionResponseTransfer): bool
+    {
+        return $payolutionTransactionResponseTransfer->getProcessingReasonCode() !== PayolutionConfig::REASON_CODE_SUCCESS
+            || $payolutionTransactionResponseTransfer->getProcessingStatusCode() !== PayolutionConfig::STATUS_CODE_SUCCESS
+            || $payolutionTransactionResponseTransfer->getPaymentCode() !== PayolutionConfig::PAYMENT_CODE_PRE_CHECK;
     }
 }
