@@ -9,6 +9,7 @@ namespace SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Command;
 
 use Generated\Shared\Transfer\PayolutionTransactionResponseTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 use SprykerEco\Shared\Payolution\PayolutionConfig;
@@ -17,7 +18,7 @@ use SprykerEco\Shared\Payolution\PayolutionConfig;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class RefundPlugin extends AbstractPayolutionCommandPlugin implements CommandByOrderInterface
+class RefundPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * @api
@@ -30,7 +31,8 @@ class RefundPlugin extends AbstractPayolutionCommandPlugin implements CommandByO
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
-        $orderTransfer = $this->getOrderTransfer($orderEntity);
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter($orderItems, $orderEntity);
+        $orderTransfer = $omsEntityConverter->extractOrderTransfer($orderEntity);
 
         $refundTransfer = $this->getFactory()
             ->getRefundFacade()
@@ -40,7 +42,7 @@ class RefundPlugin extends AbstractPayolutionCommandPlugin implements CommandByO
             $refundTransfer->getAmount()
         );
 
-        $paymentEntity = $this->getPaymentEntity($orderEntity);
+        $paymentEntity = $omsEntityConverter->extractPaymentEntity($orderEntity);
 
         $responseTransfer = $this->getFacade()
             ->refundPayment(

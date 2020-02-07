@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPostCheckPluginInterface
 {
-    public const ERROR_CODE_PAYMENT_FAILED = 'payment failed';
+    protected const ERROR_CODE_PAYMENT_FAILED = 'payment failed';
 
     /**
      * @api
@@ -38,7 +38,7 @@ class PayolutionPostCheckPlugin extends BaseAbstractPlugin implements CheckoutPo
         if (!$this->isPreAuthorizationApproved($transactionStatusLogEntity)) {
             $checkoutErrorTransfer = new CheckoutErrorTransfer();
             $checkoutErrorTransfer
-                ->setErrorCode(self::ERROR_CODE_PAYMENT_FAILED)
+                ->setErrorCode(static::ERROR_CODE_PAYMENT_FAILED)
                 ->setMessage($transactionStatusLogEntity->getProcessingReason());
 
             $checkoutResponseTransfer->addError($checkoutErrorTransfer);

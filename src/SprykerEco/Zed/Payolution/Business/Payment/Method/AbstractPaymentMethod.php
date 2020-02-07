@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Zed\Payolution\Business\Payment\Method;
 
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Orm\Zed\Payolution\Persistence\Map\SpyPaymentPayolutionTableMap;
 use Orm\Zed\Payolution\Persistence\SpyPaymentPayolution;
@@ -107,7 +108,7 @@ abstract class AbstractPaymentMethod
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $paymentCode
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -116,7 +117,7 @@ abstract class AbstractPaymentMethod
         SpyPaymentPayolution $paymentEntity,
         $paymentCode,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         $requestData = $this->getBaseTransactionRequest(
             $this->getGrandTotal($orderTransfer, $orderItems),
@@ -182,15 +183,14 @@ abstract class AbstractPaymentMethod
 
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param array $salesOrderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $salesOrderItems
      *
      * @return int
      */
-    protected function getGrandTotal(OrderTransfer $orderTransfer, array $salesOrderItems)
+    protected function getGrandTotal(OrderTransfer $orderTransfer, $salesOrderItems): int
     {
         $idSalesOrderItems = [];
 
-        /** @var \Orm\Zed\Sales\Persistence\SpySalesOrderItem $salesOrderItem */
         foreach ($salesOrderItems as $salesOrderItem) {
             $idSalesOrderItems[] = $salesOrderItem->getIdSalesOrderItem();
         }
@@ -200,7 +200,7 @@ abstract class AbstractPaymentMethod
 
             foreach ($orderTransfer->getItems() as $item) {
                 if (in_array($item->getIdSalesOrderItem(), $idSalesOrderItems)) {
-                    $grandTotal += $item->getUnitPriceToPayAggregation();
+                    $grandTotal += $item->getSumPriceToPayAggregation();
                 }
             }
 

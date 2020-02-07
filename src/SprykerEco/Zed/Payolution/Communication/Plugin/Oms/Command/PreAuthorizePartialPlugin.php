@@ -16,7 +16,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class RevertPlugin extends AbstractPlugin implements CommandByOrderInterface
+class PreAuthorizePartialPlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * @api
@@ -31,10 +31,7 @@ class RevertPlugin extends AbstractPlugin implements CommandByOrderInterface
     {
         $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
 
-        $this->getFacade()->revertPayment(
-            $omsEntityConverter->extractOrderTransfer($orderEntity),
-            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution()
-        );
+        $this->getFacade()->preAuthorizePartialPayment($omsEntityConverter->extractPayolutionOmsOperationRequest($orderItems, $orderEntity));
 
         return [];
     }

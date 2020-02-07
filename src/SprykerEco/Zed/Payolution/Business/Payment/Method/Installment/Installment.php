@@ -173,11 +173,11 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
-    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, array $orderItems)
+    public function buildPreAuthorizationRequest(OrderTransfer $orderTransfer, SpyPaymentPayolution $paymentEntity, $orderItems)
     {
         $requestData = $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -222,7 +222,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -230,7 +230,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -245,7 +245,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -253,7 +253,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,
@@ -268,7 +268,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param \Orm\Zed\Payolution\Persistence\SpyPaymentPayolution $paymentEntity
      * @param string $uniqueId
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return array
      */
@@ -276,7 +276,7 @@ class Installment extends AbstractPaymentMethod implements InstallmentInterface
         OrderTransfer $orderTransfer,
         SpyPaymentPayolution $paymentEntity,
         $uniqueId,
-        array $orderItems
+        $orderItems
     ) {
         return $this->getBaseTransactionRequestForPayment(
             $orderTransfer,

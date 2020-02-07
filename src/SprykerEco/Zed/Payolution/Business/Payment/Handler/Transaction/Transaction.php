@@ -66,11 +66,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems)
+    public function preAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $methodMapper = $this->getMethodMapper($paymentEntity->getAccountBrand());
@@ -89,11 +89,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems)
+    public function reAuthorizePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);
@@ -108,11 +108,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems)
+    public function revertPayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);
@@ -127,11 +127,11 @@ class Transaction extends AbstractPaymentHandler implements TransactionInterface
     /**
      * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
      * @param int $idPayment
-     * @param array $orderItems
+     * @param \Generated\Shared\Transfer\ItemTransfer[] $orderItems
      *
      * @return \Generated\Shared\Transfer\PayolutionTransactionResponseTransfer
      */
-    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, array $orderItems)
+    public function capturePayment(OrderTransfer $orderTransfer, $idPayment, $orderItems = [])
     {
         $paymentEntity = $this->getPaymentEntity($idPayment);
         $statusLogEntity = $this->getLatestTransactionStatusLogItem($idPayment);

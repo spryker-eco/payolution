@@ -100,12 +100,12 @@ class AbstractMethodMapperTest extends Unit
 
         $itemTransfer1 = new ItemTransfer();
         $itemTransfer1->setIdSalesOrderItem(1);
-        $itemTransfer1->setUnitPriceToPayAggregation(500);
+        $itemTransfer1->setSumPriceToPayAggregation(500);
         $orderTransfer->addItem($itemTransfer1);
 
         $itemTransfer2 = new ItemTransfer();
         $itemTransfer2->setIdSalesOrderItem(2);
-        $itemTransfer2->setUnitPriceToPayAggregation(500);
+        $itemTransfer2->setSumPriceToPayAggregation(500);
         $orderTransfer->addItem($itemTransfer2);
 
         $totalTransfer->setGrandTotal(1000);

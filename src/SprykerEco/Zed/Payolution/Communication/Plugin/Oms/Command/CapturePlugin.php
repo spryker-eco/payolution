@@ -8,6 +8,7 @@
 namespace SprykerEco\Zed\Payolution\Communication\Plugin\Oms\Command;
 
 use Orm\Zed\Sales\Persistence\SpySalesOrder;
+use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Oms\Business\Util\ReadOnlyArrayObject;
 use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
 
@@ -15,7 +16,7 @@ use Spryker\Zed\Oms\Dependency\Plugin\Command\CommandByOrderInterface;
  * @method \SprykerEco\Zed\Payolution\Business\PayolutionFacade getFacade()
  * @method \SprykerEco\Zed\Payolution\Communication\PayolutionCommunicationFactory getFactory()
  */
-class CapturePlugin extends AbstractPayolutionCommandPlugin implements CommandByOrderInterface
+class CapturePlugin extends AbstractPlugin implements CommandByOrderInterface
 {
     /**
      * @api
@@ -28,10 +29,11 @@ class CapturePlugin extends AbstractPayolutionCommandPlugin implements CommandBy
      */
     public function run(array $orderItems, SpySalesOrder $orderEntity, ReadOnlyArrayObject $data)
     {
+        $omsEntityConverter = $this->getFactory()->createOmsEntityConverter();
+
         $this->getFacade()->capturePayment(
-            $this->getOrderTransfer($orderEntity),
-            $this->getPaymentEntity($orderEntity)->getIdPaymentPayolution(),
-            $this->getPartialOrderItems($orderItems, $orderEntity)
+            $omsEntityConverter->extractOrderTransfer($orderEntity),
+            $omsEntityConverter->extractPaymentEntity($orderEntity)->getIdPaymentPayolution()
         );
 
         return [];

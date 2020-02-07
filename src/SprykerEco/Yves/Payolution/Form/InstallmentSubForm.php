@@ -19,12 +19,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class InstallmentSubForm extends AbstractPayolutionSubForm
 {
-    public const PAYMENT_PROVIDER = PayolutionConfig::PROVIDER_NAME;
-    public const PAYMENT_METHOD = 'installment';
-    public const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
-    public const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
-    public const FIELD_BANK_ACCOUNT_IBAN = 'bank_account_iban';
-    public const FIELD_BANK_ACCOUNT_BIC = 'bank_account_bic';
+    protected const PAYMENT_PROVIDER = PayolutionConfig::PROVIDER_NAME;
+    protected const PAYMENT_METHOD = 'installment';
+    protected const FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX = 'installment_payment_detail_index';
+    protected const FIELD_BANK_ACCOUNT_HOLDER = 'bank_account_holder';
+    protected const FIELD_BANK_ACCOUNT_IBAN = 'bank_account_iban';
+    protected const FIELD_BANK_ACCOUNT_BIC = 'bank_account_bic';
 
     public const OPTION_INSTALLMENT_PAYMENT_DETAIL = 'installment_payment_detail';
 
@@ -49,7 +49,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
      */
     public function getTemplatePath()
     {
-        return PayolutionConfig::PROVIDER_NAME . '/' . self::PAYMENT_METHOD;
+        return PayolutionConfig::PROVIDER_NAME . '/' . static::PAYMENT_METHOD;
     }
 
     /**
@@ -62,18 +62,6 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
         $resolver->setDefaults([
             'data_class' => PayolutionPaymentTransfer::class,
         ])->setRequired(SubFormInterface::OPTIONS_FIELD_NAME);
-    }
-
-    /**
-     * @deprecated Use `configureOptions()` instead.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
-     *
-     * @return void
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**
@@ -100,10 +88,10 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     public function addInstallmentPaymentDetails(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            self::FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX,
+            static::FIELD_INSTALLMENT_PAYMENT_DETAIL_INDEX,
             ChoiceType::class,
             [
-                'choices' => array_flip($options['select_options'][self::OPTION_INSTALLMENT_PAYMENT_DETAIL]),
+                'choices' => array_flip($options['select_options'][static::OPTION_INSTALLMENT_PAYMENT_DETAIL]),
                 'label' => false,
                 'required' => true,
                 'expanded' => false,
@@ -126,7 +114,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     protected function addBankAccountHolder(FormBuilderInterface $builder)
     {
         $builder->add(
-            self::FIELD_BANK_ACCOUNT_HOLDER,
+            static::FIELD_BANK_ACCOUNT_HOLDER,
             TextType::class,
             [
                 'label' => false,
@@ -151,7 +139,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     protected function addBankAccountIban(FormBuilderInterface $builder)
     {
         $builder->add(
-            self::FIELD_BANK_ACCOUNT_IBAN,
+            static::FIELD_BANK_ACCOUNT_IBAN,
             TextType::class,
             [
                 'label' => false,
@@ -176,7 +164,7 @@ class InstallmentSubForm extends AbstractPayolutionSubForm
     protected function addBankAccountBic(FormBuilderInterface $builder)
     {
         $builder->add(
-            self::FIELD_BANK_ACCOUNT_BIC,
+            static::FIELD_BANK_ACCOUNT_BIC,
             TextType::class,
             [
                 'label' => false,

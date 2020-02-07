@@ -3,6 +3,7 @@
   "description": "Payolution module",
   "license": "MIT",
   "require": {
+    "php": ">=7.2",
     "spryker/checkout": "^3.0.0 || ^4.0.0 || ^6.0.0",
     "spryker/glossary": "^3.0.0",
     "spryker/gui": "^3.0.0",
@@ -36,6 +37,10 @@
       "SprykerEco\\": "src/SprykerEco/",
       "SprykerEcoTest\\Zed\\Payolution\\Business\\": "tests/SprykerEcoTest/Zed/Payolution/Business/"
     }
+  },
+  "scripts": {
+    "cs-check": "phpcs --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml -p src/ tests/",
+    "cs-fix": "phpcbf --standard=vendor/spryker/code-sniffer/SprykerStrict/ruleset.xml -p src/ tests/"
   },
   "autoload-dev": {
     "psr-4": {
