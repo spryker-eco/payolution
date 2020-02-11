@@ -1,11 +1,14 @@
 {% define config = {
-    name: 'installment',
-    tag: 'installment',
+    name: 'installment'
+} %}
+
+{% define data = {
+    form: data.form
 } %}
 
 {% block body %}
-    <div class="payolution-form payolution-installment-form payment-form small-12 medium-9 large-6" id="payolutionInstallment">
-        <div class="small-12 columns">
+    <div id="payolutionInstallment">
+        <div>
             <label>
                 {{ 'payolutionInstallment.date_of_birth' | trans }}*
                 {{ form_widget(data.form.payolutionInstallment.date_of_birth, { 'attr': {'placeholder': 'payolutionInstallment.date_of_birth' | trans } }) }}
@@ -13,7 +16,7 @@
             {{ form_errors(data.form.payolutionInstallment.date_of_birth) }}
         </div>
 
-        <div class="small-12 columns">
+        <div>
             <label>
                 {{ 'payolutionInstallment.bank_account_holder' | trans }}*
                 {{ form_widget(data.form.payolutionInstallment.bank_account_holder, { 'attr': {'placeholder': 'payolutionInstallment.bank_account_holder' | trans } }) }}
@@ -21,7 +24,7 @@
             {{ form_errors(data.form.payolutionInstallment.bank_account_holder) }}
         </div>
 
-        <div class="small-12 columns">
+        <div>
             <label>
                 {{ 'payolutionInstallment.bank_account_iban' | trans }}*
                 {{ form_widget(data.form.payolutionInstallment.bank_account_iban, { 'attr': {'placeholder': 'payolutionInstallment.bank_account_iban' | trans } }) }}
@@ -29,7 +32,7 @@
             {{ form_errors(data.form.payolutionInstallment.bank_account_iban) }}
         </div>
 
-        <div class="small-12 columns">
+        <div>
             <label>
                 {{ 'payolutionInstallment.bank_account_bic' | trans }}*
                 {{ form_widget(data.form.payolutionInstallment.bank_account_bic, { 'attr': {'placeholder': 'payolutionInstallment.bank_account_bic' | trans } }) }}
@@ -37,7 +40,7 @@
             {{ form_errors(data.form.payolutionInstallment.bank_account_bic) }}
         </div>
 
-        <div class="small-12 columns">
+        <div>
             <label>
                 {{ 'payolutionInstallment.installment_payment_detail_index' | trans }}*
                 {{ form_widget(data.form.payolutionInstallment.installment_payment_detail_index, { 'attr': {'placeholder': 'payolutionInstallment.installment_payment_detail_index' | trans } }) }}

@@ -1,11 +1,14 @@
 {% define config = {
-    name: 'invoice',
-    tag: 'invoice',
+    name: 'invoice'
+} %}
+
+{% define data = {
+    form: data.form
 } %}
 
 {% block body %}
-    <div class="payolution-form payolution-invoice-form payment-form small-12 medium-9 large-6" id="payolutionInvoice">
-        <div class="small-12 columns">
+    <div id="payolutionInvoice">
+        <div>
             <label>
                 {{ 'payolutionInvoice.date_of_birth' | trans }}*
                 {{ form_widget(data.form.payolutionInvoice.date_of_birth, { 'attr': {'placeholder': 'payolutionInvoice.date_of_birth' | trans } }) }}

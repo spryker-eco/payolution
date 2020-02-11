@@ -1,13 +1,9 @@
 {% extends model('template') %}
 
-{% define data = {
-    form: form,
-} %}
-
 {% block body %}
     {% include molecule('installment', 'Payolution') with {
         data: {
-            form: data.form,
+            form: _view.paymentForm,
         },
     } only %}
 {% endblock %}
