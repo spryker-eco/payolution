@@ -7,7 +7,7 @@
 {% block body %}
     {% include molecule('installment', 'Payolution') with {
         data: {
-            form: _view.paymentForm.payolutionInstallment,
+            form: data.form,
         },
     } only %}
 {% endblock %}
