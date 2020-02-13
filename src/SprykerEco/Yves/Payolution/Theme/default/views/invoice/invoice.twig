@@ -1,4 +1,8 @@
-{% extends model('template') %}
+{% extends template('widget') %}
+
+{% define data = {
+    form: _view.paymentForm.payolutionInvoice,
+} %}
 
 {% block body %}
     {% include molecule('invoice', 'Payolution') with {
