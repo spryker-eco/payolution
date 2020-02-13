@@ -3,7 +3,7 @@
 {% block body %}
     {% include molecule('invoice', 'Payolution') with {
         data: {
-            form: _view.paymentForm,
+            form: _view.paymentForm.payolutionInvoice,
         },
     } only %}
 {% endblock %}
