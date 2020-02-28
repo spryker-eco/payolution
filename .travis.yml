@@ -9,17 +9,36 @@ sudo: required
 matrix:
     fast_finish: true
     include:
-        - php: 7.2
+        - php: 7.4
+          dist: bionic
           env:
-              - PRODUCT_NAME=suite
+              - VALIDATION=1
+
+        - php: 7.4
+          dist: bionic
+          env:
+              - TEST_GROUP=acceptance
+              - ON_EVENTS=push,cron
+
+        - php: 7.4
+          dist: bionic
+          env:
+              - TEST_GROUP=without-acceptance
+              - ON_EVENTS=cron,push
 
         - php: 7.2
+          dist: bionic
           env:
-              - PRODUCT_NAME=b2c-demo-shop
+              - TEST_GROUP=acceptance
+              - ON_EVENTS=push,cron
+              - DB=mysql
 
         - php: 7.2
+          dist: bionic
           env:
-              - PRODUCT_NAME=b2b-demo-shop
+              - TEST_GROUP=without-acceptance
+              - ON_EVENTS=cron,push
+              - DB=mysql
 
 services:
     - postgresql
