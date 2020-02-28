@@ -29,16 +29,12 @@ matrix:
         - php: 7.2
           dist: bionic
           env:
-              - TEST_GROUP=acceptance
-              - ON_EVENTS=push,cron
-              - DB=mysql
+              - PRODUCT_NAME=b2c-demo-shop
 
         - php: 7.2
           dist: bionic
           env:
-              - TEST_GROUP=without-acceptance
-              - ON_EVENTS=cron,push
-              - DB=mysql
+              - PRODUCT_NAME=b2b-demo-shop
 
 services:
     - postgresql
