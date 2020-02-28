@@ -1,4 +1,5 @@
 language: php
+dist: trusty
 
 notifications:
     email: false
@@ -8,33 +9,15 @@ sudo: required
 matrix:
     fast_finish: true
     include:
-        - php: 7.4
-          dist: bionic
-          env:
-              - PRODUCT_NAME=suite
-
-        - php: 7.4
-          dist: bionic
-          env:
-              - PRODUCT_NAME=b2c-demo-shop
-
-        - php: 7.4
-          dist: bionic
-          env:
-              - PRODUCT_NAME=b2b-demo-shop
-
         - php: 7.2
-          dist: bionic
           env:
               - PRODUCT_NAME=suite
 
         - php: 7.2
-          dist: bionic
           env:
               - PRODUCT_NAME=b2c-demo-shop
 
         - php: 7.2
-          dist: bionic
           env:
               - PRODUCT_NAME=b2b-demo-shop
 
@@ -44,8 +27,7 @@ services:
     - rabbitmq
 
 addons:
-    postgresql: 9.6
-    mysql: 5.7
+    postgresql: 9.4
 
     apt:
         packages:
@@ -61,7 +43,7 @@ env:
         - APPLICATION_STORE=DE
         - MODULE_DIR=module
         - SHOP_DIR=current
-        - MODULE_NAME=payolution
+        - MODULE_NAME=payone
 
 cache:
     directories:
